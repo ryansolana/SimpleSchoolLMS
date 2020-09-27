@@ -29,13 +29,18 @@ textarea.materialize-textarea:focus:not([readonly]){
   box-shadow: none;
 }
 
+
+
 .nav-wrapper {
   background-color: #00233D !important;
+  height: 110px;
+  line-height: 110px;
 }
 
-div.login-wrapper{
-
-  padding: 1vh 25vh;
+.nav-wrapper.grey{
+  background-color: #242424 !important;
+  height: 80px;
+  line-height:80px;
 }
 
 button.login-btn{
@@ -46,47 +51,14 @@ h3.thick{
   font-weight: bold;
 }
 
-/* NAV WRAPPER START*/
-nav {
-  height: 90px;
-  line-height: 90px;
-}
-
-nav i, nav [class^="mdi-"], nav [class*="mdi-"], nav i.material-icons {
-  height: 90px;
-  line-height: 90px;
-}
-
-nav .button-collapse i {
-  height: 90px;
-  line-height: 90px;
-}
-
-nav .brand-logo { 
-  line-height: 90px;
-  height: 100%
-}
-
-@media only screen and (min-width: 601px){
-  nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
-      height: 90px;
-      line-height: 90px;
-  }
-}
-/* NAV WRAPPER END*/
-
-.logo-image{
-  background-image: url("/img/logo.png");
-  background-size: 50px
-
-}
-
-ul.school-menu > li > button{
-  margin-right:30px;
+.brand-logo{
+  
+  position:relative; top:1px;
 }
 
 p.welcome{
   margin-top:0;
+  margin-bottom:0;
   margin-right:40px;
   font-size: 22px;
 }
@@ -103,4 +75,8 @@ nav.transparent{
 
 .btn{
   border-radius: 30px 30px 30px;
+}
+
+.dashboard{
+  margin-top:25px;
 }

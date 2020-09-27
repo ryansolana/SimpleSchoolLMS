@@ -26,7 +26,7 @@ class SignIn extends Component {
         return (
             <div className="container">
                 <form onSubmit={this.handleSubmit} className="white">
-                <div className="login-wrapper">
+                <div className="halign-wrapper">
                     <h3 className="thick">School Of Logistics Portal</h3>
                     
                         <h6 className="grey-text text-darken-3">Please log in to continue.</h6>
