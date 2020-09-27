@@ -22,20 +22,19 @@ const Navbar = (props) => {
     if (links){
         return(
             <div>
-                <div className="hide-on-med-and-down">
-                    <nav className="nav-wrapper">
-                        <div className="container">
-                            <Link to='/' className="brand-logo left"><img src="/img/logo.png" alt="yeah"></img></Link>
+                <nav className="nav-wrapper">
+                    <div className="container">
+                        <Link to='/' className="brand-logo left"><img src="/img/logo.png" alt="yeah"></img></Link>
+                        <div className="hide-on-med-and-down">
                             { links }
                         </div>
-                    </nav>
-                    <nav className="nav-wrapper grey">
-                        {/* School Menu Goes Below*/}
-                        { schoolLinks }
-                    </nav>
-                </div>
-
-
+                        
+                    </div>
+                </nav>
+                <nav className="nav-wrapper grey hide-on-med-and-down">
+                    {/* School Menu Goes Below*/}
+                    { schoolLinks }
+                </nav>
             </div>
         )
     }

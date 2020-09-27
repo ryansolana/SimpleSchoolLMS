@@ -39,8 +39,8 @@ textarea.materialize-textarea:focus:not([readonly]){
 
 .nav-wrapper.grey{
   background-color: #242424 !important;
-  height: 80px;
-  line-height:80px;
+  height: 60px;
+  line-height:60px;
 }
 
 button.login-btn{
@@ -52,14 +52,16 @@ h3.thick{
 }
 
 .brand-logo{
-  
+
   position:relative; top:1px;
 }
 
 p.welcome{
   margin-top:0;
   margin-bottom:0;
-  margin-right:40px;
+  padding-top:0;
+  padding-bottom:0;
+  padding-right:40px;
   font-size: 22px;
 }
 
