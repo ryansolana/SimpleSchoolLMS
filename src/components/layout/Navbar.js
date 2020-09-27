@@ -25,16 +25,24 @@ const Navbar = (props) => {
                 <nav className="nav-wrapper">
                     <div className="container">
                         <Link to='/' className="brand-logo left"><img src="/img/logo.png" alt="yeah"></img></Link>
+                        
                         <div className="hide-on-med-and-down">
                             { links }
                         </div>
                         
                     </div>
                 </nav>
-                <nav className="nav-wrapper grey hide-on-med-and-down">
+                <nav className="nav-wrapper grey">
                     {/* School Menu Goes Below*/}
+                    <div className="hide-on-med-and-down">
+                        { schoolLinks }
+                    </div>
+                    <a href="#" data-target="slide-out" class="sidenav-trigger show-on-small"><i class="material-icons">menu</i></a>
+                </nav>      
+
+                <ul id="slide-out" className="sidenav">
                     { schoolLinks }
-                </nav>
+                </ul>   
             </div>
         )
     }

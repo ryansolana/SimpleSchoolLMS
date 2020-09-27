@@ -6,8 +6,14 @@ import ProjectDetails from './components/projects/ProjectDetails'
 import SignIn from './components/auth/SignIn'
 import SignUp from './components/auth/SignUp'
 import CreateProject from './components/projects/CreateProject'
+import M from  'materialize-css/dist/js/materialize.min.js';
 
 class App extends Component {
+  componentDidMount() {
+    let sidenav = document.querySelector('#slide-out');
+    M.Sidenav.init(sidenav, {});
+  }
+
   render(){
     return (
       <BrowserRouter>
