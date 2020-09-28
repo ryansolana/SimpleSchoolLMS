@@ -6,6 +6,7 @@ import { Redirect } from 'react-router-dom'
 class CreateAnnounce extends Component {
     state = { 
         title: '',
+        subtitle: '',
         content: ''
     }
 
@@ -27,20 +28,23 @@ class CreateAnnounce extends Component {
         if (!auth.uid) return <Redirect to='/signin' /> // redirect to signin if user is not logged in
         return (
             <div className="container z-depth-1">
-                <h5 className="grey-text text-darken-3">Create New Announcement</h5>
+                
                 <form onSubmit={this.handleSubmit} className="white">
-                    
+                <h5 className="grey-text text-darken-3">Create New Announcement</h5>
                     <div className="input-field">
-                        <label htmlFor="email">Title</label>
+                        <label htmlFor="email">Announcement Title</label>
                         <input type="text" id="title" onChange={this.handleChange}/>
                     </div>
                     <div className="input-field">
-                        <label htmlFor="content">Announce Content</label>
+                        <label htmlFor="email">Announcement Subtitle</label>
+                        <input type="text" id="subtitle" onChange={this.handleChange}/>
+                    </div>
+                    <div className="input-field">
+                        <label htmlFor="content">Announcement Content</label>
                         <textarea id="content" className="materialize-textarea" onChange={this.handleChange}></textarea>
                     </div>
-
                     <div className="input-field">
-                        <button className="btn pink lighten-1 z-depth-0">Create Announce</button>
+                        <button className="btn pink lighten-1 z-depth-0">Create Announcement</button>
                     </div>
                 </form>
             </div>

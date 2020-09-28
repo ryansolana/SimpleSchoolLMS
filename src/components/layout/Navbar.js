@@ -37,7 +37,7 @@ const Navbar = (props) => {
                     <div className="hide-on-med-and-down">
                         { schoolLinks }
                     </div>
-                    <a href="#" data-target="slide-out" class="sidenav-trigger show-on-small"><i class="material-icons">menu</i></a>
+                    <a href="#" data-target="slide-out" className="sidenav-trigger show-on-small"><i className="material-icons">menu</i></a>
                 </nav>      
 
                 <ul id="slide-out" className="sidenav">

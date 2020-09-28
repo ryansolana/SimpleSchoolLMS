@@ -87,3 +87,33 @@ h3.padding{
   padding: 0;
   margin: 0;
 }
+
+button.padding-top{
+  margin-top:7px;
+}
+
+.card .card-title{
+  font-weight: bold;
+}
+/
+div.card-action.grey.lighten-4.grey-text p{
+  margin-top: 1px;
+  margin-bottom: 1px;
+}
+
+.material-icons.announce{
+  padding: 25px 30px 10px 15px;
+  font-size: 65px;
+}
+
+hr {
+  margin: 20px 0px 20px 0px;
+  border:none;
+  background-color: gray;
+  height:0.5px;
+}
+
+.margin-top-20{
+  margin-top:20px;
+
+}

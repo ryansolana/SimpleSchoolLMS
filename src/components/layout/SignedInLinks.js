@@ -9,7 +9,7 @@ const SignedInLinks = (props) => {
         return(
             <ul className="right">
                 
-                <li><p className="welcome">Welcome back, {props.profile.firstName} {props.profile.lastName}!</p>
+                <li><p className="welcome">Logged in as, {props.profile.firstName} {props.profile.lastName}!</p>
                 </li>
                 
                 {/*<li><NavLink to='/create'>New Project</NavLink></li>*/}

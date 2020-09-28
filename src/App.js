@@ -10,6 +10,7 @@ import M from  'materialize-css/dist/js/materialize.min.js';
 import AnnounceDashboard from './components/dashboard/AnnounceDashboard'
 import Landing from './components/dashboard/Landing'
 import CreateAnnounce from './components/announcements/CreateAnnounce'
+import AnnounceDetails from './components/announcements/AnnounceDetails'
 
 class App extends Component {
   componentDidMount() {
@@ -25,6 +26,7 @@ class App extends Component {
           <Switch>
             <Route exact path='/' component={ Landing } />
             <Route path='/project/:id' component={ ProjectDetails } />
+            <Route path='/announce/:id' component={ AnnounceDetails } />
             <Route path='/signin' component={SignIn}/>
             <Route path='/signup' component={SignUp}/>
             <Route path='/createProject' component={CreateProject}/>

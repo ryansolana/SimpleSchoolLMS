@@ -6,21 +6,26 @@ import { Redirect } from 'react-router-dom'
 import moment from 'moment'
 
 const AnnounceDetails = (props) => {
-    const { project, auth } = props;
+    const { announce, auth } = props;
     if (!auth.uid) return <Redirect to='/signin' /> // redirect to signin if user is not logged in
     
-    if (project ){
+    if (announce ){
         return (
         <div>
-            <div className="container section project-details">
+            <div className="container section announce-details">
                 <div className="card z-depth-0">
                     <div className="card-content">
-                        <span className="card-title">{ project.title }</span>
-                        <p>{project.content}</p>
+                        <div className="row">
+                            <span className="card-title">{announce.title}</span>
+                            <span className="card-subtitle">{announce.subtitle}</span> 
+                        </div>
+                        
+                        <hr></hr>
+                        <p>{announce.content}</p>
                     </div>
                     <div className="card-action grey lighten-4 grey-text">
-                        <div>Posted by {project.authorFirstName} {project.authorLastName}</div>
-                        <div>{moment(project.createdAt.toDate()).calendar()}</div>
+                        <div>Posted by {announce.authorFirstName} {announce.authorLastName}</div>
+                        <div>{moment(announce.createdAt.toDate()).calendar()}</div>
                     </div>
                 </div>
             </div>
@@ -29,7 +34,7 @@ const AnnounceDetails = (props) => {
     } else {
         return (
             <div className="container center">
-                <p>Loading project...</p>
+                <p>Loading announce...</p>
             </div>
         )
     }
@@ -38,10 +43,10 @@ const AnnounceDetails = (props) => {
 const mapStateToProps = (state, ownProps) => {
     console.log(state)
     const id = ownProps.match.params.id;
-    const projects = state.firestore.data.projects
-    const project = projects ? projects[id] : null
+    const announces = state.firestore.data.announces
+    const announce = announces ? announces[id] : null
     return {
-        project: project,
+        announce: announce,
         auth: state.firebase.auth
     }
 }
@@ -49,6 +54,6 @@ const mapStateToProps = (state, ownProps) => {
 export default compose(
     connect(mapStateToProps),
     firestoreConnect([
-        { collection: 'projects'}
+        { collection: 'announces'}
     ])
 )(AnnounceDetails)

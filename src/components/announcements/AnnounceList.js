@@ -1,5 +1,5 @@
 import React from 'react'
-import ProjectSummary from './ProjectSummary'
+import AnnounceSummary from './AnnounceSummary'
 import { Link } from 'react-router-dom'
 
 const AnnounceList = ({announces}) => {
@@ -9,7 +9,7 @@ const AnnounceList = ({announces}) => {
             announces && announces.map(announce =>{
               return (
                 <Link to={'/announce/' + announce.id} key={announce.id}>
-                  <ProjectSummary announce={announce}/>
+                  <AnnounceSummary announce={announce}/>
                 </Link>
               )
             })
