@@ -10,16 +10,16 @@ const Navbar = (props) => {
     console.log(auth)
     const links = auth.uid ? <SignedInLinks profile={profile}/> : <SignedOutLinks/>
     const schoolLinks = auth.uid ? 
-    <div>
-        <nav className="nav-wrapper darken-3 grey">
-            <div className="container">
-                {/* School Menu Links Start */}
-                <SchoolLinks profile={profile}/>
-            </div>
-        </nav>
-    </div> : <div></div>
+        <div>
+            <nav className="nav-wrapper darken-3 grey">
+                <div className="container">
+                    {/* School Menu Links Start */}
+                    <SchoolLinks profile={profile}/>
+                </div>
+            </nav>
+        </div> : <div></div>
 
-    if (links){
+    if (auth.uid){
         return(
             <div>
                 <nav className="nav-wrapper">
@@ -44,6 +44,14 @@ const Navbar = (props) => {
                     { schoolLinks }
                 </ul>   
             </div>
+        )
+    } else{
+        return(
+            <nav className="nav-wrapper">
+                <div className="container">
+                    <Link to='/' className="brand-logo left"><img src="/img/logo.png" alt="yeah"></img></Link>
+                </div>
+            </nav>
         )
     }
 }

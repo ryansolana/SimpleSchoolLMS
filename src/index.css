@@ -62,7 +62,7 @@ p.welcome{
   padding-top:0;
   padding-bottom:0;
   padding-right:40px;
-  font-size: 25px;
+  font-size: 20px;
 }
 
 p.login {
@@ -81,4 +81,8 @@ nav.transparent{
 
 .dashboard{
   margin-top:25px;
+}
+
+h3.padding{
+  padding: 0px 10px;
 }
