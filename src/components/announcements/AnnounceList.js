@@ -2,14 +2,14 @@ import React from 'react'
 import ProjectSummary from './ProjectSummary'
 import { Link } from 'react-router-dom'
 
-const ProjectList = ({projects}) => {
+const AnnounceList = ({announces}) => {
     return (
-        <div className="project-list section z-depth-0">   
-          { // check if projects exists, if so, map
-            projects && projects.map(project =>{
+        <div className="announce-list section z-depth-0">   
+          { // check if announces exists, if so, map
+            announces && announces.map(announce =>{
               return (
-                <Link to={'/project/' + project.id} key={project.id}>
-                  <ProjectSummary project={project}/>
+                <Link to={'/announce/' + announce.id} key={announce.id}>
+                  <ProjectSummary announce={announce}/>
                 </Link>
               )
             })
@@ -18,4 +18,4 @@ const ProjectList = ({projects}) => {
     )
 }
 
-export default ProjectList
+export default AnnounceList

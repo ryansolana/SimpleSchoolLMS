@@ -7,8 +7,9 @@ import SignUp from './components/auth/SignUp'
 import CreateProject from './components/projects/CreateProject'
 import M from  'materialize-css/dist/js/materialize.min.js';
 
-import PostDashboard from './components/dashboard/PostDashboard'
+import AnnounceDashboard from './components/dashboard/AnnounceDashboard'
 import Landing from './components/dashboard/Landing'
+import CreateAnnounce from './components/announcements/CreateAnnounce'
 
 class App extends Component {
   componentDidMount() {
@@ -26,8 +27,9 @@ class App extends Component {
             <Route path='/project/:id' component={ ProjectDetails } />
             <Route path='/signin' component={SignIn}/>
             <Route path='/signup' component={SignUp}/>
-            <Route path='/create' component={CreateProject}/>
-            <Route path='/announcements' component={PostDashboard}/>
+            <Route path='/createProject' component={CreateProject}/>
+            <Route path='/createAnnounce' component={CreateAnnounce}/>
+            <Route path='/announcements' component={AnnounceDashboard}/>
           </Switch>
         </div>
       </BrowserRouter>
