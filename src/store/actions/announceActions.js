@@ -22,7 +22,7 @@ export const deleteAnnounce = (announceId) => {
     return (dispatch, getState, { getFirestore }) => {
         // make async call to database
         const firestore = getFirestore();
-          
+        console.log(announceId);
         firestore.collection('announces').doc(announceId).delete()
         .then(()=>{
             dispatch({ type: 'DELETE_ANNOUNCE'})
