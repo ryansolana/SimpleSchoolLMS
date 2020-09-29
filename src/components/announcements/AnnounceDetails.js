@@ -33,7 +33,7 @@ const AnnounceDetails = (props) => {
                     </div>
                 </div>
                 <p>The id of this entity is {id}</p>
-                <button className="btn" onClick={() => deleteAnnounce(id)}></button>
+                <button className="btn" onClick={() => deleteAnnounce(id)}>Delete this announcement</button>
             </div>
             
         </div>
