@@ -27,11 +27,11 @@ class App extends Component {
             <Route exact path='/' component={ Landing } />
             <Route path='/project/:id' component={ ProjectDetails } />
             <Route path='/announce/:id' component={ AnnounceDetails } />
-            <Route path='/signin' component={SignIn}/>
-            <Route path='/signup' component={SignUp}/>
-            <Route path='/createProject' component={CreateProject}/>
-            <Route path='/createAnnounce' component={CreateAnnounce}/>
-            <Route path='/announcements' component={AnnounceDashboard}/>
+            <Route path='/signin' component={ SignIn }/>
+            <Route path='/signup' component={ SignUp }/>
+            <Route path='/createProject' component={ CreateProject }/>
+            <Route path='/createAnnounce' component={ CreateAnnounce }/>
+            <Route path='/announcements' component={ AnnounceDashboard }/>
           </Switch>
         </div>
       </BrowserRouter>

@@ -5,6 +5,7 @@ import { Redirect } from 'react-router-dom'
 
 class CreateAnnounce extends Component {
     state = { 
+        // firebase auth included as per mapStateToProps
         title: '',
         subtitle: '',
         content: ''
@@ -20,7 +21,7 @@ class CreateAnnounce extends Component {
         e.preventDefault();
         //console.log(this.state)
         this.props.createAnnounce(this.state)
-        this.props.history.push('/')
+        this.props.history.push('/announcements')
     }
 
     render(){
@@ -51,7 +52,7 @@ class CreateAnnounce extends Component {
         )
     } 
 }
-
+//  auth is now in state
 const mapStateToProps = (state) =>{
     return {
         auth: state.firebase.auth

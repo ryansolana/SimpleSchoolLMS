@@ -9,7 +9,7 @@ const AnnounceDetails = (props) => {
     const { announce, auth } = props;
     if (!auth.uid) return <Redirect to='/signin' /> // redirect to signin if user is not logged in
     
-    if (announce ){
+    if (announce){
         return (
         <div>
             <div className="container section announce-details">
@@ -29,6 +29,7 @@ const AnnounceDetails = (props) => {
                     </div>
                 </div>
             </div>
+            
         </div>
         )
     } else {

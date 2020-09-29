@@ -14,9 +14,17 @@ const announceReducer = (state = initState, action) => {
         case 'CREATE_ANNOUNCE_ERR':
             console.log('create announce error', action.err)
             return state;
+        case 'DELETE_ANNOUNCE':
+            console.log('deleted announce', action.announce)
+            return state;
+        case 'DELETE_ANNOUNCE_ERR':
+            console.log('delete announce err', action.err)
+            return state;
         default:
             return state;
     }
 }
+
+
 
 export default announceReducer

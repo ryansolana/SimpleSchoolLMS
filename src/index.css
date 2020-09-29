@@ -84,7 +84,7 @@ nav.transparent{
 }
 
 h3.padding{
-  padding: 0;
+  padding: 0px 0px 30px 0px;
   margin: 0;
 }
 
@@ -95,7 +95,7 @@ button.padding-top{
 .card .card-title{
   font-weight: bold;
 }
-/
+
 div.card-action.grey.lighten-4.grey-text p{
   margin-top: 1px;
   margin-bottom: 1px;

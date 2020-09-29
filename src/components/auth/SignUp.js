@@ -4,7 +4,8 @@ import { connect } from 'react-redux'
 import { signUp } from '../../store/actions/authActions'
 
 class SignUp extends Component {
-    state = { 
+    state = {
+        admin: false,
         email: '',
         password: '',
         firstName: '',

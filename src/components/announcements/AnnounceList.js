@@ -8,14 +8,18 @@ const AnnounceList = ({announces}) => {
           { // check if announces exists, if so, map
             announces && announces.map(announce =>{
               return (
-                <Link to={'/announce/' + announce.id} key={announce.id}>
-                  <AnnounceSummary announce={announce}/>
-                </Link>
+                <div>
+                  <Link to={'/announce/' + announce.id} key={announce.id}>
+                    <AnnounceSummary announce={announce}/>
+                  </Link>
+                  <p>Id of announce is: {announce.id}</p>
+                </div>
               )
             })
           }
         </div>
     )
 }
+
 
 export default AnnounceList
