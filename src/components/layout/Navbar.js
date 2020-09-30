@@ -32,7 +32,7 @@ const Navbar = (props) => {
                         
                     </div>
                 </nav>
-                <nav className="nav-wrapper grey">
+                <nav className="nav-wrapper grey hoverable">
                     {/* School Menu Goes Below*/}
                     <div className="hide-on-med-and-down">
                         { schoolLinks }

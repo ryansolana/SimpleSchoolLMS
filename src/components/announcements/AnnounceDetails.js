@@ -7,6 +7,12 @@ import moment from 'moment'
 import { deleteAnnounce } from '../../store/actions/announceActions'
 
 const AnnounceDetails = (props) => {
+
+    const deleteHandler = (id) =>{
+        deleteAnnounce(id); 
+        props.history.push('/announcements');
+    }
+
     const { announce, auth, deleteAnnounce, id} = props;
     console.log("announce props is: ")
     console.log(announce)
@@ -32,8 +38,10 @@ const AnnounceDetails = (props) => {
                         <div>{moment(announce.createdAt.toDate()).calendar()}</div>
                     </div>
                 </div>
-                <p>The id of this entity is {id}</p>
-                <button className="btn" onClick={() => deleteAnnounce(id)}>Delete this announcement</button>
+                { 
+                    
+                }
+                <button className="btn" onClick={() => deleteHandler(id)}>Delete this announcement</button>
             </div>
             
         </div>
@@ -41,7 +49,10 @@ const AnnounceDetails = (props) => {
     } else {
         return (
             <div className="container center">
-                <p>Loading announce...</p>
+                <h5>Loading announce...</h5>
+                <div class="progress">
+                    <div class="indeterminate"></div>
+                </div>
             </div>
         )
     }

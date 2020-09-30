@@ -5,10 +5,10 @@ const SchoolLinks = (props) => {
     return(
         <ul className="left">
             <li><NavLink to='/announcements'>Announcements</NavLink></li>
-            <li><NavLink to='/signin'>Course Material</NavLink></li>
-            <li><NavLink to='/signin'>My Submissions</NavLink></li>
-            <li><NavLink to='/create'>My Progress</NavLink></li>
-            <li><NavLink to='/create'>My Calendar</NavLink></li>
+            <li><NavLink to='/content'>Course Material</NavLink></li>
+            <li><NavLink to='/submissions'>My Submissions</NavLink></li>
+            <li><NavLink to='/progress'>My Progress</NavLink></li>
+            <li><NavLink to='/calendar'>My Calendar</NavLink></li>
         </ul>
     )
 }
