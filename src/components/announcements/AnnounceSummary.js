@@ -7,7 +7,7 @@ const AnnounceSummary = ({announce}) => {
         <div className="card z-depth-1 announce-summary hoverable">
             <div className="row">
                 <div className="col s1">
-                  <i className="material-icons grey-text text-darken-3 announce">announcement</i>
+                  <i className="material-icons grey-text text-darken-3 summary">announcement</i>
                 </div>
                 <div className="col s9 offset-s1">
                     <div className="card-content grey-text text-darken-3">

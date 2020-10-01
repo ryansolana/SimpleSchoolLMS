@@ -25,11 +25,9 @@ const Navbar = (props) => {
                 <nav className="nav-wrapper">
                     <div className="container">
                         <Link to='/' className="brand-logo left"><img src="/img/logo.png" alt="yeah"></img></Link>
-                        
-                        <div className="hide-on-med-and-down">
-                            { links }
-                        </div>
-                        
+
+                        { links }
+        
                     </div>
                 </nav>
                 <nav className="nav-wrapper grey hoverable">
@@ -38,11 +36,12 @@ const Navbar = (props) => {
                         { schoolLinks }
                     </div>
                     <a href="#" data-target="slide-out" className="sidenav-trigger show-on-small"><i className="material-icons">menu</i></a>
+                    <ul id="slide-out" className="sidenav">
+                        { schoolLinks }
+                    </ul>   
                 </nav>      
 
-                <ul id="slide-out" className="sidenav">
-                    { schoolLinks }
-                </ul>   
+                
             </div>
         )
     } else{

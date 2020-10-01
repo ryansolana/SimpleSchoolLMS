@@ -1,9 +1,9 @@
 import React from 'react'
-import AnnounceSummary from './AnnounceSummary'
+import CourseMatSummary from './CourseMatSummary'
 import { Link } from 'react-router-dom'
 
 
-const AnnounceList = ({announces}) => {
+const CourseMatList = ({coursemats}) => {
 
   const isEmpty = (obj) => {
     for(var key in obj) {
@@ -13,15 +13,15 @@ const AnnounceList = ({announces}) => {
     return true;
   }
 
-  if (!isEmpty(announces)){
+  if (!isEmpty(coursemats)){
     return (
-      <div className="announce-list section z-depth-0">   
-        { // check if announces exists, if so, map
-          announces && announces.map(announce =>{
+      <div className="coursemat-list section z-depth-0">   
+        { // check if coursemats exists, if so, map
+          coursemats && coursemats.map(coursemat =>{
             return (
               <div>
-                <Link to={'/announce/' + announce.id} key={announce.id}>
-                  <AnnounceSummary announce={announce}/>
+                <Link to={'/coursemat/' + coursemat.id} key={coursemat.id}>
+                  <CourseMatSummary coursemat={coursemat}/>
                 </Link>
 
               </div>
@@ -32,16 +32,16 @@ const AnnounceList = ({announces}) => {
     )
   } else {
     return(
-      <div className="announce-list section z-depth-0">
-        <div className="card z-depth-1 announce-summary">
+      <div className="coursemat-list section z-depth-0">
+        <div className="card z-depth-1 coursemat-summary">
           <div className="row">
             <div className="col s1">
               <i className="material-icons grey-text text-darken-3 summary">speaker_notes_off</i>
             </div>
             <div className="col s9 offset-s1">
               <div className="card-content grey-text text-darken-3">
-                  <span className="card-title">No announcements have been posted yet</span>
-                  <span className="card-subtitle">Check back later!</span> 
+                  <span className="card-title">No course material has been added yet</span>
+                  <span className="card-subtitle">Check back again later!</span> 
               </div>
             </div>
           </div>
@@ -54,4 +54,4 @@ const AnnounceList = ({announces}) => {
 }
 
 
-export default AnnounceList
+export default CourseMatList
