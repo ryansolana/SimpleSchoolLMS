@@ -1,10 +1,9 @@
 import React from 'react'
-import CourseMatSummary from './CourseMatSummary'
+import SubmissionSummary from './SubmissionSummary'
 import { Link } from 'react-router-dom'
 
 
-const CourseMatList = ({coursemats}) => {
-
+const SubmissionList = ({submissions}) => {
   const isEmpty = (obj) => {
     for(var key in obj) {
         if(obj.hasOwnProperty(key))
@@ -13,15 +12,15 @@ const CourseMatList = ({coursemats}) => {
     return true;
   }
 
-  if (!isEmpty(coursemats)){
+  if (!isEmpty(submissions)){
     return (
-      <div className="coursemat-list section z-depth-0">   
-        { // check if coursemats exists, if so, map
-          coursemats && coursemats.map(coursemat =>{
+      <div className="submission-list section z-depth-0">   
+        { // check if submissions exists, if so, map
+          submissions && submissions.map(submission =>{
             return (
               <div>
-                <Link to={'/coursemat/' + coursemat.id} key={coursemat.id}>
-                  <CourseMatSummary coursemat={coursemat}/>
+                <Link to={'/submission/' + submission.id} key={submission.id}>
+                  <SubmissionSummary submission={submission}/>
                 </Link>
 
               </div>
@@ -32,15 +31,15 @@ const CourseMatList = ({coursemats}) => {
     )
   } else {
     return(
-      <div className="coursemat-list section z-depth-0">
-        <div className="card z-depth-1 coursemat-summary">
+      <div className="submission-list section z-depth-0">
+        <div className="card z-depth-1 submission-summary">
           <div className="row">
             <div className="col s1">
-              <i className="material-icons grey-text text-darken-3 summary">assignment_late</i>
+              <i className="material-icons grey-text text-darken-3 summary">event_busy</i>
             </div>
             <div className="col s9 offset-s1">
               <div className="card-content grey-text text-darken-3">
-                  <span className="card-title">No course material has been added yet</span>
+                  <span className="card-title">No submission dropboxes has been added yet</span>
                   <span className="card-subtitle">Check back again later!</span> 
               </div>
             </div>
@@ -54,4 +53,4 @@ const CourseMatList = ({coursemats}) => {
 }
 
 
-export default CourseMatList
+export default SubmissionList

@@ -13,7 +13,6 @@ const SignedInLinks = (props) => {
         return(
             <div>  
                 <ul className="right">
-
                     <li><p className="welcome hide-on-med-and-down">Logged in as, {admin} {props.profile.firstName} {props.profile.lastName}!</p>
                     </li>
                     
@@ -29,7 +28,7 @@ const SignedInLinks = (props) => {
                 </ul>
             </div>  
         )
-    } 
+    }
 }
 
 const mapDispatchToProps = (dispatch) => {

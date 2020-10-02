@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { createAnnounce } from '../../store/actions/announceActions'
+import { createSubmission } from '../../store/actions/submissionActions'
 import { Redirect } from 'react-router-dom'
 
-class CreateAnnounce extends Component {
+class CreateSubmission extends Component {
     state = { 
         // firebase auth included as per mapStateToProps
         title: '',
         subtitle: '',
-        content: ''
+        content: '',
+        textlink: ''
     }
 
     handleChange = (e) => {
@@ -20,8 +21,8 @@ class CreateAnnounce extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         //console.log(this.state)
-        this.props.createAnnounce(this.state)
-        this.props.history.push('/announcements')
+        this.props.createSubmission(this.state)
+        this.props.history.push('/submissions')
     }
 
     render(){
@@ -29,23 +30,26 @@ class CreateAnnounce extends Component {
         if (!auth.uid) return <Redirect to='/signin' /> // redirect to signin if user is not logged in
         return (
             <div className="container z-depth-1">
-                
                 <form onSubmit={this.handleSubmit} className="white">
-                <h5 className="grey-text text-darken-3">Create New Announcement</h5>
+                <h5 className="grey-text text-darken-3">Create New Submission</h5>
                     <div className="input-field">
-                        <label htmlFor="email">Announcement Title</label>
+                        <label htmlFor="email">Submission Title</label>
                         <input type="text" id="title" onChange={this.handleChange} required/>
                     </div>
                     <div className="input-field">
-                        <label htmlFor="email">Announcement Subtitle</label>
+                        <label htmlFor="email">Submission Subtitle</label>
                         <input type="text" id="subtitle" onChange={this.handleChange} required/>
                     </div>
                     <div className="input-field">
-                        <label htmlFor="content">Announcement Content</label>
+                        <label htmlFor="content">Submission Description</label>
                         <textarea id="content" className="materialize-textarea" onChange={this.handleChange} required></textarea>
                     </div>
                     <div className="input-field">
-                        <button className="btn pink lighten-1 z-depth-0 hoverable">Create Announcement</button>
+                        <label htmlFor="email">Submission Dropbox Link (without https://)</label>
+                        <input type="text" id="textlink" onChange={this.handleChange} required/>
+                    </div>
+                    <div className="input-field">
+                        <button className="btn pink lighten-1 z-depth-0 hoverable">Create Submission</button>
                     </div>
                 </form>
             </div>
@@ -61,8 +65,8 @@ const mapStateToProps = (state) =>{
 
 const mapDispatchToProps = (dispatch) => {
     return{
-        createAnnounce: (announce) => dispatch(createAnnounce(announce))
+        createSubmission: (submission) => dispatch(createSubmission(submission))
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateAnnounce)
+export default connect(mapStateToProps, mapDispatchToProps)(CreateSubmission)

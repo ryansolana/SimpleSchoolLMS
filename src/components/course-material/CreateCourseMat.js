@@ -46,7 +46,7 @@ class CreateCourseMat extends Component {
                         <textarea id="content" className="materialize-textarea" onChange={this.handleChange} required></textarea>
                     </div>
                     <div className="input-field">
-                        <label htmlFor="email">Course Material Link</label>
+                        <label htmlFor="email">Course Material Link (without https://)</label>
                         <input type="text" id="textlink" onChange={this.handleChange} required/>
                     </div>
                     <div className="input-field">

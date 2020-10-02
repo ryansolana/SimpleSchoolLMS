@@ -4,42 +4,42 @@ import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { Redirect } from 'react-router-dom'
 import moment from 'moment'
-import { deleteCourseMat } from '../../store/actions/coursematActions'
+import { deleteSubmission } from '../../store/actions/submissionActions'
 
-const CourseMatDetails = (props) => {
+const SubmissionDetails = (props) => {
 
     const deleteHandler = (id) =>{
-        deleteCourseMat(id); 
+        deleteSubmission(id); 
         props.history.push('/course-material');
     }
 
-    const { coursemat, auth, profile, deleteCourseMat, id} = props;
-    console.log("coursemat props is: ")
-    console.log(coursemat)
+    const { submission, auth, profile, deleteSubmission, id} = props;
+    console.log("submission props is: ")
+    console.log(submission)
 
     if (!auth.uid) return <Redirect to='/signin' /> // redirect to signin if user is not logged in
     
-    if (coursemat){
+    if (submission){
         return (
         <div>
-            <div className="container section coursemat-details">
+            <div className="container section submission-details">
                 <div className="card z-depth-0">
                     <div className="card-content">
                         <div className="row">
-                            <span className="card-title">{coursemat.title}</span>
-                            <span className="card-subtitle">{coursemat.subtitle}</span> 
+                            <span className="card-title">{submission.title}</span>
+                            <span className="card-subtitle">{submission.subtitle}</span> 
                         </div>
                         
                         <hr></hr>
-                        <p>{coursemat.content}</p>
+                        <p>{submission.content}</p>
 
-                        {coursemat.textlink.length > 1 ? <div className="margin-top-20"><h6>Google Drive Download</h6>
-                        <a href={'https://' + coursemat.textlink} target="_blank" rel="noopener noreferrer"><i className="material-icons grey-text text-darken-3 summary">cloud_download</i></a></div> 
+                        {submission.textlink.length > 1 ? <div className="margin-top-20"><h6>Google Drive Download</h6>
+                        <a href={'https://' + submission.textlink} target="_blank" rel="noopener noreferrer"><i className="material-icons grey-text text-darken-3 summary">cloud_download</i></a></div> 
                         : <div></div>}
 
                     </div>
                     <div className="card-action grey lighten-4 grey-text">
-                        <div>{moment(coursemat.createdAt.toDate()).calendar()}</div>
+                        <div>{moment(submission.createdAt.toDate()).calendar()}</div>
                     </div>
                 </div>
                 {
@@ -64,7 +64,7 @@ const CourseMatDetails = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
     return{
-        deleteCourseMat: (coursemat) => dispatch(deleteCourseMat(coursemat))
+        deleteSubmission: (submission) => dispatch(deleteSubmission(submission))
     }
 }
 
@@ -72,10 +72,10 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state, ownProps) => {
     console.log(state)
     const id = ownProps.match.params.id;
-    const coursemats = state.firestore.data.coursemats
-    const coursemat = coursemats ? coursemats[id] : null
+    const submissions = state.firestore.data.submissions
+    const submission = submissions ? submissions[id] : null
     return {
-        coursemat: coursemat,
+        submission: submission,
         auth: state.firebase.auth,
         profile: state.firebase.profile,
         id: ownProps.match.params.id
@@ -85,6 +85,6 @@ const mapStateToProps = (state, ownProps) => {
 export default compose(
     connect(mapStateToProps, mapDispatchToProps),
     firestoreConnect([
-        { collection: 'coursemats'}
+        { collection: 'submissions'}
     ])
-)(CourseMatDetails)
+)(SubmissionDetails)

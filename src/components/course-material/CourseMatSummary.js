@@ -7,7 +7,7 @@ const CourseMatSummary = ({coursemat}) => {
         <div className="card z-depth-1 coursemat-summary hoverable">
             <div className="row">
                 <div className="col s1">
-                  <i className="material-icons grey-text text-darken-3 summary">library_books</i>
+                  <i className="material-icons grey-text text-darken-3 summary">chrome_reader_mode</i>
                 </div>
                 <div className="col s9 offset-s1">
                     <div className="card-content grey-text text-darken-3">

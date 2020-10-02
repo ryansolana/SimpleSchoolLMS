@@ -15,6 +15,10 @@ import CourseMatDashboard from './components/dashboard/CourseMatDashboard'
 import CreateCourseMat from './components/course-material/CreateCourseMat'
 import CourseMatDetails from './components/course-material/CourseMatDetails'
 
+import SubmissionDashboard from './components/dashboard/SubmissionDashboard'
+import CreateSubmission from './components/submissions/CreateSubmission'
+import SubmissionDetails from './components/submissions/SubmissionDetails'
+
 
 class App extends Component {
   componentDidMount() {
@@ -37,10 +41,12 @@ class App extends Component {
             <Route path='/coursemat/:id' component={ CourseMatDetails } />
             <Route path='/createCourseMat' component={ CreateCourseMat }/>
 
+            <Route path='/submissions' component={ SubmissionDashboard }/>
+            <Route path='/submission/:id' component={ SubmissionDetails } />
+            <Route path='/createSubmission' component={ CreateSubmission }/>
+
             <Route path='/signin' component={ SignIn }/>
             <Route path='/signup' component={ SignUp }/>
-
-
 
           </Switch>
         </div>

@@ -22,15 +22,14 @@ const Navbar = (props) => {
     if (auth.uid){
         return(
             <div>
-                <nav className="nav-wrapper">
+                <nav className="nav-wrapper nav-wrapper-blue">
                     <div className="container">
                         <Link to='/' className="brand-logo left"><img src="/img/logo.png" alt="yeah"></img></Link>
-
                         { links }
         
                     </div>
                 </nav>
-                <nav className="nav-wrapper grey hoverable">
+                <nav className="nav-wrapper nav-wrapper-grey hoverable">
                     {/* School Menu Goes Below*/}
                     <div className="hide-on-med-and-down">
                         { schoolLinks }
@@ -45,7 +44,7 @@ const Navbar = (props) => {
             </div>
         )
     } else{
-        return(
+        return (
             <nav className="nav-wrapper">
                 <div className="container">
                     <Link to='/' className="brand-logo left"><img src="/img/logo.png" alt="yeah"></img></Link>

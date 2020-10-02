@@ -8,16 +8,16 @@ const initState = {
 
 const coursematReducer = (state = initState, action) => {
     switch(action.type){
-        case 'CREATE_ANNOUNCE':
+        case 'CREATE_COURSEMAT':
             console.log('created coursemat', action.coursemat)
             return state;
-        case 'CREATE_ANNOUNCE_ERR':
+        case 'CREATE_COURSEMAT_ERR':
             console.log('create coursemat error', action.err)
             return state;
-        case 'DELETE_ANNOUNCE':
+        case 'DELETE_COURSEMAT':
             console.log('deleted coursemat', action.coursemat)
             return state;
-        case 'DELETE_ANNOUNCE_ERR':
+        case 'DELETE_COURSEMAT_ERR':
             console.log('delete coursemat err', action.err)
             return state;
         default:

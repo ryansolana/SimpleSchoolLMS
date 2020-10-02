@@ -4,46 +4,42 @@ import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { Redirect } from 'react-router-dom'
 import moment from 'moment'
-import { deleteCourseMat } from '../../store/actions/coursematActions'
+import { deleteAnnounce } from '../../store/actions/announceActions'
 
-const CourseMatDetails = (props) => {
+const AnnounceDetails = (props) => {
 
     const deleteHandler = (id) =>{
-        deleteCourseMat(id); 
-        props.history.push('/course-material');
+        deleteAnnounce(id); 
+        props.history.push('/announcements');
     }
 
-    const { coursemat, auth, profile, deleteCourseMat, id} = props;
-    console.log("coursemat props is: ")
-    console.log(coursemat)
+    const { announce, auth, profile, deleteAnnounce, id} = props;
+    console.log("announce props is: ")
+    console.log(announce)
 
     if (!auth.uid) return <Redirect to='/signin' /> // redirect to signin if user is not logged in
     
-    if (coursemat){
+    if (announce){
         return (
         <div>
-            <div className="container section coursemat-details">
+            <div className="container section announce-details">
                 <div className="card z-depth-0">
                     <div className="card-content">
                         <div className="row">
-                            <span className="card-title">{coursemat.title}</span>
-                            <span className="card-subtitle">{coursemat.subtitle}</span> 
+                            <span className="card-title">{announce.title}</span>
+                            <span className="card-subtitle">{announce.subtitle}</span> 
                         </div>
                         
                         <hr></hr>
-                        <p>{coursemat.content}</p>
-
-                        {coursemat.textlink.length > 1 ? <div className="margin-top-20"><h6>Google Drive Download</h6>
-                        <a href={'https://' + coursemat.textlink} target="_blank" rel="noopener noreferrer"><i className="material-icons grey-text text-darken-3 summary">cloud_download</i></a></div> 
-                        : <div></div>}
-
+                        <p>{announce.content}</p>
                     </div>
                     <div className="card-action grey lighten-4 grey-text">
-                        <div>{moment(coursemat.createdAt.toDate()).calendar()}</div>
+                        <div>Posted by {announce.authorFirstName} {announce.authorLastName}</div>
+                        <div>{moment(announce.createdAt.toDate()).calendar()}</div>
                     </div>
                 </div>
                 {
-                    profile.admin ? <button className="btn" onClick={() => deleteHandler(id)}>Delete this course material</button>: <div></div>
+                    profile.admin ? <button className="btn" onClick={() => deleteHandler(id)}>Delete this announcement</button>: <div></div>
                 }
                 
             </div>
@@ -53,7 +49,7 @@ const CourseMatDetails = (props) => {
     } else {
         return (
             <div className="container center">
-                <h5>Loading course material...</h5>
+                <h5>Loading announce...</h5>
                 <div class="progress">
                     <div class="indeterminate"></div>
                 </div>
@@ -64,7 +60,7 @@ const CourseMatDetails = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
     return{
-        deleteCourseMat: (coursemat) => dispatch(deleteCourseMat(coursemat))
+        deleteAnnounce: (announce) => dispatch(deleteAnnounce(announce))
     }
 }
 
@@ -72,10 +68,10 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state, ownProps) => {
     console.log(state)
     const id = ownProps.match.params.id;
-    const coursemats = state.firestore.data.coursemats
-    const coursemat = coursemats ? coursemats[id] : null
+    const announces = state.firestore.data.announces
+    const announce = announces ? announces[id] : null
     return {
-        coursemat: coursemat,
+        announce: announce,
         auth: state.firebase.auth,
         profile: state.firebase.profile,
         id: ownProps.match.params.id
@@ -85,6 +81,6 @@ const mapStateToProps = (state, ownProps) => {
 export default compose(
     connect(mapStateToProps, mapDispatchToProps),
     firestoreConnect([
-        { collection: 'coursemats'}
+        { collection: 'announces'}
     ])
-)(CourseMatDetails)
+)(AnnounceDetails)

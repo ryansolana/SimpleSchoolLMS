@@ -29,15 +29,13 @@ textarea.materialize-textarea:focus:not([readonly]){
   box-shadow: none;
 }
 
-
-
-.nav-wrapper {
+.nav-wrapper-blue {
   background-color: #00233D !important;
   height: 110px;
   line-height: 110px;
 }
 
-.nav-wrapper.grey{
+.nav-wrapper-grey{
   background-color: #242424 !important;
   height: 60px;
   line-height:60px;
@@ -115,5 +113,9 @@ hr {
 
 .margin-top-20{
   margin-top:20px;
+}
 
+.header-img{
+  height: 100%;
+  width: 100%;
 }

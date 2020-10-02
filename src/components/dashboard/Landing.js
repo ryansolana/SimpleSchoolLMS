@@ -18,11 +18,11 @@ const Landing = (props) => {
             <div className="container section project-details">
                 <div className="card z-depth-1">
                     <div className="card-content">
-                        <span className="card-title">Welcome back, {profile.firstName} {profile.lastName}!</span>
+                        <span className="card-title">Welcome back, {profile.admin ? "Professor" : ""} {profile.firstName} {profile.lastName}!</span>
                         <p>You last logged in {date}</p>
                     </div>
-                    
                 </div>
+                <img className="header-img z-depth-1" src="/img/header.png" alt="yeah"></img>
             </div>
         </div>
         )
