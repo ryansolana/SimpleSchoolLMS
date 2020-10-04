@@ -33,10 +33,10 @@ const ProgressModuleList = ({progressModules}) => {
         <div className="card z-depth-1 progressModule-summary">
           <div className="row">
             <div className="col s1">
-              <i className="material-icons grey-text text-darken-3 summary">speaker_notes_off</i>
-              <CircularProgressbar value={50} text={`${50}%`} />;
+              <i className="material-icons grey-text text-darken-3 summary">import_contacts</i>
+              <CircularProgressbar className="margin-left-10" value={50} text={`${50}%`} />;
             </div>
-            <div className="col s9 offset-s1">
+            <div className="col s6">
               <div className="card-content grey-text text-darken-3">
                   <span className="card-title">No progress modules have been posted yet</span>
                   <span className="card-subtitle">Check back again later!</span> 

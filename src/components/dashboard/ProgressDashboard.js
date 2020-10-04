@@ -22,7 +22,18 @@ class ProgressModuleDashboard extends Component{
                     <button className="btn waves-effect waves-light blue padding-top hoverable">Create New ProgressModulement</button>
                 </Link> : <div></div>}
             
-                <ProgressModuleList progressModules={progressModules} />
+                <div className="row">
+                    <div className="col s5">
+                        <h5>Courses</h5>
+                        <ProgressModuleList progressModules={progressModules} />
+                    </div>
+                    
+                    <div className="col s5">
+                        <h5>Reflections</h5>
+                        <ProgressModuleList progressModules={progressModules} />
+                    </div>
+                </div>
+                
             </div>
         )
     }
