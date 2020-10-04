@@ -45,7 +45,7 @@ const Navbar = (props) => {
         )
     } else{
         return (
-            <nav className="nav-wrapper">
+            <nav className="nav-wrapper nav-wrapper-blue">
                 <div className="container">
                     <Link to='/' className="brand-logo left"><img src="/img/logo.png" alt="yeah"></img></Link>
                 </div>
