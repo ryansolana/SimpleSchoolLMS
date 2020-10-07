@@ -1,7 +1,5 @@
 import React from 'react'
 import ProgressModuleSummary from './ProgressModuleSummary'
-import { CircularProgressbar } from 'react-circular-progressbar';
-import 'react-circular-progressbar/dist/styles.css';
 
 const ProgressModuleList = ({progressModules}) => {
 
@@ -32,15 +30,15 @@ const ProgressModuleList = ({progressModules}) => {
       <div className="progressModule-list section z-depth-0">
         <div className="card z-depth-1 progressModule-summary">
           <div className="row">
-            <div className="col s1">
+          <div className="card-content grey-text text-darken-3">
+            <div className="col s3">
               <i className="material-icons grey-text text-darken-3 summary">import_contacts</i>
-              <CircularProgressbar className="margin-left-10" value={50} text={`${50}%`} />;
-            </div>
-            <div className="col s6">
-              <div className="card-content grey-text text-darken-3">
-                  <span className="card-title">No progress modules have been posted yet</span>
-                  <span className="card-subtitle">Check back again later!</span> 
+              <span className="card-title">No progress modules have been posted yet</span>
+              <span className="card-subtitle">Check back again later!</span> 
               </div>
+            </div>
+            <div className="col s2 offset-s6">
+              <i className="material-icons grey-text text-darken-3 summary">import_contacts</i>
             </div>
           </div>
         </div>

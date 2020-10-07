@@ -13,7 +13,8 @@ const SignedInLinks = (props) => {
         return(
             <div>  
                 <ul className="right">
-                    <li><p className="welcome hide-on-med-and-down">Logged in as, {admin} {props.profile.firstName} {props.profile.lastName}!</p>
+                    <li>
+                        {props.profile.firstName ? <p className="welcome hide-on-med-and-down">Logged in as, {admin} {props.profile.firstName} {props.profile.lastName}!</p> : <div></div>}
                     </li>
                     
                     {/*<li><NavLink to='/create'>New Project</NavLink></li>*/}

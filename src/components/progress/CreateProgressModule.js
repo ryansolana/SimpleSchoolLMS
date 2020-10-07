@@ -6,9 +6,10 @@ import { Redirect } from 'react-router-dom'
 class CreateProgressModule extends Component {
     state = { 
         // firebase auth included as per mapStateToProps
+        weekNum: '',
         title: '',
-        subtitle: '',
-        content: ''
+        content: '',
+        progressPercent: ''
     }
 
     handleChange = (e) => {
@@ -33,16 +34,20 @@ class CreateProgressModule extends Component {
                 <form onSubmit={this.handleSubmit} className="white">
                 <h5 className="grey-text text-darken-3">Create New Progress Module</h5>
                     <div className="input-field">
+                        <label htmlFor="email">Progress Module Week Number</label>
+                        <input type="number" min="0" step="1" max="52" id="weekNum" onChange={this.handleChange} required/>
+                    </div>
+                    <div className="input-field">
                         <label htmlFor="email">Progress Module Title</label>
                         <input type="text" id="title" onChange={this.handleChange} required/>
                     </div>
                     <div className="input-field">
-                        <label htmlFor="email">Progress Module Subtitle</label>
-                        <input type="text" id="subtitle" onChange={this.handleChange} required/>
+                        <label htmlFor="content">Progress Module Description (optional)</label>
+                        <textarea id="content" className="materialize-textarea" onChange={this.handleChange} required></textarea>
                     </div>
                     <div className="input-field">
-                        <label htmlFor="content">Progress Module Content</label>
-                        <textarea id="content" className="materialize-textarea" onChange={this.handleChange} required></textarea>
+                        <label htmlFor="email">Progress Module Progress Percentage</label>
+                        <input type="number" min="0" step="1" max="100" id="progressPercent" onChange={this.handleChange} required/>
                     </div>
                     <div className="input-field">
                         <button className="btn pink lighten-1 z-depth-0 hoverable">Create Progress Module</button>

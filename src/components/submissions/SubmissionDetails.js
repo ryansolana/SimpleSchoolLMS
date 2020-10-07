@@ -34,7 +34,7 @@ const SubmissionDetails = (props) => {
                         <p>{submission.content}</p>
 
                         {submission.textlink.length > 1 ? <div className="margin-top-20"><h6>Google Drive Download</h6>
-                        <a href={'https://' + submission.textlink} target="_blank" rel="noopener noreferrer"><i className="material-icons grey-text text-darken-3 summary">cloud_download</i></a></div> 
+                        <a href={submission.textlink} target="_blank" rel="noopener noreferrer"><i className="material-icons grey-text text-darken-3 summary">cloud_download</i></a></div> 
                         : <div></div>}
 
                     </div>

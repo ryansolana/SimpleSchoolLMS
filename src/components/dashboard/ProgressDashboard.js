@@ -6,7 +6,6 @@ import { compose } from 'redux'
 import { Redirect } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 
-import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
 class ProgressModuleDashboard extends Component{
@@ -19,19 +18,12 @@ class ProgressModuleDashboard extends Component{
                 <h3 className="padding">My Progress</h3>
 
                 {profile.admin ? <Link to='/createProgressModule'>
-                    <button className="btn waves-effect waves-light blue padding-top hoverable">Create New ProgressModulement</button>
+                    <button className="btn waves-effect waves-light blue padding-top hoverable">Create New Progress Module</button>
                 </Link> : <div></div>}
             
                 <div className="row">
-                    <div className="col s5">
-                        <h5>Courses</h5>
-                        <ProgressModuleList progressModules={progressModules} />
-                    </div>
-                    
-                    <div className="col s5">
-                        <h5>Reflections</h5>
-                        <ProgressModuleList progressModules={progressModules} />
-                    </div>
+                    <h5>Courses</h5>
+                    <ProgressModuleList progressModules={progressModules} />
                 </div>
                 
             </div>
@@ -50,6 +42,6 @@ const mapStateToProps = (state) =>{
 export default compose(
     connect(mapStateToProps),
     firestoreConnect([
-        { collection: 'progressModules', orderBy: ['createdAt', 'desc'] },
+        { collection: 'progressModules', orderBy: ['weekNum', 'asc'] },
     ])
 )(ProgressModuleDashboard)

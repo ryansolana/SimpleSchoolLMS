@@ -104,6 +104,10 @@ div.card-action.grey.lighten-4.grey-text p{
   font-size: 50px;
 }
 
+.material-icons.progressMod{
+  font-size: 50px;
+}
+
 hr {
   margin: 20px 0px 20px 0px;
   border:none;
@@ -122,4 +126,12 @@ hr {
 .header-img{
   height: 100%;
   width: 100%;
+}
+
+.row.row-nomargin{
+  margin: 0;
+}
+
+.circlep-w{
+  width:75%;
 }

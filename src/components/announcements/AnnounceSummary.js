@@ -14,7 +14,7 @@ const AnnounceSummary = ({announce}) => {
                         <span className="card-title">{announce.title}</span>
                         <span className="card-subtitle">{announce.subtitle}</span> 
                         <hr></hr>  
-                        <span className="truncate">{announce.content}</span>
+                        <span>{announce.content}</span>
                     </div>
                 </div>
             </div>

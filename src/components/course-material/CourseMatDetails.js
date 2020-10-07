@@ -33,12 +33,13 @@ const CourseMatDetails = (props) => {
                         <hr></hr>
                         <p>{coursemat.content}</p>
 
-                        {coursemat.textlink.length > 1 ? <div className="margin-top-20"><h6>Google Drive Download</h6>
-                        <a href={'https://' + coursemat.textlink} target="_blank" rel="noopener noreferrer"><i className="material-icons grey-text text-darken-3 summary">cloud_download</i></a></div> 
+                        {coursemat.textlink.length > 1 ? <div className="margin-top-20"><h6>Cloud Drive Download Link</h6>
+                        <a href={coursemat.textlink} target="_blank" rel="noopener noreferrer"><i className="material-icons grey-text text-darken-3 summary">cloud_download</i></a></div> 
                         : <div></div>}
 
                     </div>
                     <div className="card-action grey lighten-4 grey-text">
+                        <div>Posted by {coursemat.authorFirstName} {coursemat.authorLastName}</div>
                         <div>{moment(coursemat.createdAt.toDate()).calendar()}</div>
                     </div>
                 </div>

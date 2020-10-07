@@ -1,35 +1,31 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
-import moment from 'moment'
 
-const Landing = (props) => {
-    const { auth, profile } = props;
+const NotFound = (props) => {
+    const { auth } = props;
     if (!auth.uid) return <Redirect to='/signin' /> // redirect to signin if user is not logged in
     
     if (auth){
-
-        const lastLogin = parseInt(auth.lastLoginAt);
-        var timeStamp = new Date(lastLogin);
-        var date = moment(timeStamp).calendar();
-
         return (
         <div>
             <div className="container section project-details">
                 <div className="card z-depth-1">
                     <div className="card-content">
-                        <span className="card-title bold-text">Welcome back, {profile.admin ? "Professor" : ""} {profile.firstName} {profile.lastName}!</span>
-                        <p>You last logged in {date}</p>
+                        <span className="card-title bold-text">Error 404</span>
+                        <p>Sorry, we couldn't find the page you were looking for!</p>
                     </div>
                 </div>
-                <img className="header-img z-depth-1" src="/img/header.png" alt="yeah"></img>
+                
             </div>
         </div>
         )
     } else {
         return (
             <div className="container center">
-                <p>Loading landing page...</p>
+                <div class="progress">
+                   <div class="indeterminate"></div>
+                </div>
             </div>
         )
     }
@@ -39,8 +35,7 @@ const mapStateToProps = (state) => {
     console.log(state)
     return {
         auth: state.firebase.auth,
-        profile: state.firebase.profile
     }
 }
 
-export default connect(mapStateToProps, null)(Landing)
+export default connect(mapStateToProps, null)(NotFound)

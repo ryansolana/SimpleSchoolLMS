@@ -41,6 +41,9 @@ const AnnounceList = ({announces}) => {
             <div className="col s9 offset-s1">
               <div className="card-content grey-text text-darken-3">
                   <span className="card-title">No announcements have been posted yet</span>
+                  <div class="progress">
+                    <div class="indeterminate"></div>
+                  </div>
                   <span className="card-subtitle">Check back again later!</span> 
               </div>
             </div>

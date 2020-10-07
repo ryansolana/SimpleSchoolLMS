@@ -13,13 +13,10 @@ const SubmissionSummary = ({submission}) => {
                     <div className="card-content grey-text text-darken-3">
                         <span className="card-title">{submission.title}</span>
                         <span className="card-subtitle">{submission.subtitle}</span> 
-                        <hr></hr>  
-                        <span className="truncate">{submission.content}</span>
                     </div>
                 </div>
             </div>
             <div className="card-action grey lighten-4 grey-text">
-                    <p>Posted by {submission.authorFirstName} {submission.authorLastName}</p>
                     <p className="grey-text">{moment(submission.createdAt.toDate()).calendar()}</p>
             </div>   
         </div>

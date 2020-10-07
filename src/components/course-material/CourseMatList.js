@@ -41,6 +41,9 @@ const CourseMatList = ({coursemats}) => {
             <div className="col s9 offset-s1">
               <div className="card-content grey-text text-darken-3">
                   <span className="card-title">No course material has been added yet</span>
+                  <div class="progress">
+                   <div class="indeterminate"></div>
+                  </div>
                   <span className="card-subtitle">Check back again later!</span> 
               </div>
             </div>

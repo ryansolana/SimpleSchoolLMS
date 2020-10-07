@@ -22,6 +22,8 @@ import SubmissionDetails from './components/submissions/SubmissionDetails'
 import ProgressDashboard from './components/dashboard/ProgressDashboard'
 import CreateProgressModule from './components/progress/CreateProgressModule'
 
+import NotFound from './components/dashboard/NotFound'
+
 
 class App extends Component {
   componentDidMount() {
@@ -53,6 +55,7 @@ class App extends Component {
 
             <Route path='/signin' component={ SignIn }/>
             <Route path='/signup' component={ SignUp }/>
+            <Route component = {NotFound} />
 
           </Switch>
         </div>

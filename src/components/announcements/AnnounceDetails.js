@@ -49,7 +49,7 @@ const AnnounceDetails = (props) => {
     } else {
         return (
             <div className="container center">
-                <h5>Loading announce...</h5>
+                <h5>Loading announcements...</h5>
                 <div class="progress">
                     <div class="indeterminate"></div>
                 </div>

@@ -2,7 +2,6 @@ import React from 'react'
 import AnnounceSummary from './AnnounceSummary'
 import { Link } from 'react-router-dom'
 
-
 const AnnounceList = ({announces}) => {
 
   const isEmpty = (obj) => {
@@ -23,7 +22,6 @@ const AnnounceList = ({announces}) => {
                 <Link to={'/announce/' + announce.id} key={announce.id}>
                   <AnnounceSummary announce={announce}/>
                 </Link>
-
               </div>
             )
           })
