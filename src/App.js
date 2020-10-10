@@ -22,6 +22,9 @@ import SubmissionDetails from './components/submissions/SubmissionDetails'
 import ProgressDashboard from './components/dashboard/ProgressDashboard'
 import CreateProgressModule from './components/progress/CreateProgressModule'
 
+import CalendarDashboard from './components/dashboard/CalendarDashboard'
+import CreateCalendarModule from './components/calendar/CreateCalendarModule'
+
 import NotFound from './components/dashboard/NotFound'
 
 
@@ -52,6 +55,9 @@ class App extends Component {
 
             <Route path='/progress' component={ ProgressDashboard }/>
             <Route path='/createProgressModule' component={ CreateProgressModule }/>
+
+            <Route path='/calendar' component={ CalendarDashboard }/>
+            <Route path='/createCalendarModule' component={ CreateCalendarModule }/>
 
             <Route path='/signin' component={ SignIn }/>
             <Route path='/signup' component={ SignUp }/>

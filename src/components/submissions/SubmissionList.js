@@ -39,8 +39,11 @@ const SubmissionList = ({submissions}) => {
             </div>
             <div className="col s9 offset-s1">
               <div className="card-content grey-text text-darken-3">
-                  <span className="card-title">No submission dropboxes has been added yet</span>
-                  <span className="card-subtitle">Check back again later!</span> 
+                <span className="card-title">No submission dropboxes has been added yet</span>
+                <span className="card-subtitle">Check back again later!</span> 
+                <div class="progress margin-top-20">
+                  <div class="indeterminate"></div>
+                </div>
               </div>
             </div>
           </div>

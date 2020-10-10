@@ -1,9 +1,7 @@
 import React from 'react'
-import CourseMatSummary from './CourseMatSummary'
-import { Link } from 'react-router-dom'
+import CalendarModuleSummary from './CalendarModuleSummary'
 
-
-const CourseMatList = ({coursemats}) => {
+const CalendarModuleList = ({calendarModules}) => {
 
   const isEmpty = (obj) => {
     for(var key in obj) {
@@ -13,17 +11,14 @@ const CourseMatList = ({coursemats}) => {
     return true;
   }
 
-  if (!isEmpty(coursemats)){
+  if (!isEmpty(calendarModules)){
     return (
-      <div className="coursemat-list section z-depth-0">   
-        { // check if coursemats exists, if so, map
-          coursemats && coursemats.map(coursemat =>{
+      <div className="calendarModule-list section z-depth-0">   
+        { // check if calendarModules exists, if so, map
+          calendarModules && calendarModules.map(calendarModule =>{
             return (
               <div>
-                <Link to={'/coursemat/' + coursemat.id} key={coursemat.id}>
-                  <CourseMatSummary coursemat={coursemat}/>
-                </Link>
-
+                  <CalendarModuleSummary calendarModule={calendarModule} key={calendarModule.id}/>
               </div>
             )
           })
@@ -32,15 +27,15 @@ const CourseMatList = ({coursemats}) => {
     )
   } else {
     return(
-      <div className="coursemat-list section z-depth-0">
-        <div className="card z-depth-1 coursemat-summary">
+      <div className="calendar-list section z-depth-0">
+        <div className="card z-depth-1 calendar-summary">
           <div className="row">
             <div className="col s1">
               <i className="material-icons grey-text text-darken-3 summary">assignment_late</i>
             </div>
             <div className="col s9 offset-s1">
               <div className="card-content grey-text text-darken-3">
-                  <span className="card-title">No course material has been added yet</span>
+                  <span className="card-title">No calendar material has been added yet</span>
                   <span className="card-subtitle">Check back again later!</span> 
                   <div class="progress margin-top-20">
                     <div class="indeterminate"></div>
@@ -57,4 +52,4 @@ const CourseMatList = ({coursemats}) => {
 }
 
 
-export default CourseMatList
+export default CalendarModuleList
