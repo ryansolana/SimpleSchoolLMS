@@ -20,7 +20,7 @@ const AnnounceList = ({announces}) => {
           announces && announces.map(announce =>{
             return (
               <div>
-                <Link to={'/announce/' + announce.id} key={announce.id}>
+                <Link to={'/announcements/' + announce.id} key={announce.id}>
                   <AnnounceSummary announce={announce}/>
                 </Link>
 

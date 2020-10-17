@@ -13,7 +13,7 @@ class CourseMatDashboard extends Component{
         console.log(profile)
         return(
             <div className="dashboard container">
-                <h3 className="padding">Course Material</h3>
+                <h3 className="page-title padding">Course Material</h3>
 
                 {profile.admin ? <Link to='/createCourseMat'>
                     <button className="btn waves-effect waves-light blue padding-top hoverable">Create New Course Material</button>

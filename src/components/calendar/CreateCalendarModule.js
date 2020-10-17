@@ -17,6 +17,9 @@ class CreateCalendarModule extends Component {
         this.setState({
             [e.target.id]: e.target.value
         })
+
+        console.log(e.target)
+        console.log(e.target.value)
     }
 
     handleSubmit = (e) => {
@@ -35,24 +38,44 @@ class CreateCalendarModule extends Component {
                 <form onSubmit={this.handleSubmit} className="white">
                 <h5 className="grey-text text-darken-3">Create New Calendar Module</h5>
                     <div className="input-field">
-                        <label htmlFor="weekNum">Calendar Module Week Number</label>
+                        <i className="material-icons prefix">format_list_numbered</i>
+                        <label htmlFor="weekNum">Week Number</label>
                         <input type="number" id="weekNum" min="0" step="1" max="52"  onChange={this.handleChange} required/>
                     </div>
                     <div className="input-field">
-                        <label htmlFor="title">Calendar Module Title</label>
-                        <input type="text" id="title" maxlength="10" o nChange={this.handleChange} required/>
+                        <i class="material-icons prefix">title</i>
+                        <label htmlFor="title">Title</label>
+                        <input type="text" id="title" maxlength="50" onChange={this.handleChange} required/>
                     </div>
                     <div className="input-field">
-                        <label htmlFor="content">Calendar Module Description (optional)</label>
+                        <i class="material-icons prefix">description</i>
+                        <label htmlFor="content">Description (optional)</label>
                         <textarea id="content" maxlength="200" className="materialize-textarea" onChange={this.handleChange} required></textarea>
                     </div>
-                    <div className="input-field">
-                        <label htmlFor="status">Calendar Module Status</label>
-                        <input type="text" id="status" maxlength="10" onChange={this.handleChange} required/>
+
+                    <div className="input-field" onChange={this.handleChange} required>
+                        <p>
+                        <i className="material-icons prefix">details</i>
+                        <label htmlFor="content">Status</label>
+                        </p>
+                        <p className="padding-radio">
+                            <label>
+                                <input class="with-gap" name="group1" id="status" type="radio" value="Released"/>
+                                <span>Released</span>
+                            </label>
+                            <label>
+                                <input class="with-gap" name="group1" id="status" value="Due" type="radio"/>
+                                <span>Due</span>
+                            </label>
+                            
+                        </p>
+
                     </div>
+
                     <div className="input-field">
-                        <label htmlFor="date">Calendar Module Date</label>
-                        <input type="date" id="calendarDate" onChange={this.handleChange} required/>
+                        <i class="material-icons prefix">date_range</i>
+                        <label className="active" htmlFor="date">Calendar Module Date</label>
+                        <input type="date" id="date" onChange={this.handleChange}required/>
                     </div>
                     <div className="input-field">
                         <button className="btn pink lighten-1 z-depth-0 hoverable">Create Calendar Module</button>

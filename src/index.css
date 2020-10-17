@@ -123,6 +123,15 @@ hr {
   margin-left:10px;
 }
 
+.padding-radio{
+  padding-left:50px;
+  padding-bottom: 20px;
+}
+
+div.input-field p label{
+  padding-right: 20px;
+}
+
 .header-img{
   height: 100%;
   width: 100%;
@@ -134,4 +143,30 @@ hr {
 
 .circlep-w{
   width:75%;
+}
+
+table thead tr{
+  text-align: left;
+}
+
+table tbody tr td{
+  text-align: left;
+}
+
+td.red-bg{
+  background-color: #db4d40;
+  color: white;
+  font-weight: bold;
+}
+
+.text-center{
+  text-align: center;
+}
+
+.page-title{
+  font-weight: bold;
+}
+
+td.text-bold{
+  font-weight: bold;
 }

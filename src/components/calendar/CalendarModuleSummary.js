@@ -1,29 +1,33 @@
 import React from 'react'
-import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import moment from 'moment'
 
 const CalendarModuleSummary = ({calendarModule}) => {
+    // for date formatting
+    const m = moment(calendarModule.date, 'YYYY-MM-DD');
+    const date = m.format('LL');
 
-    return (
-        <div className="card z-depth-1 calendarModule summary">
-            <div className="card-content grey-text text-darken-3">
-                <div className="row row-nomargin">
-                    <div className="col s3">
-                    <i className="material-icons grey-text text-darken-3 calendarMod">import_contacts</i>            
-                    </div>
-                    <div className="col s5"> 
-                        <span className="card-title">Week {calendarModule.weekNum}: {calendarModule.title}</span>     
-                        <span>{calendarModule.content}</span>     
-                    </div>
-                    <div className="col s2 offset-s1 circlep-w">
-                        <CircularProgressbar value={calendarModule.calendarPercent} text={`${calendarModule.calendarPercent}%`} />
-                        <p className="center-align hide-on-med-and-up">{calendarModule.calendarPercent}% completed</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+    var status = calendarModule.status === "Released" ? "Released" : "Due";
 
-    )
+    if (status === "Released"){
+        return (
+            <tr>
+                <td>{calendarModule.weekNum}</td>
+                <td>{calendarModule.title}</td>
+                <td className="text-center text-bold">{status}</td>
+                <td className="text-center">{date}</td>
+            </tr>
+        )
+    } else {
+        return (
+            <tr>
+                <td>{calendarModule.weekNum}</td>
+                <td >{calendarModule.title}</td>
+                <td className="red-bg text-center">{status}</td>
+                <td className="text-center">{date}</td>
+            </tr>
+        )
+    }
 }
 
 

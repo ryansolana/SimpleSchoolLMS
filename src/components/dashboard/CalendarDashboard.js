@@ -5,6 +5,7 @@ import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { Redirect } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import moment from 'moment'
 
 import 'react-circular-progressbar/dist/styles.css';
 
@@ -12,10 +13,12 @@ class CalendarModuleDashboard extends Component{
     render(){
         const { calendarModules, auth, profile} = this.props
         if (!auth.uid) return <Redirect to='/signin' /> // redirect to signin if user is not logged in
-        console.log(profile)
+
+        var date = moment(new Date()).format("MMMM YYYY");
+
         return(
             <div className="dashboard container">
-                <h3 className="padding">My Calendar</h3>
+                <h3 className="page-title padding">School of Logistics - {date} Calendar </h3>
 
                 {profile.admin ? <Link to='/createCalendarModule'>
                     <button className="btn waves-effect waves-light blue padding-top hoverable">Create New Calendar Module</button>

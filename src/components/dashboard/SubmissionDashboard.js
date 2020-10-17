@@ -13,7 +13,7 @@ class SubmissionDashboard extends Component{
         console.log(profile)
         return(
             <div className="dashboard container">
-                <h3 className="padding">Submissions</h3>
+                <h3 className="page-title padding">Submissions</h3>
 
                 {profile.admin ? <Link to='/createSubmission'>
                     <button className="btn waves-effect waves-light blue padding-top hoverable">Create New Submission Dropbox</button>

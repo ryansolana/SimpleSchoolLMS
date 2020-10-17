@@ -13,17 +13,25 @@ const CalendarModuleList = ({calendarModules}) => {
 
   if (!isEmpty(calendarModules)){
     return (
-      <div className="calendarModule-list section z-depth-0">   
-        { // check if calendarModules exists, if so, map
-          calendarModules && calendarModules.map(calendarModule =>{
-            return (
-              <div>
-                  <CalendarModuleSummary calendarModule={calendarModule} key={calendarModule.id}/>
-              </div>
-            )
-          })
-        }
-      </div>
+      <table className="calendar">
+        <thead> 
+          <tr>
+            <th>Week #</th>
+            <th>Module / Assignment</th>
+            <th className="text-center">Status</th>
+            <th className="text-center">Open / Due Date</th>
+          </tr>
+        </thead> 
+        <tbody>
+          { // check if calendarModules exists, if so, map
+            calendarModules && calendarModules.map(calendarModule =>{
+              return (
+                <CalendarModuleSummary calendarModule={calendarModule} key={calendarModule.id}/>
+              )
+            })
+          }
+        </tbody>
+      </table>
     )
   } else {
     return(

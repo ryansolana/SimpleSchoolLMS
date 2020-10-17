@@ -37,6 +37,16 @@ const CourseMatDetails = (props) => {
                         <a href={coursemat.textlink} target="_blank" rel="noopener noreferrer"><i className="material-icons grey-text text-darken-3 summary">cloud_download</i></a></div> 
                         : <div></div>}
 
+                    <iframe
+                        title="yes"
+                        width="640"
+                        height="390"
+                        src="https://www.youtube.com/embed/VgC4b9K-gYU"
+                        sandbox="allow-forms allow-scripts allow-pointer-lock allow-same-origin allow-top-navigation"
+                        showinfo="0">
+                    </iframe>
+
+
                     </div>
                     <div className="card-action grey lighten-4 grey-text">
                         <div>Posted by {coursemat.authorFirstName} {coursemat.authorLastName}</div>

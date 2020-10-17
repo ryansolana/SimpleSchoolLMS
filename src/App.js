@@ -42,15 +42,15 @@ class App extends Component {
           <Switch>
             <Route exact path='/' component={ Landing } />
             <Route path='/announcements' component={ AnnounceDashboard }/>
-            <Route path='/announce/:id' component={ AnnounceDetails } />
+            <Route path='/announcement/:id' component={ AnnounceDetails } />
             <Route path='/createAnnounce' component={ CreateAnnounce }/>
 
-            <Route path='/course-material' component={ CourseMatDashboard }/>
-            <Route path='/coursemat/:id' component={ CourseMatDetails } />
+            <Route path='/course-materials' component={ CourseMatDashboard }/>
+            <Route path='/course-materials/:id' component={ CourseMatDetails } />
             <Route path='/createCourseMat' component={ CreateCourseMat }/>
 
             <Route path='/submissions' component={ SubmissionDashboard }/>
-            <Route path='/submission/:id' component={ SubmissionDetails } />
+            <Route path='/submissions/:id' component={ SubmissionDetails } />
             <Route path='/createSubmission' component={ CreateSubmission }/>
 
             <Route path='/progress' component={ ProgressDashboard }/>

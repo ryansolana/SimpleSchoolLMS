@@ -15,7 +15,7 @@ class ProgressModuleDashboard extends Component{
         console.log(profile)
         return(
             <div className="dashboard container">
-                <h3 className="padding">My Progress</h3>
+                <h3 className="page-title padding">My Progress</h3>
 
                 {profile.admin ? <Link to='/createProgressModule'>
                     <button className="btn waves-effect waves-light blue padding-top hoverable">Create New Progress Module</button>
