@@ -20,7 +20,10 @@ const AnnounceList = ({announces}) => {
           announces && announces.map(announce =>{
             return (
               <div>
-                  <AnnounceSummary announce={announce} announceId={announce.id} key={announce.id}/>
+                <Link to={'/announce/' + announce.id} key={announce.id}>
+                  <AnnounceSummary announce={announce}/>
+                </Link>
+
               </div>
             )
           })
@@ -39,6 +42,9 @@ const AnnounceList = ({announces}) => {
               <div className="card-content grey-text text-darken-3">
                   <span className="card-title">No announcements have been posted yet</span>
                   <span className="card-subtitle">Check back again later!</span> 
+                  <div class="progress margin-top-20">
+                    <div class="indeterminate"></div>
+                  </div>
               </div>
             </div>
           </div>

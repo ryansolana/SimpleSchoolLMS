@@ -45,7 +45,7 @@ class App extends Component {
             <Route path='/announcements' component={ AnnounceDashboard }/>
             <Route path='/createAnnounce' component={ CreateAnnounce }/>
 
-            <Route path='/course-material' component={ CourseMatDashboard }/>
+            <Route path='/course-materials' component={ CourseMatDashboard }/>
             <Route path='/course-material/:id' component={ CourseMatDetails } />
             <Route path='/createCourseMat' component={ CreateCourseMat }/>
 

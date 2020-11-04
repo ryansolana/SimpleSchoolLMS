@@ -15,7 +15,8 @@ const Landing = (props) => {
 
         return (
         <div>
-            <div className="container section project-details">
+            <div className="dashboard container">
+            <h3 className="padding page-title">Home</h3>
                 <div className="card z-depth-1">
                     <div className="card-content">
                         <span className="card-title bold-text">Welcome back, {profile.admin ? "Professor" : ""} {profile.firstName} {profile.lastName}!</span>

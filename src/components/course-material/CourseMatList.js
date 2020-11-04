@@ -20,7 +20,7 @@ const CourseMatList = ({coursemats}) => {
           coursemats && coursemats.map(coursemat =>{
             return (
               <div>
-                <Link to={'/course-materials/' + coursemat.id} key={coursemat.id}>
+                <Link to={'/course-material/' + coursemat.id} key={coursemat.id}>
                   <CourseMatSummary coursemat={coursemat}/>
                 </Link>
 

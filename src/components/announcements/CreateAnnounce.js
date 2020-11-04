@@ -12,13 +12,15 @@ class CreateAnnounce extends Component {
         title: '',
         subtitle: '',
         content: '',
-        editorState: EditorState.createEmpty()
+        editorState: EditorState.createEmpty(),
+        contentLink: ''
     }
 
     handleChange = (e) => {
         this.setState({
             [e.target.id]: e.target.value
         })
+        console.log(e.target.id)
     }
 
     handleSubmit = (e) => {
@@ -46,8 +48,7 @@ class CreateAnnounce extends Component {
         const { auth } = this.props;
         if (!auth.uid) return <Redirect to='/signin' /> // redirect to signin if user is not logged in
         return (
-            <div className="container z-depth-1">
-                
+            <div className="container z-depth-1"> 
                 <form onSubmit={this.handleSubmit} className="white">
                 <h5 className="grey-text text-darken-3">Create New Announcement</h5>
                     <div className="input-field">
@@ -64,6 +65,17 @@ class CreateAnnounce extends Component {
                         <textarea id="content" className="materialize-textarea" onChange={this.handleChange} required></textarea>
                     </div>
                     */}
+
+                    <div className="input-field">
+                        <label htmlFor="email">Link Title (optional)</label>
+                        <input type="text" id="contentLinkName" onChange={this.handleChange}/>
+                    </div>
+
+                    { this.state.contentLinkName && <div className="input-field">
+                        <label htmlFor="email">Link URL Address</label>
+                        <input type="text" id="contentLink" onChange={this.handleChange}/>
+                    </div> }
+                    
                     
                     <Editor
                         editorState={this.state.editorState}
