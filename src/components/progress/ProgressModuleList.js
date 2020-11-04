@@ -39,9 +39,6 @@ const ProgressModuleList = ({progressModules}) => {
                   <span className="card-title">No progress modules have been posted yet</span>
                   
                   <span className="card-subtitle">Check back again later!</span> 
-                  <div class="progress margin-top-20">
-                    <div class="indeterminate"></div>
-                  </div>
               </div>
             </div>
           </div>

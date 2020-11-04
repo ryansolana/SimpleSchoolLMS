@@ -170,3 +170,11 @@ td.red-bg{
 td.text-bold{
   font-weight: bold;
 }
+
+.login-page{
+  width:600px;
+}
+
+.login-field{
+  width:70%;
+}

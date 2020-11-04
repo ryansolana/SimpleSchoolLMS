@@ -41,9 +41,6 @@ const SubmissionList = ({submissions}) => {
               <div className="card-content grey-text text-darken-3">
                 <span className="card-title">No submission dropboxes has been added yet</span>
                 <span className="card-subtitle">Check back again later!</span> 
-                <div class="progress margin-top-20">
-                  <div class="indeterminate"></div>
-                </div>
               </div>
             </div>
           </div>

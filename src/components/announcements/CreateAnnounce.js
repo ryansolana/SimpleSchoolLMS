@@ -2,13 +2,17 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { createAnnounce } from '../../store/actions/announceActions'
 import { Redirect } from 'react-router-dom'
+import { Editor } from 'react-draft-wysiwyg';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import { EditorState, convertToRaw } from 'draft-js';
 
 class CreateAnnounce extends Component {
     state = { 
         // firebase auth included as per mapStateToProps
         title: '',
         subtitle: '',
-        content: ''
+        content: '',
+        editorState: EditorState.createEmpty()
     }
 
     handleChange = (e) => {
@@ -19,10 +23,24 @@ class CreateAnnounce extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
+
+        // save as string for later use
+        this.state.content = JSON.stringify(this.state.editorState);
+        // save as raw for later use
+        this.state.editorState = convertToRaw(this.state.editorState.getCurrentContent());
+
         //console.log(this.state)
         this.props.createAnnounce(this.state)
         this.props.history.push('/announcements')
+        
     }
+
+    onEditorStateChange = (editorState) => {
+        this.setState({
+          editorState,
+        });
+        console.log(convertToRaw(this.state.editorState.getCurrentContent()));
+      };
 
     render(){
         const { auth } = this.props;
@@ -40,10 +58,21 @@ class CreateAnnounce extends Component {
                         <label htmlFor="email">Announcement Subtitle</label>
                         <input type="text" id="subtitle" onChange={this.handleChange} required/>
                     </div>
+                    {/*
                     <div className="input-field">
                         <label htmlFor="content">Announcement Content</label>
                         <textarea id="content" className="materialize-textarea" onChange={this.handleChange} required></textarea>
                     </div>
+                    */}
+                    
+                    <Editor
+                        editorState={this.state.editorState}
+                        toolbarClassName="toolbarClassName"
+                        wrapperClassName="wrapperClassName"
+                        editorClassName="editorClassName"
+                        onEditorStateChange={this.onEditorStateChange}
+                    />
+
                     <div className="input-field">
                         <button className="btn pink lighten-1 z-depth-0 hoverable">Create Announcement</button>
                     </div>
