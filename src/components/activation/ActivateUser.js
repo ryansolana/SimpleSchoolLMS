@@ -50,7 +50,8 @@ class CreateAnnounce extends Component {
         return (
             <div className="container z-depth-1"> 
                 <form onSubmit={this.handleSubmit} className="white">
-                <h5 className="grey-text text-darken-3">Create New Announcement</h5>
+                <h5 className="grey-text text-darken-3">Activate A New User</h5>
+                <h3 className="grey-text text-darken-3">List of Users</h3>
                     <div className="input-field">
                         <label htmlFor="email">Announcement Title</label>
                         <input type="text" id="title" onChange={this.handleChange} required/>
