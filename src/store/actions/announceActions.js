@@ -32,3 +32,24 @@ export const deleteAnnounce = (announceId) => {
     }
 }
 
+export const updateAnnounce = (announce, announceId) => {
+    return (dispatch, getState, {getFirebase, getFirestore}) => {
+        // make async call to database
+        const firestore = getFirestore();
+        const profile = getState().firebase.profile;
+        const authorId = getState().firebase.auth.uid;
+
+        firestore.collection('announces').doc(announceId).set({
+            ...announce,
+            authorFirstName: profile.firstName,
+            authorLastName: profile.lastName,
+            authorId: authorId,
+            createdAt: new Date()
+        }).then(()=>{
+            dispatch({ type: 'UPDATE_ANNOUNCE', announce: announce})
+        }).catch((err)=>{
+            dispatch({ type: 'UPDATE_ANNOUNCE_ERROR', err})
+        })
+    }
+}
+

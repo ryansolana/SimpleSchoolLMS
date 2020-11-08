@@ -4,27 +4,28 @@ import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { Redirect } from 'react-router-dom'
 import moment from 'moment'
-import { deleteAnnounce } from '../../store/actions/announceActions'
+import { deleteAnnounce, updateAnnounce } from '../../store/actions/announceActions'
 import { Editor, EditorState, convertFromRaw } from "draft-js";
+import { Link } from 'react-router-dom'
 
 const AnnounceDetails = (props) => {
+    const { announce, auth, profile, deleteAnnounce, id} = props;
 
     const deleteHandler = (id) =>{
         deleteAnnounce(id); 
         props.history.push('/announcements');
     }
-
-    const { announce, auth, profile, deleteAnnounce, id} = props;
+    
+    console.log(announce)
 
     if (!auth.uid) return <Redirect to='/signin' /> // redirect to signin if user is not logged in
     
-    var contentState;
-    var editorState;
+    var editorState = EditorState.createEmpty();
 
+    // attempt to get data, if data null it will be empty
     try {
         if (announce.editorState && true){
-            contentState = convertFromRaw(announce.editorState);
-            editorState = EditorState.createWithContent(contentState);
+            editorState = EditorState.createWithContent(convertFromRaw(announce.editorState));
         }
     } catch(err) {
         console.log(err)
@@ -34,11 +35,11 @@ const AnnounceDetails = (props) => {
         return (
         <div>
             <div className="container section announce-details">
-                <div className="card z-depth-0">
+                <div className="card z-depth-1">
                     <div className="card-content">
                         <div className="row">
                             <span className="card-title">{announce.title}</span>
-                            <span className="card-subtitle">{announce.subtitle}</span> 
+                            <div>Posted by {announce.authorFirstName} {announce.authorLastName}, {moment(announce.createdAt.toDate()).calendar()}</div>
                         </div>
                     </div>
 
@@ -49,20 +50,17 @@ const AnnounceDetails = (props) => {
                         <br></br>
                         {announce.contentLink && <a href={announce.contentLink} alt="/" target="_blank"><button className="btn">Link</button></a>}
                     </div>
-
-                    <div className="card-action grey lighten-4 grey-text">
-                        <div>Posted by {announce.authorFirstName} {announce.authorLastName}</div>
-                        <div>{moment(announce.createdAt.toDate()).calendar()}</div>
-                    </div>
                 </div>
+
                 {
-                    profile.admin && <div>
-                        <button className="btn red" onClick={() => deleteHandler(id)}>Delete this announcement</button>
-                        &nbsp;
-                        <button className="btn orange">Edit this announcement</button>
-                        
-                        </div>     
-                }
+                profile.admin && <div>
+                    <button className="btn red" onClick={() => deleteHandler(id)}>Delete this announcement</button>
+                    &nbsp;
+                    <button className="btn orange"><Link to={'/editAnnounce/' + id}>Edit this announcement</Link></button>
+                    
+                    </div>     
+                } 
+                
             </div>
         </div>
         )

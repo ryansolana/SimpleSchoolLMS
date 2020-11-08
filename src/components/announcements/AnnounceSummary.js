@@ -13,6 +13,7 @@ const AnnounceSummary = ({announce}) => {
     if (announce.editorState){
         contentState = convertFromRaw(announce.editorState);
         editorState = EditorState.createWithContent(contentState);
+        
     }
 
     return (
@@ -24,25 +25,22 @@ const AnnounceSummary = ({announce}) => {
                 <div className="col s9 offset-s1">
                     <div className="card-content grey-text text-darken-3">
                         <span className="card-title">{announce.title}</span>
-                        <span className="card-subtitle">{announce.subtitle}</span> 
+                        <span>Posted by {announce.authorFirstName} {announce.authorLastName}, {date}</span>
                     </div>
                     <div className="card-action">
                         {editorState && <div className="black-text">
                             <Editor editorState={editorState} readOnly={true} />
                         </div>}
                         <br></br>
-                        {announce.contentLink && <a href={announce.contentLink} alt="/" target="_blank"><button className="btn">{announce.contentLinkName || "Link"}</button></a>}
-                        <p>announce id is {announce.id}</p>
+                        {announce.contentLink && <a href={announce.contentLink} alt="/" target="_blank"><button className="btn">Link</button></a>}
                     </div>
                 </div>
             </div>
             <Link to={'/announce/' + announce.id}>
                 <div className="card-action grey lighten-4 grey-text">
-                    <p>Posted by {announce.authorFirstName} {announce.authorLastName}</p>
-                    <p className="grey-text">{date}</p>
+                    <p>Click to Focus</p>
                 </div>  
-            </Link>
-             
+            </Link>     
         </div>
 
     )

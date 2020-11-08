@@ -10,8 +10,6 @@ class CreateAnnounce extends Component {
     state = { 
         // firebase auth included as per mapStateToProps
         title: '',
-        subtitle: '',
-        content: '',
         editorState: EditorState.createEmpty(),
         contentLink: ''
     }
@@ -26,22 +24,18 @@ class CreateAnnounce extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
 
-        // save as string for later use
-        this.state.content = JSON.stringify(this.state.editorState);
         // save as raw for later use
         this.state.editorState = convertToRaw(this.state.editorState.getCurrentContent());
-
+      
         //console.log(this.state)
         this.props.createAnnounce(this.state)
         this.props.history.push('/announcements')
-        
     }
 
     onEditorStateChange = (editorState) => {
         this.setState({
           editorState,
         });
-        console.log(convertToRaw(this.state.editorState.getCurrentContent()));
       };
 
     render(){
@@ -55,10 +49,7 @@ class CreateAnnounce extends Component {
                         <label htmlFor="email">Announcement Title</label>
                         <input type="text" id="title" onChange={this.handleChange} required/>
                     </div>
-                    <div className="input-field">
-                        <label htmlFor="email">Announcement Subtitle</label>
-                        <input type="text" id="subtitle" onChange={this.handleChange} required/>
-                    </div>
+
                     {/*
                     <div className="input-field">
                         <label htmlFor="content">Announcement Content</label>
@@ -67,14 +58,9 @@ class CreateAnnounce extends Component {
                     */}
 
                     <div className="input-field">
-                        <label htmlFor="email">Link Title (optional)</label>
-                        <input type="text" id="contentLinkName" onChange={this.handleChange}/>
-                    </div>
-
-                    { this.state.contentLinkName && <div className="input-field">
                         <label htmlFor="email">Link URL Address</label>
                         <input type="text" id="contentLink" onChange={this.handleChange}/>
-                    </div> }
+                    </div>
                     
                     <Editor
                         editorState={this.state.editorState}

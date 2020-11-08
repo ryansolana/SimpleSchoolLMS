@@ -10,6 +10,7 @@ import Landing from './components/dashboard/Landing'
 import AnnounceDashboard from './components/dashboard/AnnounceDashboard'
 import CreateAnnounce from './components/announcements/CreateAnnounce'
 import AnnounceDetails from './components/announcements/AnnounceDetails'
+import UpdateAnnounce from './components/announcements/UpdateAnnounce'
 
 import CourseMatDashboard from './components/dashboard/CourseMatDashboard'
 import CreateCourseMat from './components/course-material/CreateCourseMat'
@@ -44,6 +45,7 @@ class App extends Component {
             <Route path='/announce/:id' component={ AnnounceDetails } />
             <Route path='/announcements' component={ AnnounceDashboard }/>
             <Route path='/createAnnounce' component={ CreateAnnounce }/>
+            <Route path='/editAnnounce/:id' component={ UpdateAnnounce }/>
 
             <Route path='/course-materials' component={ CourseMatDashboard }/>
             <Route path='/course-material/:id' component={ CourseMatDetails } />
