@@ -35,7 +35,7 @@ const AnnounceDetails = (props) => {
         return (
         <div>
             <div className="container section announce-details">
-                <div className="card z-depth-1">
+                <div className="card z-depth-2">
                     <div className="card-content">
                         <div className="row">
                             <span className="card-title">{announce.title}</span>
@@ -44,9 +44,7 @@ const AnnounceDetails = (props) => {
                     </div>
 
                     <div className="card-action"> 
-                        {editorState && <div className="black-text">
-                            <Editor editorState={editorState} readOnly={true} />
-                        </div>}
+                        <p>{announce.content}</p>
                         <br></br>
                         {announce.contentLink && <a href={announce.contentLink} alt="/" target="_blank"><button className="btn">Link</button></a>}
                     </div>
@@ -56,7 +54,7 @@ const AnnounceDetails = (props) => {
                 profile.admin && <div>
                     <button className="btn red" onClick={() => deleteHandler(id)}>Delete this announcement</button>
                     &nbsp;
-                    <button className="btn orange"><Link to={'/editAnnounce/' + id}>Edit this announcement</Link></button>
+                    <button className="btn orange"><Link to={'/editAnnounce/' + id}><div className="white-text">Edit this announcement</div></Link></button>
                     
                     </div>     
                 } 

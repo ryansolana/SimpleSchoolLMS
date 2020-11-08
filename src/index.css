@@ -178,3 +178,5 @@ td.text-bold{
 .login-field{
   width:70%;
 }
+
+textarea.materialize-textarea{height: 15rem;}

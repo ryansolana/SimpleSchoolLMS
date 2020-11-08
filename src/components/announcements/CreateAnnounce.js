@@ -10,7 +10,8 @@ class CreateAnnounce extends Component {
     state = { 
         // firebase auth included as per mapStateToProps
         title: '',
-        editorState: EditorState.createEmpty(),
+        content: '',
+        //editorState: EditorState.createEmpty(),
         contentLink: ''
     }
 
@@ -25,18 +26,21 @@ class CreateAnnounce extends Component {
         e.preventDefault();
 
         // save as raw for later use
-        this.state.editorState = convertToRaw(this.state.editorState.getCurrentContent());
+       // this.state.editorState = convertToRaw(this.state.editorState.getCurrentContent());
       
         //console.log(this.state)
         this.props.createAnnounce(this.state)
         this.props.history.push('/announcements')
     }
 
+    /*
     onEditorStateChange = (editorState) => {
         this.setState({
           editorState,
         });
       };
+
+    */
 
     render(){
         const { auth } = this.props;
@@ -44,32 +48,38 @@ class CreateAnnounce extends Component {
         return (
             <div className="container z-depth-1"> 
                 <form onSubmit={this.handleSubmit} className="white">
-                <h5 className="grey-text text-darken-3">Create New Announcement</h5>
+                <h5 className="black-text text-darken-5">Create New Announcement</h5>
                     <div className="input-field">
                         <label htmlFor="email">Announcement Title</label>
                         <input type="text" id="title" onChange={this.handleChange} required/>
                     </div>
 
-                    {/*
                     <div className="input-field">
-                        <label htmlFor="content">Announcement Content</label>
-                        <textarea id="content" className="materialize-textarea" onChange={this.handleChange} required></textarea>
+                        <label htmlFor="content">Announcement Content (400 words max)</label>
+                        <textarea 
+                            rows="2" 
+                            cols="200"
+                            id="content" 
+                            className="materialize-textarea" 
+                            onChange={this.handleChange} 
+                            max="400" 
+                            required></textarea>
                     </div>
-                    */}
 
                     <div className="input-field">
                         <label htmlFor="email">Link URL Address</label>
                         <input type="text" id="contentLink" onChange={this.handleChange}/>
                     </div>
                     
-                    <Editor
+                    {/* 
+                        <Editor
                         editorState={this.state.editorState}
                         toolbarClassName="toolbarClassName"
                         wrapperClassName="wrapperClassName"
                         editorClassName="editorClassName"
-                        onEditorStateChange={this.onEditorStateChange}
-                    />
-
+                        onEditorStateChange={this.onEditorStateChange}/>
+                    */}
+                    
                     <div className="input-field">
                         <button className="btn pink lighten-1 z-depth-0 hoverable">Create Announcement</button>
                     </div>

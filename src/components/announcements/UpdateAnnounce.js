@@ -6,18 +6,31 @@ import { updateAnnounce } from '../../store/actions/announceActions'
 import { Redirect } from 'react-router-dom'
 import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import { EditorState, convertToRaw } from 'draft-js';
+import { EditorState, ContentState, convertToRaw, convertFromRaw} from 'draft-js';
 
 class UpdateAnnounce extends Component {
 
-    // safe state
-    state = { 
-        // firebase auth included as per mapStateToProps
-        title: '',
-        editorState: EditorState.createEmpty(),
-        contentLink: ''
+    constructor(props){
+        super(props);
+
+        this.state = { 
+            // firebase auth included as per mapStateToProps
+            title: '',
+            content: '',
+            //editorState: EditorState.createEmpty(),
+            contentLink: ''
+        }
     }
 
+    componentDidMount(){
+        console.log("cdm")
+        const { auth, announce } = this.props;
+
+        if (announce){
+            this.setState({title: announce.title}, () => console.log("title rerender: " + this.state));
+            console.log("cdm2")
+        }   
+    }
     handleChange = (e) => {
         this.setState({
             [e.target.id]: e.target.value
@@ -27,24 +40,19 @@ class UpdateAnnounce extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-
-        // save as raw for later use
-        this.state.editorState = convertToRaw(this.state.editorState.getCurrentContent());
       
-        //console.log(this.state)
-        this.props.updateAnnounce(this.state)
-        this.props.history.push('/announcements')
-    }
-
-    onEditorStateChange = (editorState) => {
         this.setState({
-          editorState,
-        });
-      };
+            title: e.target.value
+        }) 
+
+        //console.log(this.state)
+        this.props.updateAnnounce(this.state, this.props.id)
+        this.props.history.push('/announcements');
+    }
 
     render(){
         console.log("component rendered")
-        const { auth, announce} = this.props;
+        const { auth, announce } = this.props;
 
         if (!auth.uid) return <Redirect to='/signin' /> // redirect to signin if user is not logged in
 
@@ -58,28 +66,18 @@ class UpdateAnnounce extends Component {
                             <input type="text" id="title" onChange={this.handleChange} defaultValue={announce.title} required/>
                         </div>
     
-                        {/*
                         <div className="input-field">
-                            <label htmlFor="content">Announcement Content</label>
-                            <textarea id="content" className="materialize-textarea" onChange={this.handleChange} required></textarea>
+                        <label htmlFor="content">Announcement Content (400 words max)</label>
+                        <textarea id="content" className="materialize-textarea" onChange={this.handleChange} max="400" rows="2" cols="200" defaultValue={announce.content} required></textarea>
                         </div>
-                        */}
+
+                        <div className="input-field">
+                            <label className="active" htmlFor="email">Link URL Address (optional)</label>
+                            <input type="text" id="contentLink" onChange={this.handleChange} defaultValue={announce.contentLink}/>
+                        </div>
     
                         <div className="input-field">
-                            <label htmlFor="email">Link URL Address (optional)</label>
-                            <input type="text" id="contentLink" onChange={this.handleChange}/>
-                        </div>
-                        
-                        <Editor
-                            editorState={this.state.editorState}
-                            toolbarClassName="toolbarClassName"
-                            wrapperClassName="wrapperClassName"
-                            editorClassName="editorClassName"
-                            onEditorStateChange={this.onEditorStateChange}
-                        />
-    
-                        <div className="input-field">
-                            <button className="btn pink lighten-1 z-depth-0 hoverable">Create Announcement</button>
+                            <button className="btn pink lighten-1 z-depth-0 hoverable">Update Announcement</button>
                         </div>
                     </form>
                 </div>
@@ -94,7 +92,7 @@ class UpdateAnnounce extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return{
-        updateAnnounce: (announce) => dispatch(updateAnnounce(announce))
+        updateAnnounce: (announce, id) => dispatch(updateAnnounce(announce, id))
     }
 }
 

@@ -28,9 +28,7 @@ const AnnounceSummary = ({announce}) => {
                         <span>Posted by {announce.authorFirstName} {announce.authorLastName}, {date}</span>
                     </div>
                     <div className="card-action">
-                        {editorState && <div className="black-text">
-                            <Editor editorState={editorState} readOnly={true} />
-                        </div>}
+                        <p>{announce.content}</p>
                         <br></br>
                         {announce.contentLink && <a href={announce.contentLink} alt="/" target="_blank"><button className="btn">Link</button></a>}
                     </div>
