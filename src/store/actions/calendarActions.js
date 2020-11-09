@@ -11,9 +11,30 @@ export const createCalendarModule = (calendarModule) => {
             authorId: authorId,
             createdAt: new Date()
         }).then(()=>{
-            dispatch({ type: 'CREATE_ANNOUNCE', calendarModule: calendarModule})
+            dispatch({ type: 'CREATE_CALENDARMODULE', calendarModule: calendarModule})
         }).catch((err)=>{
-            dispatch({ type: 'CREATE_ANNOUNCE_ERROR', err})
+            dispatch({ type: 'CREATE_CALENDARMODULE_ERROR', err})
+        })
+    }
+}
+
+export const updateCalendarModule = (calendarModule, calendarModuleId) => {
+    return (dispatch, getState, {getFirebase, getFirestore}) => {
+        // make async call to database
+        const firestore = getFirestore();
+        const profile = getState().firebase.profile;
+        const authorId = getState().firebase.auth.uid;
+
+        firestore.collection('calendarModules').doc(calendarModuleId).set({
+            ...calendarModule,
+            authorFirstName: profile.firstName,
+            authorLastName: profile.lastName,
+            authorId: authorId,
+            createdAt: new Date()
+        }).then(()=>{
+            dispatch({ type: 'UPDATE_CALENDARMODULE', calendarModule: calendarModule})
+        }).catch((err)=>{
+            dispatch({ type: 'UPDATE_CALENDARMODULE_ERROR', err})
         })
     }
 }
@@ -25,9 +46,9 @@ export const deleteCalendarModule = (calendarModuleId) => {
         console.log(calendarModuleId);
         firestore.collection('calendarModules').doc(calendarModuleId).delete()
         .then(()=>{
-            dispatch({ type: 'DELETE_ANNOUNCE'})
+            dispatch({ type: 'DELETE_CALENDARMODULE'})
         }).catch((err)=>{
-            dispatch({ type: 'DELETE_ANNOUNCE_ERROR', err})
+            dispatch({ type: 'DELETE_CALENDARMODULE_ERROR', err})
         });
     }
 }

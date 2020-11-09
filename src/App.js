@@ -20,16 +20,15 @@ import SubmissionDashboard from './components/dashboard/SubmissionDashboard'
 import CreateSubmission from './components/submissions/CreateSubmission'
 import SubmissionDetails from './components/submissions/SubmissionDetails'
 
-import ProgressDashboard from './components/dashboard/ProgressDashboard'
-import CreateProgressModule from './components/progress/CreateProgressModule'
-
 import CalendarDashboard from './components/dashboard/CalendarDashboard'
 import CreateCalendarModule from './components/calendar/CreateCalendarModule'
+import UpdateCalendarModule from './components/calendar/UpdateCalendarModule'
 
 import NotFound from './components/dashboard/NotFound'
 
 
 class App extends Component {
+  
   componentDidMount() {
     let sidenav = document.querySelector('#slide-out');
     M.Sidenav.init(sidenav, {});
@@ -55,11 +54,9 @@ class App extends Component {
             <Route path='/submission/:id' component={ SubmissionDetails } />
             <Route path='/createSubmission' component={ CreateSubmission }/>
 
-            <Route path='/progress' component={ ProgressDashboard }/>
-            <Route path='/createProgressModule' component={ CreateProgressModule }/>
-
             <Route path='/calendar' component={ CalendarDashboard }/>
             <Route path='/createCalendarModule' component={ CreateCalendarModule }/>
+            <Route path='/editCalendarModule/:id' component={ UpdateCalendarModule }/>
 
             <Route path='/signin' component={ SignIn }/>
             <Route path='/signup' component={ SignUp }/>

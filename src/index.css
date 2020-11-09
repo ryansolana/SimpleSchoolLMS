@@ -189,3 +189,7 @@ textarea.materialize-textarea{height: 15rem;}
 table tr td:last-child{
   width: 10%;
 }
+
+.padding-bottom-20{
+  padding-bottom: 2em;
+}

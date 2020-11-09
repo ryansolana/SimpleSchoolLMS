@@ -6,13 +6,13 @@ import { firebaseReducer } from 'react-redux-firebase'
 import announceReducer from './announceReducer'
 import coursematReducer from './coursematReducer'
 import submissionReducer from './submissionReducer'
-import progressReducer from './submissionReducer'
+import calendarReducer from './calendarReducer'
 
 const rootReducer = combineReducers({
     auth: authReducer,
     announce: announceReducer,
     coursemat: coursematReducer,
-    progress: progressReducer,
+    calendar: calendarReducer,
     submission: submissionReducer,
     firestore: firestoreReducer,
     firebase: firebaseReducer

@@ -17,9 +17,6 @@ class CreateCalendarModule extends Component {
         this.setState({
             [e.target.id]: e.target.value
         })
-
-        console.log(e.target)
-        console.log(e.target.value)
     }
 
     handleSubmit = (e) => {

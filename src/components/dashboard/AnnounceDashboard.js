@@ -16,7 +16,7 @@ class AnnounceDashboard extends Component{
                 <h3 className="padding page-title">Announcements</h3>
 
                 {profile.admin ? <Link to='/createAnnounce'>
-                    <button className="btn waves-effect waves-light blue padding-top hoverable">Create New Announcement</button>
+                    <button className="btn waves-effect waves-light green text-darken-1 padding-top hoverable">Create New Announcement</button>
                 </Link> : <div></div>}
             
                 <AnnounceList announces={announces} />

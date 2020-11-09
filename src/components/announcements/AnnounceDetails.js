@@ -4,8 +4,7 @@ import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { Redirect } from 'react-router-dom'
 import moment from 'moment'
-import { deleteAnnounce, updateAnnounce } from '../../store/actions/announceActions'
-import { Editor, EditorState, convertFromRaw } from "draft-js";
+import { deleteAnnounce } from '../../store/actions/announceActions'
 import { Link } from 'react-router-dom'
 
 const AnnounceDetails = (props) => {
@@ -19,17 +18,6 @@ const AnnounceDetails = (props) => {
     console.log(announce)
 
     if (!auth.uid) return <Redirect to='/signin' /> // redirect to signin if user is not logged in
-    
-    var editorState = EditorState.createEmpty();
-
-    // attempt to get data, if data null it will be empty
-    try {
-        if (announce.editorState && true){
-            editorState = EditorState.createWithContent(convertFromRaw(announce.editorState));
-        }
-    } catch(err) {
-        console.log(err)
-    }
 
     if (announce){
         return (

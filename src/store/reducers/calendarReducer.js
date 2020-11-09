@@ -14,6 +14,12 @@ const calendarModuleReducer = (state = initState, action) => {
         case 'CREATE_CALENDARMODULE_ERR':
             console.log('create calendarModule error', action.err)
             return state;
+        case 'UPDATE_CALENDARMODULE':
+            console.log('updated calendarModule', action.calendarModule)
+            return state;
+        case 'UPDATE_CALENDARMODULE_ERR':
+            console.log('updated calendarModule error', action.err)
+            return state;
         case 'DELETE_CALENDARMODULE':
             console.log('deleted calendarModule', action.calendarModule)
             return state;

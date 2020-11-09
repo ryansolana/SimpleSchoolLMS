@@ -94,7 +94,7 @@ class UpdateAnnounce extends Component {
                 </div>
 
                 <div className="input-field">
-                    <button className="btn pink lighten-1 z-depth-0 hoverable">Update Announcement</button>
+                    <button className="btn pink lighten-1 z-depth-0 hoverable">Confirm Changes</button>
                 </div>
             </form>
         </div>)

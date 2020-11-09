@@ -10,7 +10,7 @@ const SubmissionDetails = (props) => {
 
     const deleteHandler = (id) =>{
         deleteSubmission(id); 
-        props.history.push('/course-material');
+        props.history.push('/course-materials');
     }
 
     const { submission, auth, profile, deleteSubmission, id} = props;

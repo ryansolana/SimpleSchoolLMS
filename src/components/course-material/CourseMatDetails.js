@@ -10,7 +10,7 @@ const CourseMatDetails = (props) => {
 
     const deleteHandler = (id) =>{
         deleteCourseMat(id); 
-        props.history.push('/course-material');
+        props.history.push('/course-materials');
     }
 
     const { coursemat, auth, profile, deleteCourseMat, id} = props;

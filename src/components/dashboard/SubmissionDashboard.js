@@ -16,7 +16,7 @@ class SubmissionDashboard extends Component{
                 <h3 className="page-title padding">Submissions</h3>
 
                 {profile.admin ? <Link to='/createSubmission'>
-                    <button className="btn waves-effect waves-light blue padding-top hoverable">Create New Submission Dropbox</button>
+                    <button className="btn waves-effect waves-light green text-darken-1 padding-top hoverable">Create New Submission Dropbox</button>
                 </Link> : <div></div>}
             
                 <SubmissionList submissions={submissions} />
