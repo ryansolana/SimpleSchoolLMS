@@ -23,38 +23,27 @@ const CourseMatDetails = (props) => {
         return (
         <div>
             <div className="container section coursemat-details">
-                <div className="card z-depth-0">
+                <div className="card z-depth-3">
                     <div className="card-content">
                         <div className="row">
                             <span className="card-title">{coursemat.title}</span>
-                            <span className="card-subtitle">{coursemat.subtitle}</span> 
+                            <span className="card-subtitle text-bold">{coursemat.subtitle}</span><br></br>
+                            <span>Posted on {moment(coursemat.createdAt.toDate()).calendar()}</span>
+                            <br></br>
+                            <br></br>
+                            <p>{coursemat.content}</p>
+                            
                         </div>
-                        
-                        <hr></hr>
-                        <p>{coursemat.content}</p>
-
-                        {coursemat.textlink.length > 1 ? <div className="margin-top-20"><h6>Cloud Drive Download Link</h6>
-                        <a href={coursemat.textlink} target="_blank" rel="noopener noreferrer"><i className="material-icons grey-text text-darken-3 summary">cloud_download</i></a></div> 
-                        : <div></div>}
-
-                    <iframe
-                        title="yes"
-                        width="640"
-                        height="390"
-                        src="https://www.youtube.com/embed/VgC4b9K-gYU"
-                        sandbox="allow-forms allow-scripts allow-pointer-lock allow-same-origin allow-top-navigation"
-                        showinfo="0">
-                    </iframe>
-
-
                     </div>
-                    <div className="card-action grey lighten-4 grey-text">
-                        <div>Posted by {coursemat.authorFirstName} {coursemat.authorLastName}</div>
-                        <div>{moment(coursemat.createdAt.toDate()).calendar()}</div>
+                    <div className="card-action black-text">
+                        {coursemat.textlink.length > 1 ? <div className="margin-top-20">
+                        <p className="text-bold">Download Link</p>
+                        <a href={coursemat.textlink} target="_blank" rel="noopener noreferrer"><i className="material-icons blue-text text-darken-3 summary">cloud_download</i></a></div> 
+                        : <div></div>}
                     </div>
                 </div>
                 {
-                    profile.admin ? <button className="btn" onClick={() => deleteHandler(id)}>Delete this course material</button>: <div></div>
+                    profile.admin ? <button className="btn red" onClick={() => deleteHandler(id)}>Delete this course material</button>: <div></div>
                 }
                 
             </div>

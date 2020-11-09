@@ -1,20 +1,10 @@
 import React from 'react'
 import moment from 'moment'
-import { Editor, EditorState, convertFromRaw } from "draft-js";
 import { Link } from 'react-router-dom'
 
 const AnnounceSummary = ({announce}) => {
 
     const date = moment(announce.createdAt.toDate()).calendar()
-
-    var contentState;
-    var editorState;
-
-    if (announce.editorState){
-        contentState = convertFromRaw(announce.editorState);
-        editorState = EditorState.createWithContent(contentState);
-        
-    }
 
     return (
         <div className="card z-depth-1 announce-summary">

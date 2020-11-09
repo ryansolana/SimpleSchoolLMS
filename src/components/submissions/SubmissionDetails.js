@@ -28,18 +28,15 @@ const SubmissionDetails = (props) => {
                         <div className="row">
                             <span className="card-title">{submission.title}</span>
                             <span className="card-subtitle">{submission.subtitle}</span> 
+                            <div>{moment(submission.createdAt.toDate()).calendar()}</div>
+                            <br></br><br></br>
+                            <p>{submission.content}</p>
                         </div>
-                        
-                        <hr></hr>
-                        <p>{submission.content}</p>
-
-                        {submission.textlink.length > 1 ? <div className="margin-top-20"><h6>Google Drive Download</h6>
+                    </div>
+                    <div className="card-action grey lighten-4 black-text">
+                        {submission.textlink.length > 1 ? <div className="margin-top-20"><p className="text-bold">Download Link</p>
                         <a href={submission.textlink} target="_blank" rel="noopener noreferrer"><i className="material-icons grey-text text-darken-3 summary">cloud_download</i></a></div> 
                         : <div></div>}
-
-                    </div>
-                    <div className="card-action grey lighten-4 grey-text">
-                        <div>{moment(submission.createdAt.toDate()).calendar()}</div>
                     </div>
                 </div>
                 {

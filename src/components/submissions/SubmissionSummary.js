@@ -17,7 +17,7 @@ const SubmissionSummary = ({submission}) => {
                 </div>
             </div>
             <div className="card-action grey lighten-4 grey-text">
-                    <p className="grey-text">{moment(submission.createdAt.toDate()).calendar()}</p>
+                <p className="grey-text">{moment(submission.createdAt.toDate()).calendar()}</p>
             </div>   
         </div>
 

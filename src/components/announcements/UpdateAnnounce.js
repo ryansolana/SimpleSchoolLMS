@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { firestoreConnect } from 'react-redux-firebase'
-import { compose } from 'redux'
 import { updateAnnounce } from '../../store/actions/announceActions'
 import { Redirect } from 'react-router-dom'
 import * as firebase from 'firebase'
@@ -22,9 +20,6 @@ class UpdateAnnounce extends Component {
     componentDidMount(){
         var db = firebase.firestore()
 
-        console.log("id: " + this.props.match.params.id)
-        console.log("cdm")
-
         // get data first
         var docRef = db.collection("announces").doc(this.props.match.params.id);
         var data;
@@ -43,29 +38,28 @@ class UpdateAnnounce extends Component {
         }).then(() =>{
             this.setState({title: data.title, content: data.content, contentLink: data.contentLink})
         })
-
         
-
-        console.log("state is now: ")
-        console.log(this.state)
     }
-    
+
+
     handleChange = (e) => {
         this.setState({
             [e.target.id]: e.target.value
         })
-        console.log(e.target.id)
+
+        if (e.target.value === ""){
+            this.setState({
+                [e.target.id]: null
+            })
+        }
+        console.log(e.target.id + " is now " + e.target.value)
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
-      
-        this.setState({
-            title: e.target.value
-        }) 
 
         //console.log(this.state)
-        this.props.updateAnnounce(this.state, this.props.id)
+        this.props.updateAnnounce(this.state, this.props.match.params.id)
         this.props.history.push('/announcements');
     }
 
@@ -90,12 +84,12 @@ class UpdateAnnounce extends Component {
                 </div>
 
                 <div className="input-field">
-                <label htmlFor="content">Announcement Content (400 words max)</label>
-                <textarea id="content" className="materialize-textarea" onChange={this.handleChange} max="400" rows="2" cols="200" defaultValue={this.state.content} required></textarea>
+                    <label className="active" htmlFor="content">Announcement Content (400 words max)</label>
+                    <textarea id="content" className="materialize-textarea" onChange={this.handleChange} max="400" rows="2" cols="200" defaultValue={this.state.content} required></textarea>
                 </div>
 
                 <div className="input-field">
-                    <label className="active" htmlFor="email">Link URL Address (optional)</label>
+                    <label className="active" htmlFor="email">Optional Link Address (include 'https://')</label>
                     <input type="text" id="contentLink" onChange={this.handleChange} defaultValue={this.state.contentLink}/>
                 </div>
 
@@ -116,20 +110,10 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state, ownProps) => {
     console.log(state)
-    const id = ownProps.match.params.id;
-    const announces = state.firestore.data.announces
-    const announce = announces ? announces[id] : null
     return {
-        announce: announce,
         auth: state.firebase.auth,
         profile: state.firebase.profile,
-        id: ownProps.match.params.id
     }
 }
 
-export default compose(
-    connect(mapStateToProps, mapDispatchToProps),
-    firestoreConnect([
-        { collection: 'announces'}
-    ])
-)(UpdateAnnounce)
+export default connect(mapStateToProps, mapDispatchToProps)(UpdateAnnounce)

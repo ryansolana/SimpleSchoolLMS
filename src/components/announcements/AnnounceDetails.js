@@ -46,7 +46,7 @@ const AnnounceDetails = (props) => {
                     <div className="card-action"> 
                         <p>{announce.content}</p>
                         <br></br>
-                        {announce.contentLink && <a href={announce.contentLink} alt="/" target="_blank"><button className="btn">Link</button></a>}
+                        {announce.contentLink && announce.contentLink !== "" && <a href={announce.contentLink} alt="/" target="_blank"><button className="btn">Link</button></a>}
                     </div>
                 </div>
 

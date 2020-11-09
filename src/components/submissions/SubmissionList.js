@@ -19,7 +19,7 @@ const SubmissionList = ({submissions}) => {
           submissions && submissions.map(submission =>{
             return (
               <div>
-                <Link to={'/submissions/' + submission.id} key={submission.id}>
+                <Link to={'/submission/' + submission.id} key={submission.id}>
                   <SubmissionSummary submission={submission}/>
                 </Link>
 

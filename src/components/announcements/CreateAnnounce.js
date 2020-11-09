@@ -67,7 +67,7 @@ class CreateAnnounce extends Component {
                     </div>
 
                     <div className="input-field">
-                        <label htmlFor="email">Link URL Address</label>
+                        <label htmlFor="email">Optional Link Address (include 'https://')</label>
                         <input type="text" id="contentLink" onChange={this.handleChange}/>
                     </div>
                     

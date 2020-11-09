@@ -52,7 +52,7 @@ class App extends Component {
             <Route path='/createCourseMat' component={ CreateCourseMat }/>
 
             <Route path='/submissions' component={ SubmissionDashboard }/>
-            <Route path='/submissions/:id' component={ SubmissionDetails } />
+            <Route path='/submission/:id' component={ SubmissionDetails } />
             <Route path='/createSubmission' component={ CreateSubmission }/>
 
             <Route path='/progress' component={ ProgressDashboard }/>

@@ -167,7 +167,7 @@ td.red-bg{
   font-weight: bold;
 }
 
-td.text-bold{
+text-bold{
   font-weight: bold;
 }
 
@@ -180,3 +180,12 @@ td.text-bold{
 }
 
 textarea.materialize-textarea{height: 15rem;}
+
+.black-text .text-bold {
+  color: #000 !important;
+  font-weight: bold;
+}
+
+table tr td:last-child{
+  width: 10%;
+}
