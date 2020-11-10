@@ -5,11 +5,13 @@ import SignedOutLinks from './SignedOutLinks'
 import SchoolLinks from './SchoolLinks'
 import { connect } from 'react-redux'
 
+
 const Navbar = (props) => {
     const { auth, profile } = props
-    console.log(auth)
+    console.log("email verified status: " + auth.emailVerified)
     const links = auth.uid ? <SignedInLinks profile={profile}/> : <SignedOutLinks/>
-    const schoolLinks = auth.uid ? 
+
+    const schoolLinks = auth.uid && auth.emailVerified ? 
         <div>
             <nav className="nav-wrapper darken-3 grey">
                 <div className="container">

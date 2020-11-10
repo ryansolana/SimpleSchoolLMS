@@ -6,6 +6,7 @@ import Navbar from './components/layout/Navbar'
 import SignIn from './components/auth/SignIn'
 import SignUp from './components/auth/SignUp'
 import Landing from './components/dashboard/Landing'
+import VerifyEmail from './components/auth/VerifyEmail'
 
 import AnnounceDashboard from './components/dashboard/AnnounceDashboard'
 import CreateAnnounce from './components/announcements/CreateAnnounce'
@@ -64,6 +65,7 @@ class App extends Component {
 
             <Route path='/signin' component={ SignIn }/>
             <Route path='/signup' component={ SignUp }/>
+            <Route path='/verify' component={ VerifyEmail }/>
             <Route component = {NotFound} />
 
           </Switch>

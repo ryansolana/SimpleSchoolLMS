@@ -6,6 +6,7 @@ import moment from 'moment'
 const Landing = (props) => {
     const { auth, profile } = props;
     if (!auth.uid) return <Redirect to='/signin' /> // redirect to signin if user is not logged in
+    if (!auth.isVerified) return <Redirect to='/verify' /> // redirect to signin if user is not logged
     
     if (auth){
 
