@@ -1,8 +1,9 @@
 import React from 'react'
 import moment from 'moment'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
-const AnnounceSummary = ({announce}) => {
+const AnnounceSummary = ({announce, profile}) => {
 
     const date = moment(announce.createdAt.toDate()).calendar()
 
@@ -20,19 +21,28 @@ const AnnounceSummary = ({announce}) => {
                     <div className="card-action">
                         <p>{announce.content}</p>
                         <br></br>
-                        {announce.contentLink && <a href={announce.contentLink} alt="/" target="_blank"><button className="btn">Link</button></a>}
+                        {announce.contentLink && <div><a href={announce.contentLink} alt="/" target="_blank"><button className="btn">Link</button></a><br></br><br></br></div>}
+                        
                     </div>
                 </div>
+
+                <div className="col s1">
+                    {profile.admin && <td><Link to={'/editAnnounce/' + announce.id}><i className="material-icons black-text text-darken-3">edit</i></Link></td>} 
+                </div> 
             </div>
-            <Link to={'/announce/' + announce.id}>
-                <div className="card-action grey lighten-4 grey-text">
-                    <p>Click to Focus</p>
-                </div>  
-            </Link>     
+
+                
         </div>
 
     )
 }
 
 
-export default AnnounceSummary
+const mapStateToProps = (state) => {
+    return {
+        auth: state.firebase.auth,
+        profile: state.firebase.profile,
+    }
+}
+
+export default connect(mapStateToProps, null)(AnnounceSummary)

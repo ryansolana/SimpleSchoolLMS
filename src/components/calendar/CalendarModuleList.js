@@ -16,8 +16,8 @@ const CalendarModuleList = ({calendarModules}) => {
       <table className="calendar">
         <thead> 
           <tr>
-            <th>Week #</th>
-            <th>Module / Assignment</th>
+            <th className="text-center">Week #</th>
+            <th className="text-center">Module / Assignment</th>
             <th className="text-center">Status</th>
             <th className="text-center">Open / Due Date</th>
           </tr>

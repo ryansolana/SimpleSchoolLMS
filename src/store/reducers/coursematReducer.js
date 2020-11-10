@@ -14,6 +14,12 @@ const coursematReducer = (state = initState, action) => {
         case 'CREATE_COURSEMAT_ERR':
             console.log('create coursemat error', action.err)
             return state;
+        case 'UPDATE_COURSEMAT':
+            console.log('created coursemat', action.coursemat)
+            return state;
+        case 'UPDATE_COURSEMAT_ERR':
+            console.log('create coursemat error', action.err)
+            return state;
         case 'DELETE_COURSEMAT':
             console.log('deleted coursemat', action.coursemat)
             return state;
@@ -24,7 +30,5 @@ const coursematReducer = (state = initState, action) => {
             return state;
     }
 }
-
-
 
 export default coursematReducer

@@ -21,10 +21,8 @@ class UpdateCalendarModule extends Component {
 
     deleteHandler = (id) =>{
         const { deleteCalendarModule } = this.props;
-        console.log("delete handler id: " + id)
         deleteCalendarModule(id); 
         this.props.history.push('/calendar');
-        console.log("delete handler called")
     }
 
     componentDidMount(){
@@ -85,12 +83,12 @@ class UpdateCalendarModule extends Component {
                     <div className="input-field">
                         <i class="material-icons prefix">title</i>
                         <label className="active" htmlFor="title">Title</label>
-                        <input type="text" id="title" maxlength="50" onChange={this.handleChange} defaultValue={this.state.title} required/>
+                        <input type="text" id="title" maxLength="50" onChange={this.handleChange} defaultValue={this.state.title} required/>
                     </div>
                     <div className="input-field">
                         <i class="material-icons prefix">description</i>
-                        <label className="active" htmlFor="content">Description (optional)</label>
-                        <textarea id="content" maxlength="200" className="materialize-textarea" onChange={this.handleChange} defaultValue={this.state.content} required></textarea>
+                        <label className="active" htmlFor="content">Description (optional, 2400 char max)</label>
+                        <textarea id="content" maxLength="2400" className="materialize-textarea" onChange={this.handleChange} defaultValue={this.state.content}></textarea>
                     </div>
 
                     <div className="input-field" onChange={this.handleChange} defaultValue={this.state.status} required>
@@ -118,10 +116,14 @@ class UpdateCalendarModule extends Component {
                         <input type="date" id="date" onChange={this.handleChange} defaultValue={this.state.date} required/>
                     </div>
                     <div className="input-field">
-                        <button className="btn pink lighten-1 z-depth-0 hoverable">Confirm Changes</button>
+                        <div className="row">
+                            <div className="col s10"><button className="btn green lighten-1 hoverable waves-effect">Confirm Changes</button></div>
+                            <div className="col s2"><button className="btn red hoverable waves-effect" onClick={() => this.deleteHandler(this.props.match.params.id)}>Delete This</button></div>
+                        </div>
+                        
                     </div>
                 </form>
-                <button className="btn red" onClick={() => this.deleteHandler(this.props.match.params.id)}>Delete this module</button>
+                
             </div>
         )
     } 

@@ -37,17 +37,17 @@ class CreateCalendarModule extends Component {
                     <div className="input-field">
                         <i className="material-icons prefix">format_list_numbered</i>
                         <label htmlFor="weekNum">Week Number</label>
-                        <input type="number" id="weekNum" min="0" step="1" max="52"  onChange={this.handleChange} required/>
+                        <input type="number" id="weekNum" min="0" step="1" max="52" onChange={this.handleChange} required/>
                     </div>
                     <div className="input-field">
                         <i class="material-icons prefix">title</i>
                         <label htmlFor="title">Title</label>
-                        <input type="text" id="title" maxlength="50" onChange={this.handleChange} required/>
+                        <input type="text" id="title" maxLength="100" onChange={this.handleChange} required/>
                     </div>
                     <div className="input-field">
                         <i class="material-icons prefix">description</i>
-                        <label htmlFor="content">Description (optional)</label>
-                        <textarea id="content" maxlength="200" className="materialize-textarea" onChange={this.handleChange} required></textarea>
+                        <label htmlFor="content">Description (optional, 2400 char max)</label>
+                        <textarea id="content" maxLength="2400" className="materialize-textarea" onChange={this.handleChange}></textarea>
                     </div>
 
                     <div className="input-field" onChange={this.handleChange} required>
@@ -75,7 +75,7 @@ class CreateCalendarModule extends Component {
                         <input type="date" id="date" onChange={this.handleChange}required/>
                     </div>
                     <div className="input-field">
-                        <button className="btn pink lighten-1 z-depth-0 hoverable">Create Calendar Module</button>
+                        <button className="btn green lighten-1 hoverable waves-effect">Create Calendar Module</button>
                     </div>
                 </form>
             </div>

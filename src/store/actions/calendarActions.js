@@ -25,12 +25,11 @@ export const updateCalendarModule = (calendarModule, calendarModuleId) => {
         const profile = getState().firebase.profile;
         const authorId = getState().firebase.auth.uid;
 
-        firestore.collection('calendarModules').doc(calendarModuleId).set({
+        firestore.collection('calendarModules').doc(calendarModuleId).update({
             ...calendarModule,
             authorFirstName: profile.firstName,
             authorLastName: profile.lastName,
-            authorId: authorId,
-            createdAt: new Date()
+            authorId: authorId
         }).then(()=>{
             dispatch({ type: 'UPDATE_CALENDARMODULE', calendarModule: calendarModule})
         }).catch((err)=>{

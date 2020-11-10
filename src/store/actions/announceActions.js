@@ -39,12 +39,12 @@ export const updateAnnounce = (announce, announceId) => {
         const profile = getState().firebase.profile;
         const authorId = getState().firebase.auth.uid;
 
-        firestore.collection('announces').doc(announceId).set({
+        // update to prevent overriding
+        firestore.collection('announces').doc(announceId).update({
             ...announce,
             authorFirstName: profile.firstName,
             authorLastName: profile.lastName,
-            authorId: authorId,
-            createdAt: new Date()
+            authorId: authorId
         }).then(()=>{
             dispatch({ type: 'UPDATE_ANNOUNCE', announce: announce})
         }).catch((err)=>{

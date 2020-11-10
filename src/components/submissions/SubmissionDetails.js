@@ -4,18 +4,9 @@ import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { Redirect } from 'react-router-dom'
 import moment from 'moment'
-import { deleteSubmission } from '../../store/actions/submissionActions'
 
-const SubmissionDetails = (props) => {
 
-    const deleteHandler = (id) =>{
-        deleteSubmission(id); 
-        props.history.push('/course-materials');
-    }
-
-    const { submission, auth, profile, deleteSubmission, id} = props;
-    console.log("submission props is: ")
-    console.log(submission)
+const SubmissionDetails = ({ submission, auth }) => {
 
     if (!auth.uid) return <Redirect to='/signin' /> // redirect to signin if user is not logged in
     
@@ -23,12 +14,13 @@ const SubmissionDetails = (props) => {
         return (
         <div>
             <div className="container section submission-details">
-                <div className="card z-depth-0">
+                <div className="card z-depth-1">
                     <div className="card-content">
                         <div className="row">
-                            <span className="card-title">{submission.title}</span>
-                            <span className="card-subtitle">{submission.subtitle}</span> 
-                            <div>{moment(submission.createdAt.toDate()).calendar()}</div>
+                            <span className="card-title">{submission.title}</span>          
+                            <div>Posted {moment(submission.createdAt.toDate()).calendar()}</div>
+                            <br></br>
+                            <span className="card-subtitle text-bold">{submission.subtitle}</span> 
                             <br></br><br></br>
                             <p>{submission.content}</p>
                         </div>
@@ -38,13 +30,8 @@ const SubmissionDetails = (props) => {
                         <a href={submission.textlink} target="_blank" rel="noopener noreferrer"><i className="material-icons grey-text text-darken-3 summary">cloud_download</i></a></div> 
                         : <div></div>}
                     </div>
-                </div>
-                {
-                    profile.admin ? <button className="btn" onClick={() => deleteHandler(id)}>Delete this course material</button>: <div></div>
-                }
-                
+                </div>  
             </div>
-            
         </div>
         )
     } else {
@@ -59,12 +46,6 @@ const SubmissionDetails = (props) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return{
-        deleteSubmission: (submission) => dispatch(deleteSubmission(submission))
-    }
-}
-
 
 const mapStateToProps = (state, ownProps) => {
     console.log(state)
@@ -74,13 +55,12 @@ const mapStateToProps = (state, ownProps) => {
     return {
         submission: submission,
         auth: state.firebase.auth,
-        profile: state.firebase.profile,
         id: ownProps.match.params.id
     }
 }
 
 export default compose(
-    connect(mapStateToProps, mapDispatchToProps),
+    connect(mapStateToProps, null),
     firestoreConnect([
         { collection: 'submissions'}
     ])

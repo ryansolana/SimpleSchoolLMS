@@ -2,17 +2,18 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { createAnnounce } from '../../store/actions/announceActions'
 import { Redirect } from 'react-router-dom'
-import { Editor } from 'react-draft-wysiwyg';
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import { EditorState, convertToRaw } from 'draft-js';
+
 
 class CreateAnnounce extends Component {
-    state = { 
-        // firebase auth included as per mapStateToProps
-        title: '',
-        content: '',
-        //editorState: EditorState.createEmpty(),
-        contentLink: ''
+    constructor(props){
+        super(props);
+
+        this.state = { 
+            // firebase auth included as per mapStateToProps
+            title: '',
+            content: '',
+            contentLink: ''
+        }
     }
 
     handleChange = (e) => {
@@ -55,14 +56,14 @@ class CreateAnnounce extends Component {
                     </div>
 
                     <div className="input-field">
-                        <label htmlFor="content">Announcement Content (400 words max)</label>
+                        <label htmlFor="content">Announcement Content (2400 characters max)</label>
                         <textarea 
                             rows="2" 
                             cols="200"
                             id="content" 
                             className="materialize-textarea" 
                             onChange={this.handleChange} 
-                            max="400" 
+                            maxLength="2400" 
                             required></textarea>
                     </div>
 

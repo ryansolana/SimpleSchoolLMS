@@ -8,8 +8,12 @@ body {
   font-family: 'Segoe UI Light', sans-serif;
   background-size: 100%;
   background-position: bottom;
-  background-color: white;
+  background-color: rgb(253, 253, 253);
   min-height: 100%
+}
+
+h1, h2, h3, h4, h5{
+  font-weight: bold;
 }
 
 form{
@@ -43,10 +47,6 @@ textarea.materialize-textarea:focus:not([readonly]){
 
 button.login-btn{
   background-color: #20557D;
-}
-
-h3.thick{
-  font-weight: bold;
 }
 
 .brand-logo{
@@ -146,11 +146,11 @@ div.input-field p label{
 }
 
 table thead tr{
-  text-align: left;
+  text-align: center;
 }
 
 table tbody tr td{
-  text-align: left;
+  text-align: center;
 }
 
 td.red-bg{
@@ -167,7 +167,7 @@ td.red-bg{
   font-weight: bold;
 }
 
-text-bold{
+div span.text-bold{
   font-weight: bold;
 }
 

@@ -4,12 +4,16 @@ import { createCourseMat } from '../../store/actions/coursematActions'
 import { Redirect } from 'react-router-dom'
 
 class CreateCourseMat extends Component {
-    state = { 
-        // firebase auth included as per mapStateToProps
-        title: '',
-        subtitle: '',
-        content: '',
-        textlink: ''
+    constructor(props){
+        super(props);
+
+        this.state = { 
+            // firebase auth included as per mapStateToProps
+            title: '',
+            subtitle: '',
+            content: '',
+            textlink: ''
+        }
     }
 
     handleChange = (e) => {
@@ -22,7 +26,7 @@ class CreateCourseMat extends Component {
         e.preventDefault();
         //console.log(this.state)
         this.props.createCourseMat(this.state)
-        this.props.history.push('/course-material')
+        this.props.history.push('/course-materials')
     }
 
     render(){
@@ -35,15 +39,15 @@ class CreateCourseMat extends Component {
                 <h5 className="grey-text text-darken-3">Create New Course Material</h5>
                     <div className="input-field">
                         <label htmlFor="email">Course Material Title</label>
-                        <input type="text" id="title" onChange={this.handleChange} required/>
+                        <input type="text" id="title" onChange={this.handleChange} maxLength="100" required/>
                     </div>
                     <div className="input-field">
                         <label htmlFor="email">Course Material Subtitle</label>
-                        <input type="text" id="subtitle" onChange={this.handleChange} required/>
+                        <input type="text" id="subtitle" onChange={this.handleChange} maxLength="100" required/>
                     </div>
                     <div className="input-field">
-                        <label htmlFor="content">Course Material Description</label>
-                        <textarea id="content" className="materialize-textarea" onChange={this.handleChange} required></textarea>
+                        <label htmlFor="content">Course Material Description (2400 char max)</label>
+                        <textarea id="content" className="materialize-textarea" maxLength="2400" onChange={this.handleChange} required></textarea>
                     </div>
                     <div className="input-field">
                         <label className="active" htmlFor="email">Course Material Link (with https://)</label>

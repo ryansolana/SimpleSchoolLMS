@@ -17,7 +17,7 @@ const CalendarModuleSummary = ({calendarModule, profile}) => {
                 <td>{calendarModule.title}</td>
                 <td className="text-center text-bold">{status}</td>
                 <td className="text-center">{date}</td>
-                {profile.admin && <td><Link to={'/editCalendarModule/' + calendarModule.id}><i className="material-icons blue-text text-darken-3">edit</i></Link></td>}
+                {profile.admin && <td><Link to={'/editCalendarModule/' + calendarModule.id}><i className="material-icons black-text text-darken-3">edit</i></Link></td>}
             </tr>
         )
     } else {
@@ -27,7 +27,7 @@ const CalendarModuleSummary = ({calendarModule, profile}) => {
                 <td >{calendarModule.title}</td>
                 <td className="red-bg text-center">{status}</td>
                 <td className="text-center">{date}</td>
-                {profile.admin && <td><Link to={'/editCalendarModule/' + calendarModule.id}><i className="material-icons blue-text text-darken-3">edit</i></Link></td>}
+                {profile.admin && <td><Link to={'/editCalendarModule/' + calendarModule.id}><i className="material-icons black-text text-darken-3">edit</i></Link></td>}
             </tr>
         )
     }

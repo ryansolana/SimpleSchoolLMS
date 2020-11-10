@@ -14,6 +14,12 @@ const submissionReducer = (state = initState, action) => {
         case 'CREATE_SUBMISSION_ERR':
             console.log('create submission error', action.err)
             return state;
+        case 'UPDATE_SUBMISSION':
+            console.log('created submission', action.submission)
+            return state;
+        case 'UPDATE_SUBMISSION_ERR':
+            console.log('create submission error', action.err)
+            return state;
         case 'DELETE_SUBMISSION':
             console.log('deleted submission', action.submission)
             return state;

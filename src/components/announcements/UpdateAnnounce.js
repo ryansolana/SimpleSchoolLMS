@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { updateAnnounce } from '../../store/actions/announceActions'
+import { updateAnnounce, deleteAnnounce } from '../../store/actions/announceActions'
 import { Redirect } from 'react-router-dom'
 import * as firebase from 'firebase'
 
@@ -41,6 +41,12 @@ class UpdateAnnounce extends Component {
         
     }
 
+    deleteHandler = (id) =>{
+        const { deleteAnnounce } = this.props;
+        deleteAnnounce(id); 
+        this.props.history.push('/announcements');
+    }
+
 
     handleChange = (e) => {
         this.setState({
@@ -66,8 +72,6 @@ class UpdateAnnounce extends Component {
     render(){
         const { auth } = this.props;
 
-        console.log("component rendered")
-
         if (!auth.uid) return <Redirect to='/signin' /> // redirect to signin if user is not logged in
 
         if (this.state === null){
@@ -77,15 +81,16 @@ class UpdateAnnounce extends Component {
         } else {
             return(<div className="container z-depth-1"> 
             <form onSubmit={this.handleSubmit} className="white">
-            <h5 className="grey-text text-darken-3">Update Announcement</h5>
+            <h5 className="grey-text text-darken-3">Edit Announcement</h5>
+            <br></br>
                 <div className="input-field">
                     <label className="active" htmlFor="email">Announcement Title</label>
                     <input type="text" id="title" onChange={this.handleChange} defaultValue={this.state.title} required/>
                 </div>
 
                 <div className="input-field">
-                    <label className="active" htmlFor="content">Announcement Content (400 words max)</label>
-                    <textarea id="content" className="materialize-textarea" onChange={this.handleChange} max="400" rows="2" cols="200" defaultValue={this.state.content} required></textarea>
+                    <label className="active" htmlFor="content">Announcement Content (2400 characters max)</label>
+                    <textarea id="content" className="materialize-textarea" onChange={this.handleChange} maxLength="2400" rows="2" cols="200" defaultValue={this.state.content} required></textarea>
                 </div>
 
                 <div className="input-field">
@@ -94,7 +99,14 @@ class UpdateAnnounce extends Component {
                 </div>
 
                 <div className="input-field">
-                    <button className="btn pink lighten-1 z-depth-0 hoverable">Confirm Changes</button>
+                    <div className="row">
+                        <div className="col s9">
+                            <button className="btn green lighten-1 hoverable waves-effect">Confirm Changes</button>
+                        </div>
+                        <div className="col s3">
+                            <button className="btn red hoverable waves-effect" onClick={() => this.deleteHandler(this.props.match.params.id)}>Delete This</button>
+                        </div>
+                    </div>
                 </div>
             </form>
         </div>)
@@ -104,7 +116,8 @@ class UpdateAnnounce extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return{
-        updateAnnounce: (announce, id) => dispatch(updateAnnounce(announce, id))
+        updateAnnounce: (announce, id) => dispatch(updateAnnounce(announce, id)),
+        deleteAnnounce: (id) => dispatch(deleteAnnounce(id))
     }
 }
 

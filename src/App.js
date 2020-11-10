@@ -15,10 +15,12 @@ import UpdateAnnounce from './components/announcements/UpdateAnnounce'
 import CourseMatDashboard from './components/dashboard/CourseMatDashboard'
 import CreateCourseMat from './components/course-material/CreateCourseMat'
 import CourseMatDetails from './components/course-material/CourseMatDetails'
+import UpdateCourseMat from './components/course-material/UpdateCourseMat'
 
 import SubmissionDashboard from './components/dashboard/SubmissionDashboard'
 import CreateSubmission from './components/submissions/CreateSubmission'
 import SubmissionDetails from './components/submissions/SubmissionDetails'
+import UpdateSubmission from './components/submissions/UpdateSubmission'
 
 import CalendarDashboard from './components/dashboard/CalendarDashboard'
 import CreateCalendarModule from './components/calendar/CreateCalendarModule'
@@ -49,10 +51,12 @@ class App extends Component {
             <Route path='/course-materials' component={ CourseMatDashboard }/>
             <Route path='/course-material/:id' component={ CourseMatDetails } />
             <Route path='/createCourseMat' component={ CreateCourseMat }/>
+            <Route path='/editCourseMat/:id' component={ UpdateCourseMat } />
 
             <Route path='/submissions' component={ SubmissionDashboard }/>
             <Route path='/submission/:id' component={ SubmissionDetails } />
             <Route path='/createSubmission' component={ CreateSubmission }/>
+            <Route path='/editSubmission/:id' component={ UpdateSubmission } />
 
             <Route path='/calendar' component={ CalendarDashboard }/>
             <Route path='/createCalendarModule' component={ CreateCalendarModule }/>

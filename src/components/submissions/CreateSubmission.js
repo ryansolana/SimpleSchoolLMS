@@ -4,12 +4,16 @@ import { createSubmission } from '../../store/actions/submissionActions'
 import { Redirect } from 'react-router-dom'
 
 class CreateSubmission extends Component {
-    state = { 
-        // firebase auth included as per mapStateToProps
-        title: '',
-        subtitle: '',
-        content: '',
-        textlink: ''
+    constructor(props){
+        super(props);
+
+        this.state = { 
+            // firebase auth included as per mapStateToProps
+            title: '',
+            subtitle: '',
+            content: '',
+            textlink: ''
+        }
     }
 
     handleChange = (e) => {
@@ -31,22 +35,22 @@ class CreateSubmission extends Component {
         return (
             <div className="container z-depth-1">
                 <form onSubmit={this.handleSubmit} className="white">
-                <h5 className="grey-text text-darken-3">Create New Submission</h5>
+                <h5 className="black-text text-bold">Create New Submission</h5>
                     <div className="input-field">
                         <label htmlFor="email">Submission Title</label>
-                        <input type="text" id="title" onChange={this.handleChange} required/>
+                        <input type="text" id="title" maxLength="100" onChange={this.handleChange} required/>
                     </div>
                     <div className="input-field">
                         <label htmlFor="email">Submission Subtitle</label>
-                        <input type="text" id="subtitle" onChange={this.handleChange} required/>
+                        <input type="text" id="subtitle" maxLength="100" onChange={this.handleChange} required/>
                     </div>
                     <div className="input-field">
-                        <label htmlFor="content">Submission Description</label>
-                        <textarea id="content" className="materialize-textarea" onChange={this.handleChange} required></textarea>
+                        <label htmlFor="content">Submission Description (2400 char max)</label>
+                        <textarea id="content" className="materialize-textarea" maxLength="2400" onChange={this.handleChange} required></textarea>
                     </div>
                     <div className="input-field">
                         <label htmlFor="email">Submission Dropbox Link (with https://)</label>
-                        <input type="text" id="textlink" onChange={this.handleChange} required/>
+                        <input type="text" id="textlink" maxLength="2400" onChange={this.handleChange} required/>
                     </div>
                     <div className="input-field">
                         <button className="btn pink lighten-1 z-depth-0 hoverable">Create Submission</button>

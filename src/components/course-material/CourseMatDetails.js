@@ -8,12 +8,7 @@ import { deleteCourseMat } from '../../store/actions/coursematActions'
 
 const CourseMatDetails = (props) => {
 
-    const deleteHandler = (id) =>{
-        deleteCourseMat(id); 
-        props.history.push('/course-materials');
-    }
-
-    const { coursemat, auth, profile, deleteCourseMat, id} = props;
+    const { coursemat, auth} = props;
     console.log("coursemat props is: ")
     console.log(coursemat)
 
@@ -23,14 +18,15 @@ const CourseMatDetails = (props) => {
         return (
         <div>
             <div className="container section coursemat-details">
-                <div className="card z-depth-3">
+                <div className="card z-depth-2">
                     <div className="card-content">
                         <div className="row">
                             <span className="card-title">{coursemat.title}</span>
-                            <span className="card-subtitle text-bold">{coursemat.subtitle}</span><br></br>
-                            <span>Posted on {moment(coursemat.createdAt.toDate()).calendar()}</span>
-                            <br></br>
-                            <br></br>
+                            <span>Posted {moment(coursemat.createdAt.toDate()).calendar()}</span>
+                            <br></br><br></br>
+                            <span className="card-subtitle text-bold">{coursemat.subtitle}</span>
+                            
+                            <br></br><br></br>
                             <p>{coursemat.content}</p>
                             
                         </div>
@@ -42,9 +38,6 @@ const CourseMatDetails = (props) => {
                         : <div></div>}
                     </div>
                 </div>
-                {
-                    profile.admin ? <button className="btn red" onClick={() => deleteHandler(id)}>Delete this course material</button>: <div></div>
-                }
                 
             </div>
             
@@ -59,12 +52,6 @@ const CourseMatDetails = (props) => {
                 </div>
             </div>
         )
-    }
-}
-
-const mapDispatchToProps = (dispatch) => {
-    return{
-        deleteCourseMat: (coursemat) => dispatch(deleteCourseMat(coursemat))
     }
 }
 
@@ -83,7 +70,7 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 export default compose(
-    connect(mapStateToProps, mapDispatchToProps),
+    connect(mapStateToProps, null),
     firestoreConnect([
         { collection: 'coursemats'}
     ])
