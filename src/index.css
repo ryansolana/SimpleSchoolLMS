@@ -13,8 +13,25 @@ body {
   font-size: 16px;
 }
 
+.bg-image{
+  background-image: url("/img/soc-background.jpeg");
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 h1, h2, h3, h4, h5{
   font-weight: bold;
+}
+
+bold{
+  font-weight:bold;
 }
 
 form{
