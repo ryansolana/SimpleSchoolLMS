@@ -44,3 +44,19 @@ export const signUp = (newUser) => {
         })
     }
 }
+
+
+export const setStudentActivation = (uid, status) => {
+    return (dispatch, getState, {getFirebase, getFirestore}) =>{
+        const firebase = getFirebase();
+        const firestore = getFirestore();
+
+        firestore.collection('users').doc(uid).update({
+            activated: status
+        }).then(()=>{
+            dispatch({type: 'STUDENT_ACTIVATION_SUCCESS'})
+        }).catch((err)=>{
+            dispatch({type: 'STUDENT_ACTIVATION_ERROR', err})
+        })
+    }
+}

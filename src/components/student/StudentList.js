@@ -50,7 +50,7 @@ class CreateAnnounce extends Component {
         return (
             <div className="container z-depth-1"> 
                 <form onSubmit={this.handleSubmit} className="white">
-                <h5 className="grey-text text-darken-3">Activate A New User</h5>
+                <h5 className="grey-text text-darken-3">Activate Student</h5>
                 <h3 className="grey-text text-darken-3">List of Users</h3>
                     <div className="input-field">
                         <label htmlFor="email">Announcement Title</label>
@@ -60,12 +60,6 @@ class CreateAnnounce extends Component {
                         <label htmlFor="email">Announcement Subtitle</label>
                         <input type="text" id="subtitle" onChange={this.handleChange} required/>
                     </div>
-                    {/*
-                    <div className="input-field">
-                        <label htmlFor="content">Announcement Content</label>
-                        <textarea id="content" className="materialize-textarea" onChange={this.handleChange} required></textarea>
-                    </div>
-                    */}
 
                     <div className="input-field">
                         <label htmlFor="email">Link Title (optional)</label>
