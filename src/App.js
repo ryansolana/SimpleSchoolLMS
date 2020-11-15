@@ -28,6 +28,9 @@ import CreateCalendarModule from './components/calendar/CreateCalendarModule'
 import UpdateCalendarModule from './components/calendar/UpdateCalendarModule'
 
 import NotFound from './components/dashboard/NotFound'
+import ProtectedRoute from './components/auth/ProtectedRoute'
+import AdminRoute from './components/auth/AdminRoute'
+import Unauthorized from './components/dashboard/Unauthorized'
 
 
 class App extends Component {
@@ -43,29 +46,31 @@ class App extends Component {
         <div className="App">
           <Navbar/>
           <Switch>
-            <Route exact path='/' component={ Landing } />
-            <Route path='/announce/:id' component={ AnnounceDetails } />
-            <Route path='/announcements' component={ AnnounceDashboard }/>
-            <Route path='/createAnnounce' component={ CreateAnnounce }/>
-            <Route path='/editAnnounce/:id' component={ UpdateAnnounce }/>
+            <ProtectedRoute exact path='/' component={ Landing } />
+            <AdminRoute path='/announce/:id' component={ AnnounceDetails } />
+            {/*<Route path='/announcements' component={ AnnounceDashboard }/>*/}
+            <ProtectedRoute path='/announcements' component={AnnounceDashboard} />
+            <AdminRoute path='/createAnnounce' component={ CreateAnnounce }/>
+            <AdminRoute path='/editAnnounce/:id' component={ UpdateAnnounce }/>
 
-            <Route path='/course-materials' component={ CourseMatDashboard }/>
-            <Route path='/course-material/:id' component={ CourseMatDetails } />
-            <Route path='/createCourseMat' component={ CreateCourseMat }/>
-            <Route path='/editCourseMat/:id' component={ UpdateCourseMat } />
+            <ProtectedRoute path='/course-materials' component={ CourseMatDashboard }/>
+            <ProtectedRoute path='/course-material/:id' component={ CourseMatDetails } />
+            <AdminRoute path='/createCourseMat' component={ CreateCourseMat }/>
+            <AdminRoute path='/editCourseMat/:id' component={ UpdateCourseMat } />
 
-            <Route path='/submissions' component={ SubmissionDashboard }/>
-            <Route path='/submission/:id' component={ SubmissionDetails } />
-            <Route path='/createSubmission' component={ CreateSubmission }/>
-            <Route path='/editSubmission/:id' component={ UpdateSubmission } />
+            <ProtectedRoute path='/submissions' component={ SubmissionDashboard }/>
+            <ProtectedRoute path='/submission/:id' component={ SubmissionDetails } />
+            <AdminRoute path='/createSubmission' component={ CreateSubmission }/>
+            <AdminRoute path='/editSubmission/:id' component={ UpdateSubmission } />
 
-            <Route path='/calendar' component={ CalendarDashboard }/>
-            <Route path='/createCalendarModule' component={ CreateCalendarModule }/>
-            <Route path='/editCalendarModule/:id' component={ UpdateCalendarModule }/>
+            <ProtectedRoute path='/calendar' component={ CalendarDashboard }/>
+            <AdminRoute path='/createCalendarModule' component={ CreateCalendarModule }/>
+            <AdminRoute path='/editCalendarModule/:id' component={ UpdateCalendarModule }/>
 
             <Route path='/signin' component={ SignIn }/>
             <Route path='/signup' component={ SignUp }/>
             <Route path='/verify' component={ VerifyEmail }/>
+            <Route path='/401' component={ Unauthorized }/>
             <Route component = {NotFound} />
 
           </Switch>

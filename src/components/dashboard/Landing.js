@@ -7,7 +7,7 @@ import * as firebase from 'firebase'
 class Landing extends Component {
     componentDidMount(){
         firebase.auth().onAuthStateChanged((user) => {
-            if (user.emailVerified) {
+            if (user && user.emailVerified) {
                 console.log('user changed..', user);
             } else {
                 console.log('no user logged in')
@@ -18,7 +18,7 @@ class Landing extends Component {
     render(){
         const {auth, profile} = this.props
         if (!auth.uid) return <Redirect to='/signin' /> // redirect to signin if user is not logged in
-        if (!auth.emailVerified) return <Redirect to='/verify' />
+        //if (!auth.emailVerified) return <Redirect to='/verify' />
         
         if (auth){
             const lastLogin = parseInt(auth.lastLoginAt);
