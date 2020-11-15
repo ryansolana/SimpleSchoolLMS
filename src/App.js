@@ -27,6 +27,8 @@ import CalendarDashboard from './components/dashboard/CalendarDashboard'
 import CreateCalendarModule from './components/calendar/CreateCalendarModule'
 import UpdateCalendarModule from './components/calendar/UpdateCalendarModule'
 
+import StudentManagement from './components/student/StudentManagement'
+
 import NotFound from './components/dashboard/NotFound'
 import ProtectedRoute from './components/auth/ProtectedRoute'
 import AdminRoute from './components/auth/AdminRoute'
@@ -66,6 +68,8 @@ class App extends Component {
             <ProtectedRoute path='/calendar' component={ CalendarDashboard }/>
             <AdminRoute path='/createCalendarModule' component={ CreateCalendarModule }/>
             <AdminRoute path='/editCalendarModule/:id' component={ UpdateCalendarModule }/>
+
+            <AdminRoute path='/studentManagement' component={ StudentManagement }/>
 
             <Route path='/signin' component={ SignIn }/>
             <Route path='/signup' component={ SignUp }/>

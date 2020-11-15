@@ -34,7 +34,7 @@ const CourseMatDetails = (props) => {
                     <div className="card-action black-text">
                         {coursemat.textlink.length > 1 ? <div className="margin-top-20">
                         <p className="text-bold">Download Link</p>
-                        <a href={coursemat.textlink} target="_blank" rel="noopener noreferrer"><i className="material-icons blue-text text-darken-3 summary">cloud_download</i></a></div> 
+                        <a href={coursemat.textlink} target="_blank" rel="noopener noreferrer"><i className="material-icons blue-text text-darken-3 link">cloud_download</i></a></div> 
                         : <div></div>}
                     </div>
                 </div>

@@ -1,103 +1,60 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { createAnnounce } from '../../store/actions/announceActions'
-import { Redirect } from 'react-router-dom'
-import { Editor } from 'react-draft-wysiwyg';
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import { EditorState, convertToRaw } from 'draft-js';
+import React from 'react'
+import CalendarModuleSummary from './CalendarModuleSummary'
 
-class CreateAnnounce extends Component {
-    state = { 
-        // firebase auth included as per mapStateToProps
-        title: '',
-        subtitle: '',
-        content: '',
-        editorState: EditorState.createEmpty(),
-        contentLink: ''
+const CalendarModuleList = ({calendarModules}) => {
+
+  const isEmpty = (obj) => {
+    for(var key in obj) {
+        if(obj.hasOwnProperty(key))
+            return false;
     }
+    return true;
+  }
 
-    handleChange = (e) => {
-        this.setState({
-            [e.target.id]: e.target.value
-        })
-        console.log(e.target.id)
-    }
-
-    handleSubmit = (e) => {
-        e.preventDefault();
-
-        // save as string for later use
-        this.state.content = JSON.stringify(this.state.editorState);
-        // save as raw for later use
-        this.state.editorState = convertToRaw(this.state.editorState.getCurrentContent());
-
-        //console.log(this.state)
-        this.props.createAnnounce(this.state)
-        this.props.history.push('/announcements')
-        
-    }
-
-    onEditorStateChange = (editorState) => {
-        this.setState({
-          editorState,
-        });
-        console.log(convertToRaw(this.state.editorState.getCurrentContent()));
-      };
-
-    render(){
-        const { auth } = this.props;
-        if (!auth.uid) return <Redirect to='/signin' /> // redirect to signin if user is not logged in
-        return (
-            <div className="container z-depth-1"> 
-                <form onSubmit={this.handleSubmit} className="white">
-                <h5 className="grey-text text-darken-3">Activate Student</h5>
-                <h3 className="grey-text text-darken-3">List of Users</h3>
-                    <div className="input-field">
-                        <label htmlFor="email">Announcement Title</label>
-                        <input type="text" id="title" onChange={this.handleChange} required/>
-                    </div>
-                    <div className="input-field">
-                        <label htmlFor="email">Announcement Subtitle</label>
-                        <input type="text" id="subtitle" onChange={this.handleChange} required/>
-                    </div>
-
-                    <div className="input-field">
-                        <label htmlFor="email">Link Title (optional)</label>
-                        <input type="text" id="contentLinkName" onChange={this.handleChange}/>
-                    </div>
-
-                    { this.state.contentLinkName && <div className="input-field">
-                        <label htmlFor="email">Link URL Address</label>
-                        <input type="text" id="contentLink" onChange={this.handleChange}/>
-                    </div> }
-                    
-                    <Editor
-                        editorState={this.state.editorState}
-                        toolbarClassName="toolbarClassName"
-                        wrapperClassName="wrapperClassName"
-                        editorClassName="editorClassName"
-                        onEditorStateChange={this.onEditorStateChange}
-                    />
-
-                    <div className="input-field">
-                        <button className="btn pink lighten-1 z-depth-0 hoverable">Create Announcement</button>
-                    </div>
-                </form>
+  if (!isEmpty(calendarModules)){
+    return (
+      <table className="calendar">
+        <thead> 
+          <tr>
+            <th className="text-center">Full Name</th>
+            <th className="text-center">Email</th>
+            <th className="text-center">Activated?</th>
+            <th className="text-center">Join Date</th>
+          </tr>
+        </thead> 
+        <tbody>
+          { // check if calendarModules exists, if so, map
+            calendarModules && calendarModules.map(calendarModule =>{
+              return (
+                <CalendarModuleSummary calendarModule={calendarModule} key={calendarModule.id}/>
+              )
+            })
+          }
+        </tbody>
+      </table>
+    )
+  } else {
+    return(
+      <div className="calendar-list section z-depth-0">
+        <div className="card z-depth-1 calendar-summary">
+          <div className="row">
+            <div className="col s1">
+              <i className="material-icons grey-text text-darken-3 summary">assignment_late</i>
             </div>
-        )
-    } 
-}
-//  auth is now in state
-const mapStateToProps = (state) =>{
-    return {
-        auth: state.firebase.auth
-    }
+            <div className="col s9 offset-s1">
+              <div className="card-content grey-text text-darken-3">
+                  <span className="card-title">No calendar material has been added yet</span>
+                  <span className="card-subtitle">Check back again later!</span> 
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+    
+  }
+    
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return{
-        createAnnounce: (announce) => dispatch(createAnnounce(announce))
-    }
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateAnnounce)
+export default CalendarModuleList

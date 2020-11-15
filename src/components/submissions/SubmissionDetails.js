@@ -26,8 +26,8 @@ const SubmissionDetails = ({ submission, auth }) => {
                         </div>
                     </div>
                     <div className="card-action grey lighten-4 black-text">
-                        {submission.textlink.length > 1 ? <div className="margin-top-20"><p className="text-bold">Download Link</p>
-                        <a href={submission.textlink} target="_blank" rel="noopener noreferrer"><i className="material-icons grey-text text-darken-3 summary">cloud_download</i></a></div> 
+                        {submission.textlink.length > 1 ? <div className="margin-top-20"><p className="text-bold">Dropbox Link</p>
+                        <a href={submission.textlink} target="_blank" rel="noopener noreferrer"><i className="material-icons blue-text text-darken-3 link">cloud_download</i></a></div> 
                         : <div></div>}
                     </div>
                 </div>  

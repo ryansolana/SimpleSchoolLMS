@@ -122,6 +122,11 @@ div.card-action.grey.lighten-4.grey-text p{
   font-size: 50px;
 }
 
+.material-icons.link{
+  padding: 10px 0px 0px 5px;
+  font-size: 75px;
+}
+
 .material-icons.progressMod{
   font-size: 50px;
 }
