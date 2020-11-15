@@ -51,7 +51,7 @@ export const setStudentActivation = (uid, status) => {
         const firebase = getFirebase();
         const firestore = getFirestore();
 
-        firestore.collection('users').doc(uid).update({
+        firestore.collection('students').doc(uid).update({
             activated: status
         }).then(()=>{
             dispatch({type: 'STUDENT_ACTIVATION_SUCCESS'})

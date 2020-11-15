@@ -86,7 +86,7 @@ class UpdateCourseMat extends Component {
                         <textarea id="content" className="materialize-textarea" maxLength="2400" onChange={this.handleChange} defaultValue={this.state.content} required></textarea>
                     </div>
                     <div className="input-field">
-                        <label className="active" className="active" htmlFor="email">Course Material Link (with https://)</label>
+                        <label className="active" htmlFor="email">Course Material Link (with https://)</label>
                         <input type="text" id="textlink" onChange={this.handleChange} defaultValue={this.state.textlink} required/>
                     </div>
                     <div className="input-field">

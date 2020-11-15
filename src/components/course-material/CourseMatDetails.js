@@ -4,7 +4,6 @@ import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { Redirect } from 'react-router-dom'
 import moment from 'moment'
-import { deleteCourseMat } from '../../store/actions/coursematActions'
 
 const CourseMatDetails = (props) => {
 
