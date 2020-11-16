@@ -18,12 +18,9 @@ const SubmissionList = ({submissions}) => {
         { // check if submissions exists, if so, map
           submissions && submissions.map(submission =>{
             return (
-              <div>
-                <Link to={'/submission/' + submission.id} key={submission.id}>
-                  <SubmissionSummary submission={submission}/>
-                </Link>
-
-              </div>
+              <Link to={'/submission/' + submission.id}>
+                <SubmissionSummary submission={submission} key={submission.id}/>
+              </Link>
             )
           })
         }

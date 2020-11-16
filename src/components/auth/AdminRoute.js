@@ -4,7 +4,7 @@ import { Route, Redirect } from 'react-router-dom';
 
 const AdminRoute = ({ component: Component, auth, profile, ...rest}) => (
     <Route {...rest} render={(props) => (
-      (auth.emailVerified && profile.admin)
+      (profile.isAdmin)
         ? <Component {...props} />
         : <Redirect to={{
             pathname: '/401',

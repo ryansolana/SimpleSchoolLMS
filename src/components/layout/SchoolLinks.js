@@ -2,7 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 
 const SchoolLinks = (props) => {
-    if (!props.profile.admin){
+    if (!props.profile.isAdmin){
         return(
             <ul className="left">
                 <li><NavLink to='/announcements' className="sidenav-close">Announcements</NavLink></li>

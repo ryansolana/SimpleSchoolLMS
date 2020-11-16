@@ -220,3 +220,12 @@ table tr td:last-child{
 li Navlink .text-bold{
   font-weight:bold;
 }
+
+div.input-field a{
+  margin-right: 0px;
+}
+
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating){
+  color: white;
+  margin-right:0px;
+}

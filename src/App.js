@@ -28,11 +28,13 @@ import CreateCalendarModule from './components/calendar/CreateCalendarModule'
 import UpdateCalendarModule from './components/calendar/UpdateCalendarModule'
 
 import StudentManagement from './components/student/StudentManagement'
+import StudentDetails from './components/student/StudentDetails'
 
 import NotFound from './components/dashboard/NotFound'
 import ProtectedRoute from './components/auth/ProtectedRoute'
 import AdminRoute from './components/auth/AdminRoute'
 import Unauthorized from './components/dashboard/Unauthorized'
+import UnactivatedStudent from './components/auth/UnactivatedStudent'
 
 
 class App extends Component {
@@ -70,11 +72,13 @@ class App extends Component {
             <AdminRoute path='/editCalendarModule/:id' component={ UpdateCalendarModule }/>
 
             <AdminRoute path='/studentManagement' component={ StudentManagement }/>
+            <AdminRoute path='/manage/student/:id' component={ StudentDetails }/>
 
             <Route path='/signin' component={ SignIn }/>
             <Route path='/signup' component={ SignUp }/>
             <Route path='/verify' component={ VerifyEmail }/>
             <Route path='/401' component={ Unauthorized }/>
+            <Route path='/activate' component={ UnactivatedStudent }/>
             <Route component = {NotFound} />
 
           </Switch>

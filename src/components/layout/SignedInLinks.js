@@ -5,9 +5,9 @@ import { signOut } from '../../store/actions/authActions'
 
 const SignedInLinks = (props) => {
 
-    console.log(props.profile.admin)
+    console.log(props.profile.isAdmin)
 
-    const admin = props.profile.admin ? 'Professor' : ''
+    const admin = props.profile.isAdmin ? 'Professor' : ''
     
     if (props.profile != null){
         return(

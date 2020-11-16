@@ -1,7 +1,7 @@
 import React from 'react'
-import CalendarModuleSummary from './CalendarModuleSummary'
+import StudentSummary from './StudentSummary'
 
-const CalendarModuleList = ({calendarModules}) => {
+const StudentList = ({students}) => {
 
   const isEmpty = (obj) => {
     for(var key in obj) {
@@ -11,7 +11,9 @@ const CalendarModuleList = ({calendarModules}) => {
     return true;
   }
 
-  if (!isEmpty(calendarModules)){
+  console.log(students)
+
+  if (!isEmpty(students)){
     return (
       <table className="calendar">
         <thead> 
@@ -20,14 +22,17 @@ const CalendarModuleList = ({calendarModules}) => {
             <th className="text-center">Email</th>
             <th className="text-center">Activated?</th>
             <th className="text-center">Join Date</th>
+            <th className="text-center"></th>
           </tr>
         </thead> 
         <tbody>
-          { // check if calendarModules exists, if so, map
-            calendarModules && calendarModules.map(calendarModule =>{
-              return (
-                <CalendarModuleSummary calendarModule={calendarModule} key={calendarModule.id}/>
-              )
+          { // check if students exists, if so, map
+            students && students.map(student =>{
+              if (!student.isAdmin){
+                return (
+                  <StudentSummary student={student} key={student.id}/>
+                )
+              }
             })
           }
         </tbody>
@@ -57,4 +62,4 @@ const CalendarModuleList = ({calendarModules}) => {
 }
 
 
-export default CalendarModuleList
+export default StudentList

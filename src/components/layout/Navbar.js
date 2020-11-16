@@ -11,7 +11,7 @@ const Navbar = (props) => {
     console.log("email verified status: " + auth.emailVerified)
     const links = auth.uid ? <SignedInLinks profile={profile}/> : <SignedOutLinks/>
 
-    const schoolLinks = auth.uid && auth.emailVerified ? 
+    const schoolLinks = (auth.uid && auth.emailVerified && profile.isActivated) || profile.isAdmin ? 
         <div>
             <nav className="nav-wrapper darken-3 grey">
                 <div className="container">

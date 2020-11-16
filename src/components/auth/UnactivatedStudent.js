@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom'
 import moment from 'moment'
 import * as firebase from 'firebase'
 
-class VerifyEmail extends Component {
+class UnactivatedStudent extends Component {
 
     constructor(props){
         super(props);
@@ -43,7 +43,6 @@ class VerifyEmail extends Component {
     render(){
         const { auth, profile } = this.props;
         if (!auth.uid) return <Redirect to='/signin' /> // redirect to signin if user is not logged in
-        if (this.state.isVerified) return <Redirect to='/' />
 
         if (auth){
             const lastLogin = parseInt(auth.lastLoginAt);
@@ -55,35 +54,11 @@ class VerifyEmail extends Component {
                 <div className="dashboard container">
                     <div className="card z-depth-0">
                         <div className="card-content">
-                            <h3 className="page-title">Email Verification</h3>
-                            <p>Nice to have you on board, {profile.admin ? "Professor" : ""} {profile.firstName} {profile.lastName}!</p>
+                            <h3 className="page-title">Awaiting Student Activation</h3>
+                            <p>Thank you for verifying your email, {profile.admin ? "Professor" : ""} {profile.firstName} {profile.lastName}!</p>
                         </div>
                         <div className="card-action">
-                            {!this.state.verifyClicked ? 
-                                <div>
-                                    <p>Please verify your e-mail <bold>{auth.email}</bold> to finish signing up for School of Logistics.</p>
-                                        <br></br>
-                                        <button className="btn blue waves-effect hoverable" onClick={this.handleClick}>
-                                            Send Verification Email
-                                        </button>
-                                </div> 
-                                : 
-                                <div>
-                                    <p>Please check your email at {auth.email} for instructions to activate your account!</p>
-                                    <br></br>
-                                    <button className="btn green">Verification Email Sent!</button>
-                                    <br></br>
-                                    <br></br>
-                                    <p><bold>Checking for account activation</bold></p>
-                                    <div className="row">
-                                        <div className="col s2">
-                                            <div class="progress">
-                                                <div class="indeterminate"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            }
+                            <p>Please contact your school administrator or professor to activate your account in order to access the course materials.</p>
                         </div>
                     </div>
                 </div>
@@ -108,4 +83,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, null)(VerifyEmail)
+export default connect(mapStateToProps, null)(UnactivatedStudent)

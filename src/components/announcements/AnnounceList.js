@@ -19,9 +19,7 @@ const AnnounceList = ({announces}) => {
         { // check if announces exists, if so, map
           announces && announces.map(announce =>{
             return (
-              <div>
-                  <AnnounceSummary announce={announce} announceId={announce.id} key={announce.id}/>
-              </div>
+              <AnnounceSummary announce={announce} announceId={announce.id} key={announce.id}/>
             )
           })
         }

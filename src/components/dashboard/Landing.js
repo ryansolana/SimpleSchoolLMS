@@ -26,18 +26,18 @@ class Landing extends Component {
             var date = moment(timeStamp).calendar();
 
             return (
-            <div>
-                <div className="dashboard container">
-                <h3 className="padding page-title">Home</h3>
-                    <div className="card z-depth-1">
-                        <div className="card-content">
-                            <span className="card-title bold-text">Welcome back, {profile.admin ? "Professor" : ""} {profile.firstName} {profile.lastName}!</span>
-                            <p>You last logged in {date}</p>
+                <div>
+                    <div className="dashboard container">
+                    <h3 className="padding page-title">Home</h3>
+                        <div className="card z-depth-1">
+                            <div className="card-content">
+                                <span className="card-title bold-text">Welcome back, {profile.admin ? "Professor" : ""} {profile.firstName} {profile.lastName}!</span>
+                                <p>You last logged in {date}</p>
+                            </div>
                         </div>
+                        <img className="header-img z-depth-1" src="/img/header.png" alt="yeah"></img>
                     </div>
-                    <img className="header-img z-depth-1" src="/img/header.png" alt="yeah"></img>
                 </div>
-            </div>
             )
         } else {
             return (

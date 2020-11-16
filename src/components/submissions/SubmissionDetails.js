@@ -5,7 +5,6 @@ import { compose } from 'redux'
 import { Redirect } from 'react-router-dom'
 import moment from 'moment'
 
-
 const SubmissionDetails = ({ submission, auth }) => {
 
     if (!auth.uid) return <Redirect to='/signin' /> // redirect to signin if user is not logged in

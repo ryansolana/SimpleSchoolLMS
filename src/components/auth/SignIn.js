@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { signIn } from '../../store/actions/authActions'
 import { Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 class SignIn extends Component {
     state = { 
@@ -47,6 +48,11 @@ class SignIn extends Component {
                                 </div>
                             </div>
                         </div>
+                        <div className="card-action" style={{paddingTop: 0, paddingBottom: 0}}>
+                            <div className="input-field center" style={{marginTop: 0, marginBottom: 0}}>
+                                    <button className="btn login-btn"><Link to='/signup'>Don't have an account?</Link></button>
+                                </div>
+                            </div>
                     </div>
                 </form>
                 

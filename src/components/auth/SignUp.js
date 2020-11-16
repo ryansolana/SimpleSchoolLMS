@@ -32,28 +32,28 @@ class SignUp extends Component {
                 <form onSubmit={this.handleSubmit} className="white">
                     <div className="card z-depth-1">
                         <div className="card-content">
-                            <h3 className="grey-text text-darken-3 center">Sign Up</h3>
-                            <p className="center">We just need a few details from you to get started!</p>
+                            <h3 className="grey-text text-darken-3 center">Register Your Account</h3>
+                            <p className="center">We just need a few details from you to get started</p>
                             <br></br>
                             <div className="card-action">
                                 <div className="input-field">
                                     <label htmlFor="email">Email</label>
-                                    <input type="email" id="email" onChange={this.handleChange}/>
+                                    <input type="email" id="email" onChange={this.handleChange} required/>
                                 </div>
                                 <div className="input-field">
                                     <label htmlFor="password">Password</label>
-                                    <input type="password" id="password" onChange={this.handleChange}/>
+                                    <input type="password" id="password" onChange={this.handleChange} required/>
                                 </div>
                                 <div className="input-field">
                                     <label htmlFor="firstName">First Name</label>
-                                    <input type="text" id="firstName" onChange={this.handleChange}/>
+                                    <input type="text" id="firstName" onChange={this.handleChange} required/>
                                 </div>
                                 <div className="input-field">
                                     <label htmlFor="lastName">Last Name</label>
-                                    <input type="text" id="lastName" onChange={this.handleChange}/>
+                                    <input type="text" id="lastName" onChange={this.handleChange} required/>
                                 </div>
-                                <div className="input-field">
-                                    <button className="btn pink lighten-1 z-depth-0">Login</button>
+                                <div className="input-field center">
+                                    <button className="btn blue lighten-1 z-depth-0">Sign Up</button>
                                     <div className="red-text center">
                                         { authError ? <p>{ authError }</p> : null }
                                     </div>
