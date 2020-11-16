@@ -19,14 +19,14 @@ const StudentDetails = ({ student, auth }) => {
             <div className="container section student-details">
                 <div className="card z-depth-1">
                     <div className="card-content">
-                        <div className="row">
-                            <span className="card-title">{student.title}</span>          
-                            <h3>Student Details</h3>
+                        <div className="row">  
+                            <h4>Student Details</h4>
 
                             <p><bold>Full Name: </bold> {student.firstName} {student.lastName}</p>
                             <p><bold>Email: </bold>{student.email}</p>
                             <p><bold>Activated?: </bold>{student.isActivated ? "True" : "False"}</p>
-                            <p><bold>Join Date: </bold>{date}</p>
+                            <p><bold>Register Date: </bold>{date}</p>
+                            <p><bold>Activation Date: </bold>{date}</p>
                             
                         </div>
                     </div>

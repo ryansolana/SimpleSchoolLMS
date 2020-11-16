@@ -15,34 +15,14 @@ class UnactivatedStudent extends Component {
         }
     }
 
-    componentDidMount(){
-        firebase.auth().onAuthStateChanged((user) => {
-            if (user && user.emailVerified === true) {
-              console.log('user changed..', user);
-              console.log("redirecting user")
-              this.setState({isVerified: true});
-            }
-        });
-    }
-
-    handleClick = (e) => {
-        e.preventDefault();
-
-        var user = firebase.auth().currentUser;
-        // activate logic
-        user.sendEmailVerification().then(function(res) {
-            console.log("verification send success" + res)
-          }).catch(function(error) {
-            console.log("verification send failed")
-          });
-
-        // set state to clicked already once
-        this.setState({verifyClicked: true})
-    }
+    refreshPage = ()=>{
+        window.location.reload();
+     }
 
     render(){
         const { auth, profile } = this.props;
         if (!auth.uid) return <Redirect to='/signin' /> // redirect to signin if user is not logged in
+        if(profile.isActivated) return <Redirect to='/' />
 
         if (auth){
             const lastLogin = parseInt(auth.lastLoginAt);
@@ -58,7 +38,8 @@ class UnactivatedStudent extends Component {
                             <p>Thank you for verifying your email, {profile.admin ? "Professor" : ""} {profile.firstName} {profile.lastName}!</p>
                         </div>
                         <div className="card-action">
-                            <p>Please contact your school administrator or professor to activate your account in order to access the course materials.</p>
+                            <p>Your account is not activated! Please contact your school administrator or professor to activate your account in order to access the course materials.</p>
+                            <button className="btn green" onClick={this.refreshPage}>Check Activation Status</button>
                         </div>
                     </div>
                 </div>

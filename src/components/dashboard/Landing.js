@@ -16,10 +16,11 @@ class Landing extends Component {
     }
 
     render(){
-        const {auth, profile} = this.props
-        if (!auth.uid) return <Redirect to='/signin' /> // redirect to signin if user is not logged in
-        //if (!auth.emailVerified) return <Redirect to='/verify' />
+        const { auth, profile } = this.props
         
+        if (!auth.emailVerified) return <Redirect to='/verify' />
+        if (!profile.isActivated) return <Redirect to='/activate' />
+
         if (auth){
             const lastLogin = parseInt(auth.lastLoginAt);
             var timeStamp = new Date(lastLogin);
@@ -31,7 +32,7 @@ class Landing extends Component {
                     <h3 className="padding page-title">Home</h3>
                         <div className="card z-depth-1">
                             <div className="card-content">
-                                <span className="card-title bold-text">Welcome back, {profile.admin ? "Professor" : "Student"} {profile.firstName} {profile.lastName}!</span>
+                                <span className="card-title bold-text">Welcome back, {profile.isAdmin ? "Professor" : "Student"} {profile.firstName} {profile.lastName}!</span>
                                 <p>You last logged in {date}</p>
                             </div>
                         </div>

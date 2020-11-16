@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom'
 class AnnounceDashboard extends Component{
     render(){
         const { announces, auth, profile} = this.props
-        if (!auth.uid) return <Redirect to='/signin' /> // redirect to signin if user is not logged in
+        //if (!auth.uid) return <Redirect to='/signin' /> // redirect to signin if user is not logged in
         console.log(profile)
         return(
             <div className="dashboard container">

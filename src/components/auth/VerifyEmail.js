@@ -40,6 +40,10 @@ class VerifyEmail extends Component {
         this.setState({verifyClicked: true})
     }
 
+    refreshPage = ()=>{
+        window.location.reload();
+    }
+
     render(){
         const { auth, profile } = this.props;
         if (!auth.uid) return <Redirect to='/signin' /> // redirect to signin if user is not logged in
