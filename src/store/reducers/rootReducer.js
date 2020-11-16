@@ -7,6 +7,7 @@ import announceReducer from './announceReducer'
 import coursematReducer from './coursematReducer'
 import submissionReducer from './submissionReducer'
 import calendarReducer from './calendarReducer'
+import gradeReducer from './gradeReducer'
 
 const rootReducer = combineReducers({
     auth: authReducer,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
     coursemat: coursematReducer,
     calendar: calendarReducer,
     submission: submissionReducer,
+    grades: gradeReducer,
     firestore: firestoreReducer,
     firebase: firebaseReducer
 });

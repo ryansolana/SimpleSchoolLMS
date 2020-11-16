@@ -1,27 +1,28 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { updateGrade, deleteGrade } from '../../../store/actions/announceActions'
+import { createGrade } from '../../../store/actions/gradeActions'
 import { Redirect } from 'react-router-dom'
 import * as firebase from 'firebase'
 
-class UpdateGrade extends Component {
+class CreateGrade extends Component {
+    state = { 
+        // firebase auth included as per mapStateToProps
+        title: '',
+        content: '',
+        status: '',
+        date: new Date(),
+        userId: this.props.match.params.id,
 
-    constructor(props){
-        super(props);
-
-        this.state = { 
-            // firebase auth included as per mapStateToProps
-            title: '',
-            content: '',
-            contentLink: ''
-        }
+        // separate from submission obj
+        fullName: '',
+        
     }
 
     componentDidMount(){
         var db = firebase.firestore()
 
         // get data first
-        var docRef = db.collection("announces").doc(this.props.match.params.id);
+        var docRef = db.collection("users").doc(this.props.match.params.id);
         var data;
 
         docRef.get().then(function(doc) {
@@ -36,97 +37,76 @@ class UpdateGrade extends Component {
         }).catch(function(error) {
             console.log("Error getting document:", error);
         }).then(() =>{
-            this.setState({title: data.title, content: data.content, contentLink: data.contentLink})
+            this.setState({fullName: data.firstName + ' ' + data.lastName})
         })
         
     }
-
-    deleteHandler = (id) =>{
-        const { deleteGrade } = this.props;
-        deleteGrade(id); 
-        this.props.history.push('/announcements');
-    }
-
 
     handleChange = (e) => {
         this.setState({
             [e.target.id]: e.target.value
         })
-
-        if (e.target.value === ""){
-            this.setState({
-                [e.target.id]: null
-            })
-        }
-        console.log(e.target.id + " is now " + e.target.value)
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
-
-        //console.log(this.state)
-        this.props.updateGrade(this.state, this.props.match.params.id)
-        this.props.history.push('/announcements');
+        
+        // exclude fullName of user
+        var newGrade = {
+            title: this.state.title,
+            content: this.state.content,
+            status: this.state.content,
+            date: new Date(),
+            userId: this.state.userId
+        }
+        console.log(newGrade)
+        this.props.createGrade(this.state, this.props.match.params.id)
+        //this.props.history.push('/manage/student/' + this.props.match.params.id)
     }
 
     render(){
         const { auth } = this.props;
-
         if (!auth.uid) return <Redirect to='/signin' /> // redirect to signin if user is not logged in
-
-        if (this.state === null){
-            return (<div class="progress">
-            <div class="indeterminate"></div>
-        </div>)
-        } else {
-            return(<div className="container z-depth-1"> 
-            <form onSubmit={this.handleSubmit} className="white">
-            <h5 className="grey-text text-darken-3">Edit Gradement</h5>
-            <br></br>
-                <div className="input-field">
-                    <label className="active" htmlFor="email">Gradement Title</label>
-                    <input type="text" id="title" onChange={this.handleChange} defaultValue={this.state.title} required/>
-                </div>
-
-                <div className="input-field">
-                    <label className="active" htmlFor="content">Gradement Content (2400 characters max)</label>
-                    <textarea id="content" className="materialize-textarea" onChange={this.handleChange} maxLength="2400" rows="2" cols="200" defaultValue={this.state.content} required></textarea>
-                </div>
-
-                <div className="input-field">
-                    <label className="active" htmlFor="email">Optional Link Address (include 'https://')</label>
-                    <input type="text" id="contentLink" onChange={this.handleChange} defaultValue={this.state.contentLink}/>
-                </div>
-
-                <div className="input-field">
-                    <div className="row">
-                        <div className="col s9">
-                            <button className="btn green lighten-1 hoverable waves-effect">Confirm Changes</button>
-                        </div>
-                        <div className="col s3">
-                            <button className="btn red hoverable waves-effect" onClick={() => this.deleteHandler(this.props.match.params.id)}>Delete This</button>
-                        </div>
+        return (
+            <div className="container z-depth-1">
+                
+                <form onSubmit={this.handleSubmit} className="white">
+                <h5 className="grey-text text-darken-3">Create New Grade for Student {this.state.fullName}</h5>
+                    <div className="input-field">
+                        <i class="material-icons prefix">title</i>
+                        <label htmlFor="title">Title</label>
+                        <input type="text" id="title" maxLength="100" onChange={this.handleChange} required/>
                     </div>
-                </div>
-            </form>
-        </div>)
-        }
+                    <div className="input-field">
+                        <i class="material-icons prefix">Feedback</i>
+                        <label htmlFor="content">Description (optional, 2400 char max)</label>
+                        <textarea id="content" maxLength="2400" className="materialize-textarea" onChange={this.handleChange} required> </textarea>
+                    </div>
+                    <div className="input-field">
+                        <i className="material-icons prefix">format_list_numbered</i>
+                        <label htmlFor="grade">Grade</label>
+                        <input type="number" id="grade" min="0" step="10" max="100" onChange={this.handleChange} required/>
+                    </div>
+
+                    <div className="input-field">
+                        <button className="btn green lighten-1 hoverable waves-effect">Create Grade</button>
+                    </div>
+                </form>
+            </div>
+        )
     } 
+}
+//  auth is now in state
+const mapStateToProps = (state) =>{
+    return {
+        auth: state.firebase.auth
+    }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return{
-        updateGrade: (announce, id) => dispatch(updateGrade(announce, id)),
-        deleteGrade: (id) => dispatch(deleteGrade(id))
+        createGrade: (announce, userId) => dispatch(createGrade(announce, userId))
     }
 }
 
-const mapStateToProps = (state, ownProps) => {
-    console.log(state)
-    return {
-        auth: state.firebase.auth,
-        profile: state.firebase.profile,
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(UpdateGrade)
+export default connect(mapStateToProps, mapDispatchToProps)(CreateGrade)

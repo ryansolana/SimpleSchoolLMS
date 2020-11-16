@@ -30,6 +30,10 @@ import UpdateCalendarModule from './components/calendar/UpdateCalendarModule'
 import StudentManagement from './components/student/StudentManagement'
 import StudentDetails from './components/student/StudentDetails'
 
+import GradeDetails from './components/student/grades/GradeDetails'
+import CreateGrade from './components/student/grades/CreateGrade'
+import UpdateGrade from './components/student/grades/UpdateGrade'
+
 import NotFound from './components/dashboard/NotFound'
 import ProtectedRoute from './components/auth/ProtectedRoute'
 import AdminRoute from './components/auth/AdminRoute'
@@ -52,7 +56,6 @@ class App extends Component {
           <Switch>
             <Route exact path='/' component={ Landing } />
             <AdminRoute path='/announce/:id' component={ AnnounceDetails } />
-            {/*<Route path='/announcements' component={ AnnounceDashboard }/>*/}
             <ProtectedRoute path='/announcements' component={AnnounceDashboard} />
             <AdminRoute path='/createAnnounce' component={ CreateAnnounce }/>
             <AdminRoute path='/editAnnounce/:id' component={ UpdateAnnounce }/>
@@ -72,7 +75,11 @@ class App extends Component {
             <AdminRoute path='/editCalendarModule/:id' component={ UpdateCalendarModule }/>
 
             <AdminRoute path='/studentManagement' component={ StudentManagement }/>
-            <AdminRoute path='/manage/student/:id' component={ StudentDetails }/>
+            <AdminRoute exact path='/manage/student/:id' component={ StudentDetails }/>
+
+            <AdminRoute exact path='/manage/student/grades/:id' component={ GradeDetails } />
+            <AdminRoute exact path='/manage/student/createGrade/:id' component={ CreateGrade }/>
+            <AdminRoute exact path='/manage/student/editGrade/:id' component={ UpdateGrade } />
 
             <Route path='/signin' component={ SignIn }/>
             <Route path='/signup' component={ SignUp }/>

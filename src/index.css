@@ -7,10 +7,11 @@ body {
   padding: 0;
   font-family: 'Segoe UI Light', sans-serif;
   background-size: 100%;
-  background-position: bottom;
+  background-position: center;
   background-color: rgb(253, 253, 253);
   min-height: 100%;
   font-size: 16px;
+  background-image: url("/img/soc-background.jpeg");
 }
 
 .bg-image{
@@ -59,9 +60,21 @@ textarea.materialize-textarea:focus:not([readonly]){
 
 .nav-wrapper-grey{
   background-color: #242424 !important;
-  height: 60px;
-  line-height:60px;
+  height: 50px;
+  line-height:40px;
 }
+
+.nav-wrapper-grey a{
+  height: 50px;
+  line-height:50px;
+}
+
+.nav-wrapper-grey a.adminBtn{
+  background-color: #096dc0 !important;
+  color: white;
+}
+
+
 
 button.login-btn{
   background-color: #20557D;

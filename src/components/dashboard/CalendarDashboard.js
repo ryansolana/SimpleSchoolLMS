@@ -25,9 +25,7 @@ class CalendarModuleDashboard extends Component{
                 </Link> : <div></div>}
             
                 <div className="row">
-                    <br></br>
                     <h5>Current Programming</h5>
-                    <br></br>
                     <CalendarModuleList calendarModules={calendarModules} />
                 </div>
                 
