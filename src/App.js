@@ -50,7 +50,7 @@ class App extends Component {
         <div className="App">
           <Navbar/>
           <Switch>
-            <ProtectedRoute exact path='/' component={ Landing } />
+            <Route exact path='/' component={ Landing } />
             <AdminRoute path='/announce/:id' component={ AnnounceDetails } />
             {/*<Route path='/announcements' component={ AnnounceDashboard }/>*/}
             <ProtectedRoute path='/announcements' component={AnnounceDashboard} />

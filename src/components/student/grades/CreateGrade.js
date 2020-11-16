@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { updateAnnounce, deleteAnnounce } from '../../../store/actions/announceActions'
+import { updateGrade, deleteGrade } from '../../../store/actions/announceActions'
 import { Redirect } from 'react-router-dom'
 import * as firebase from 'firebase'
 
-class UpdateAnnounce extends Component {
+class UpdateGrade extends Component {
 
     constructor(props){
         super(props);
@@ -42,8 +42,8 @@ class UpdateAnnounce extends Component {
     }
 
     deleteHandler = (id) =>{
-        const { deleteAnnounce } = this.props;
-        deleteAnnounce(id); 
+        const { deleteGrade } = this.props;
+        deleteGrade(id); 
         this.props.history.push('/announcements');
     }
 
@@ -65,7 +65,7 @@ class UpdateAnnounce extends Component {
         e.preventDefault();
 
         //console.log(this.state)
-        this.props.updateAnnounce(this.state, this.props.match.params.id)
+        this.props.updateGrade(this.state, this.props.match.params.id)
         this.props.history.push('/announcements');
     }
 
@@ -81,15 +81,15 @@ class UpdateAnnounce extends Component {
         } else {
             return(<div className="container z-depth-1"> 
             <form onSubmit={this.handleSubmit} className="white">
-            <h5 className="grey-text text-darken-3">Edit Announcement</h5>
+            <h5 className="grey-text text-darken-3">Edit Gradement</h5>
             <br></br>
                 <div className="input-field">
-                    <label className="active" htmlFor="email">Announcement Title</label>
+                    <label className="active" htmlFor="email">Gradement Title</label>
                     <input type="text" id="title" onChange={this.handleChange} defaultValue={this.state.title} required/>
                 </div>
 
                 <div className="input-field">
-                    <label className="active" htmlFor="content">Announcement Content (2400 characters max)</label>
+                    <label className="active" htmlFor="content">Gradement Content (2400 characters max)</label>
                     <textarea id="content" className="materialize-textarea" onChange={this.handleChange} maxLength="2400" rows="2" cols="200" defaultValue={this.state.content} required></textarea>
                 </div>
 
@@ -116,8 +116,8 @@ class UpdateAnnounce extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return{
-        updateAnnounce: (announce, id) => dispatch(updateAnnounce(announce, id)),
-        deleteAnnounce: (id) => dispatch(deleteAnnounce(id))
+        updateGrade: (announce, id) => dispatch(updateGrade(announce, id)),
+        deleteGrade: (id) => dispatch(deleteGrade(id))
     }
 }
 
@@ -129,4 +129,4 @@ const mapStateToProps = (state, ownProps) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UpdateAnnounce)
+export default connect(mapStateToProps, mapDispatchToProps)(UpdateGrade)

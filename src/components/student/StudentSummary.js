@@ -14,7 +14,7 @@ const StudentSummary = ({student}) => {
         <tr>
             <td>{student.firstName} {student.lastName}</td>
             <td>{student.email}</td>
-            <td>{student.isActivated && student.isActivated ? "False" : "True"}</td>
+            <td>{student.isActivated ? "True" : "False"}</td>
             <td>{date}</td>
             <td><Link to={'/manage/student/'+ student.id}><button className="btn blue">View Student</button></Link></td>
         </tr>

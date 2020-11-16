@@ -31,8 +31,12 @@ const StudentDetails = ({ student, auth }) => {
                         </div>
                     </div>
                     <div className="card-action white lighten-4 black-text">
-                        <h5>Student Grades</h5>
+                        <h5>Actions</h5>
                         <button className="btn blue">Create Submission Grade</button>
+                    </div>
+                    <div className="card-action white lighten-4 black-text">
+                        <h5>Student Grades</h5>
+                       
                     </div>
                 </div>  
             </div>

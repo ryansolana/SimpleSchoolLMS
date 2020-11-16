@@ -5,13 +5,21 @@ import { Route, Redirect } from 'react-router-dom';
 
 const ProtectedRoute = ({ component: Component, auth, profile, ...rest}) => {
     // passes all tests or user is admin, then bypass
-    if ((auth.emailVerified && profile.isActivated) || profile.isAdmin === true){
+
+    if (profile.isAdmin){
       return <Route {...rest} render={(props) => (
         <Component {...props} />)} 
       />
     }
-    // check if 
-    else if (auth.emailVerified && !profile.isActivated)
+
+
+    if (!profile.isAdmin || (auth.emailVerified && profile.isActivated)){
+      return <Route {...rest} render={(props) => (
+        <Component {...props} />)} 
+      />
+    }
+    // check if activated
+    else if (!profile.isAdmin && auth.emailVerified && !profile.isActivated)
     {
       return <Route {...rest} render={(props) => (
           <Redirect to={{
@@ -20,7 +28,7 @@ const ProtectedRoute = ({ component: Component, auth, profile, ...rest}) => {
             }
           } /> 
       )} />
-    } else {
+    } else if (!profile.isAdmin && !auth.emailVerified && !profile.isActivated){
       // does not pass any test
       return <Route {...rest} render={(props) => (
           <Redirect to={{
@@ -28,6 +36,13 @@ const ProtectedRoute = ({ component: Component, auth, profile, ...rest}) => {
               state: { from: props.location }
             }}/> 
       )} />
+    } else {
+      return <Route {...rest} render={(props) => (
+        <Redirect to={{
+            pathname: '/',
+            state: { from: props.location }
+          }}/> 
+    )} />
     }
   };
 

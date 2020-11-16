@@ -31,7 +31,7 @@ class Landing extends Component {
                     <h3 className="padding page-title">Home</h3>
                         <div className="card z-depth-1">
                             <div className="card-content">
-                                <span className="card-title bold-text">Welcome back, {profile.admin ? "Professor" : ""} {profile.firstName} {profile.lastName}!</span>
+                                <span className="card-title bold-text">Welcome back, {profile.admin ? "Professor" : "Student"} {profile.firstName} {profile.lastName}!</span>
                                 <p>You last logged in {date}</p>
                             </div>
                         </div>
