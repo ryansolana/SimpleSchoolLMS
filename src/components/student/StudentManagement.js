@@ -16,7 +16,7 @@ class StudentManagement extends Component{
                 <h3 className="padding page-title">Student Management</h3>
 
                 <div className="row">
-                    <h5>Current List of Students</h5>
+                    <h5>Current List of Students ({users && users.length - 1})</h5>
                     <br></br>
                     <StudentList students={users} />
                 </div>

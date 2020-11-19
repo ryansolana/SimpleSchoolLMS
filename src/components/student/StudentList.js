@@ -13,9 +13,9 @@ const StudentList = ({students}) => {
 
   console.log(students)
 
-  if (!isEmpty(students)){
+  if (students && !isEmpty(students)){
     return (
-      <table className="calendar">
+      <table className="calendar striped">
         <thead> 
           <tr>
             <th className="text-center">Full Name</th>
@@ -38,22 +38,24 @@ const StudentList = ({students}) => {
         </tbody>
       </table>
     )
-  } else {
+  } else if (!students){
     return(
-      <div className="calendar-list section z-depth-0">
-        <div className="card z-depth-1 calendar-summary">
-          <div className="row">
-            <div className="col s1">
-              <i className="material-icons grey-text text-darken-3 summary">assignment_late</i>
-            </div>
-            <div className="col s9 offset-s1">
-              <div className="card-content grey-text text-darken-3">
-                  <span className="card-title">No calendar material has been added yet</span>
-                  <span className="card-subtitle">Check back again later!</span> 
-              </div>
-            </div>
+      <div class="preloader-wrapper big active">
+        <div class="spinner-layer spinner-blue-only">
+          <div class="circle-clipper center">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
           </div>
-        </div>
+        </div>`
+    </div>
+    ) 
+} else {
+    return(
+      <div class="progress">
+        <div class="indeterminate"></div>
       </div>
     )
     

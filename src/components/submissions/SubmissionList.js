@@ -12,7 +12,7 @@ const SubmissionList = ({submissions}) => {
     return true;
   }
 
-  if (!isEmpty(submissions)){
+  if (submissions && !isEmpty(submissions)){
     return (
       <div className="submission-list section z-depth-0">   
         { // check if submissions exists, if so, map
@@ -26,7 +26,13 @@ const SubmissionList = ({submissions}) => {
         }
       </div>
     )
-  } else {
+  } else if (!submissions){
+    return(
+      <div class="progress">
+        <div class="indeterminate"></div>
+      </div>
+    ) 
+} else {
     return(
       <div className="submission-list section z-depth-0">
         <div className="card z-depth-1 submission-summary">

@@ -13,7 +13,7 @@ const CourseMatList = ({coursemats}) => {
     return true;
   }
 
-  if (!isEmpty(coursemats)){
+  if (coursemats && !isEmpty(coursemats)){
     return (
       <div className="coursemat-list section z-depth-0">   
         { // check if coursemats exists, if so, map
@@ -30,6 +30,12 @@ const CourseMatList = ({coursemats}) => {
         }
       </div>
     )
+  } else if (!coursemats){
+      return(
+        <div class="progress">
+          <div class="indeterminate"></div>
+        </div>
+      ) 
   } else {
     return(
       <div className="coursemat-list section z-depth-0">

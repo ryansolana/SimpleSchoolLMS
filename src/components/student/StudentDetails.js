@@ -18,7 +18,7 @@ class StudentDetails extends Component{
             grades: [],
             loading: true,
             isConfirm: false,
-            activated: true
+            isActivated: true
         }
     }
 
@@ -47,7 +47,8 @@ class StudentDetails extends Component{
                 lastName: data.lastName,
                 email: data.email,
                 isActivated: data.isActivated,
-                joinDate: data.joinDate
+                joinDate: data.joinDate,
+                dateActivated: data.dateActivated
             })
         })
 
@@ -75,9 +76,20 @@ class StudentDetails extends Component{
     }
 
     toggleUserActivation = () =>{
-        this.state.activated ? console.log("Deactivated user") : console.log("Activated user")
-        this.setState({activated: !this.state.activated})
-        this.toggleConfirm();
+        var db = firebase.firestore()
+        
+        var docRef = db.collection('users').doc(this.props.match.params.id);
+
+        docRef.update({
+            isActivated: !this.state.isActivated,
+            dateActivated: new Date()
+        }).then(()=>{
+            this.setState({isActivated: !this.state.isActivated})
+            this.toggleConfirm();
+            !this.state.isActivated ? console.log("Deactivated user") : console.log("Activated user")
+        }).catch((err)=>{
+            console.log(err)
+        })  
     }
 
     render(){
@@ -90,47 +102,44 @@ class StudentDetails extends Component{
             var timeStamp = new Date(parsedDate);
             var date = moment(timeStamp).format('LLL');
 
-            var activated = true;
-
             return (
-            <div>
-                <div className="container section student-details">
-                <Link to='/studentManagement'><button className="btn blue" style={{ marginTop:7, marginBottom: 3}}>Back To Student List</button></Link>
-                    <div className="card z-depth-0">
-                
-                        <div className="card-content">
-                            <div className="row">  
-                                <h4 style={{ marginTop:0, marginBottom: 20}}>Student Details</h4>
-                                <p><bold>Full Name: </bold> {this.state.firstName} {this.state.lastName}</p>
-                                <p><bold>Email: </bold>{this.state.email}</p>
-                                <p><bold>Activated?: </bold>{this.state.isActivated ? "True" : "False"}</p>
-                                <p><bold>Register Date: </bold>{date}</p>
-                                <p><bold>Last Deactivated/Activated: </bold>{date}</p>
-                                
-                            </div>
-                        </div>
-                        <div className="card-action white lighten-4 black-text">
-                            <h5>Academic Actions</h5>
-                            <Link to={'/manage/student/createGrade/' + this.props.match.params.id}><button className="btn green" style={{ marginTop:7, marginBottom: 3}}>Create Submission Grade</button></Link>
-                            <br></br>
-                            <h5>Account Actions</h5>
-                            {!this.state.isConfirm ? <button className={this.state.activated ? "btn red" : "btn green"} style={{ marginTop:7, marginBottom: 3}} onClick={this.toggleConfirm}>{this.state.activated ? "Deactivate" : "Activate"} Student</button> 
-                                :
-                                <div>
-                                    <p>Are you sure you want to {this.state.activated ? "activate" : "deactivate"} student {this.state.firstName} {this.state.lastName}?</p>
-                                    <button className="btn green" style={{ marginTop:7, marginBottom: 3, marginRight: 3}} onClick={this.toggleUserActivation}>Yes</button>
-                                    <button className="btn blue" style={{ marginTop:7, marginBottom: 3}} onClick={this.toggleConfirm}>No</button>
+                <div>
+                    <div className="container section student-details">
+                    <Link to='/studentManagement'><button className="btn blue" style={{ marginTop:7, marginBottom: 3}}>Back To Student List</button></Link>
+                        <div className="card z-depth-0">
+                            <div className="card-content">
+                                <div className="row">  
+                                    <h4 style={{ marginTop:0, marginBottom: 20}}>Student Details</h4>
+                                    <p><bold>Full Name: </bold> {this.state.firstName} {this.state.lastName}</p>
+                                    <p><bold>Email: </bold>{this.state.email}</p>
+                                    <p><bold>Activated?: </bold>{this.state.isActivated ? "True" : "False"}</p>
+                                    <p><bold>Register Date: </bold>{date}</p>
+                                    {this.state.dateActivated && <p><bold>Last Deactivated/Activated: </bold>{moment(new Date(this.state.dateActivated.seconds*1000)).format('LLL')}</p>}
+                                    
                                 </div>
-                                }
+                            </div>
+                            <div className="card-action white lighten-4 black-text">
+                                <h5>Academic Actions</h5>
+                                <Link to={'/manage/student/createGrade/' + this.props.match.params.id}><button className="btn green" style={{ marginTop:7, marginBottom: 3}}>Create Submission Grade</button></Link>
+                                <br></br>
+                                <h5>Account Actions</h5>
+                                {!this.state.isConfirm ? <button className={this.state.isActivated ? "btn red" : "btn green"} style={{ marginTop:7, marginBottom: 3}} onClick={this.toggleConfirm}>{this.state.isActivated ? "Deactivate" : "Activate"} Student</button> 
+                                    :
+                                    <div>
+                                        <p>Are you sure you want to {!this.state.isActivated ? <bold>activate</bold> : <bold>deactivate</bold>} student {this.state.firstName} {this.state.lastName}?</p>
+                                        <button className="btn green" style={{ marginTop:7, marginBottom: 3, marginRight: 3}} onClick={this.toggleUserActivation}>Yes</button>
+                                        <button className="btn red" style={{ marginTop:7, marginBottom: 3}} onClick={this.toggleConfirm}>No</button>
+                                    </div>
+                                    }
 
-                        </div>
-                        <div className="card-action white lighten-4 black-text">
-                            <h5>Student Grades</h5>
-                            {!this.state.loading && <GradeList grades={this.state.grades} />}
-                        </div>
-                    </div>  
+                            </div>
+                            <div className="card-action white lighten-4 black-text">
+                                <h5>Student Grades</h5>
+                                {!this.state.loading && <GradeList grades={this.state.grades} />}
+                            </div>
+                        </div>  
+                    </div>
                 </div>
-            </div>
             )
         } else {
             return (

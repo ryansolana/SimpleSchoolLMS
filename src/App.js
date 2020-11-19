@@ -40,6 +40,7 @@ import ProtectedRoute from './components/auth/ProtectedRoute'
 import AdminRoute from './components/auth/AdminRoute'
 import Unauthorized from './components/dashboard/Unauthorized'
 import UnactivatedStudent from './components/auth/UnactivatedStudent'
+import RedirectPage from './components/dashboard/RedirectPage';
 
 
 class App extends Component {
@@ -84,6 +85,7 @@ class App extends Component {
             <AdminRoute exact path='/manage/student/createGrade/:id' component={ CreateGrade }/>
             <AdminRoute exact path='/manage/student/editGrade/:id' component={ UpdateGrade } />
 
+            <Route path='/redirect' component={ RedirectPage }/>
             <Route path='/signin' component={ SignIn }/>
             <Route path='/signup' component={ SignUp }/>
             <Route path='/verify' component={ VerifyEmail }/>

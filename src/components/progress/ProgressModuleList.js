@@ -11,7 +11,7 @@ const ProgressModuleList = ({progressModules}) => {
     return true;
   }
 
-  if (!isEmpty(progressModules)){
+  if (progressModules && !isEmpty(progressModules)){
     return (
       <div className="progressModule-list section z-depth-0">   
         { // check if progressModules exists, if so, map
@@ -25,7 +25,13 @@ const ProgressModuleList = ({progressModules}) => {
         }
       </div>
     )
-  } else {
+  } else if (!progressModules){
+    return(
+      <div class="progress">
+        <div class="indeterminate"></div>
+      </div>
+    ) 
+} else {
     return(
       <div className="announce-list section z-depth-0">
         <div className="card z-depth-1 announce-summary">

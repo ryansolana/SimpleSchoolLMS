@@ -13,7 +13,7 @@ const AnnounceList = ({announces}) => {
     return true;
   }
 
-  if (!isEmpty(announces)){
+  if (announces && !isEmpty(announces)){
     return (
       <div className="announce-list section z-depth-0">   
         { // check if announces exists, if so, map
@@ -23,6 +23,12 @@ const AnnounceList = ({announces}) => {
             )
           })
         }
+      </div>
+    )
+  } else if (!announces){
+    return(
+      <div class="progress">
+        <div class="indeterminate"></div>
       </div>
     )
   } else {

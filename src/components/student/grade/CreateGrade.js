@@ -81,7 +81,7 @@ class CreateGrade extends Component {
                     <div className="input-field">
                         <i className="material-icons prefix">format_list_numbered</i>
                         <label htmlFor="grade">Grade</label>
-                        <input type="number" id="grade" min="0" step="10" max="100" onChange={this.handleChange} required/>
+                        <input type="number" id="grade" min="0" step="1" max="100" onChange={this.handleChange} required/>
                     </div>
 
                     <div className="input-field">

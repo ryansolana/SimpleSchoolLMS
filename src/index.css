@@ -246,3 +246,23 @@ div.input-field a{
   color: white;
   margin-right:0px;
 }
+
+.card .card-action {
+  background-color: inherit;
+  border-top: 1px solid rgba(160,160,160,0.2);
+  position: relative;
+  padding: 10px 24px;
+}
+
+td, th {
+  padding: 8px 5px;
+  display: table-cell;
+  text-align: left;
+  vertical-align: middle;
+  border-radius: 2px;
+}
+
+div.progress{
+  margin: 40px 0px;
+  padding: 2px 2px;
+}

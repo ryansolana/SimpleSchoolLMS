@@ -11,7 +11,7 @@ const CalendarModuleList = ({calendarModules}) => {
     return true;
   }
 
-  if (!isEmpty(calendarModules)){
+  if (calendarModules && !isEmpty(calendarModules)){
     return (
       <table className="calendar striped">
         <thead> 
@@ -33,7 +33,13 @@ const CalendarModuleList = ({calendarModules}) => {
         </tbody>
       </table>
     )
-  } else {
+  } else if (!calendarModules){
+    return(
+      <div class="progress">
+        <div class="indeterminate"></div>
+      </div>
+    ) 
+} else {
     return(
       <div className="calendar-list section z-depth-0">
         <div className="card z-depth-1 calendar-summary">

@@ -2,7 +2,7 @@ import React from 'react'
 import GradeSummary from './GradeSummary'
 
 const GradeList = ({grades}) => {
-
+  
   const isEmpty = (obj) => {
     for(var key in obj) {
         if(obj.hasOwnProperty(key))
@@ -15,7 +15,7 @@ const GradeList = ({grades}) => {
   console.log(isEmpty(grades))
 
 
-  if (!isEmpty(grades)){
+  if (grades && !isEmpty(grades)){
     return (
       <table className="grade striped">
         <thead> 
@@ -32,13 +32,18 @@ const GradeList = ({grades}) => {
               return (
                 <GradeSummary grade={grade} key={grade.id}/>
               )
-
             })
           }
         </tbody>
       </table>
     )
-  } else {
+  } else if (!grades){
+    return(
+      <div class="progress">
+        <div class="indeterminate"></div>
+      </div>
+    ) 
+} else {
     return(
       <div className="grade-list section z-depth-0">
         <div className="card z-depth-1 grade-summary">
