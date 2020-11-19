@@ -10,8 +10,15 @@ export const createGrade = (grade, userId) => {
             authorLastName: profile.lastName,
             authorId: authorId,
             createdAt: new Date()
-        }).then(()=>{
-            dispatch({ type: 'CREATE_GRADE', grade: grade})
+        }).then((docRef)=>{
+            firestore.collection('grades').doc(userId).collection('gradeList').doc(docRef.id).update({
+                gradeId: docRef.id
+            }).then(()=>{
+                dispatch({ type: 'CREATE_GRADE', grade: grade})
+            }).catch((err)=>{
+                dispatch({ type: 'CREATE_GRADE_ERROR', err})
+            })
+            
         }).catch((err)=>{
             dispatch({ type: 'CREATE_GRADE_ERROR', err})
         })

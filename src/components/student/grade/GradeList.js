@@ -11,10 +11,6 @@ const GradeList = ({grades}) => {
     return true;
   }
 
-  console.log(grades)
-  console.log(isEmpty(grades))
-
-
   if (grades && !isEmpty(grades)){
     return (
       <table className="grade striped">
@@ -30,7 +26,7 @@ const GradeList = ({grades}) => {
           { // check if grades exists, if so, map
             grades && grades.map(grade =>{
               return (
-                <GradeSummary grade={grade} key={grade.id}/>
+                <GradeSummary grade={grade} key={grade.gradeId}/>
               )
             })
           }

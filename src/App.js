@@ -77,11 +77,10 @@ class App extends Component {
             <AdminRoute path='/editCalendarModule/:id' component={ UpdateCalendarModule }/>
 
             <ProtectedRoute path='/grades' component={ GradeDashboard }/>
+            <ProtectedRoute path='/grade/:id/:gid' component={ GradeDetails}/>
 
             <AdminRoute path='/studentManagement' component={ StudentManagement }/>
             <AdminRoute exact path='/manage/student/:id' component={ StudentDetails }/>
-
-            <AdminRoute exact path='/manage/student/grades/:id' component={ GradeDetails } />
             <AdminRoute exact path='/manage/student/createGrade/:id' component={ CreateGrade }/>
             <AdminRoute exact path='/manage/student/editGrade/:id' component={ UpdateGrade } />
 

@@ -12,14 +12,14 @@ const GradeSummary = ({grade}) => {
         str = str.slice(0, 50) + '...'
     }
 
-    console.log(grade)
     // for date formatting
     return (
         <tr>
             <td>{grade.title}</td>
             <td style={{textAlign: "left"}}>{grade.grade}</td>
             <td className="grade" style={{textAlign: "left"}}>{str}</td>
-            <td><button className="btn">Expand</button></td>
+            <td><Link to={'/grade/'+ grade.userId +'/'+ grade.gradeId} ><button className="btn">Expand</button></Link></td>
+            
         </tr>
         
     )
