@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 const CourseMatSummary = ({coursemat, profile}) => {
-
     return (
         <div className="card z-depth-1 coursemat-summary hoverable">
             <div className="row">
@@ -18,15 +17,14 @@ const CourseMatSummary = ({coursemat, profile}) => {
                     </div>
                 </div>
                 <div className="col s1">
-                    {profile.admin && <td><Link to={'/editCourseMat/' + coursemat.id}><i className="material-icons black-text text-darken-3">edit</i></Link></td>} 
+                    {profile.isAdmin && <td><Link to={'/editCourseMat/' + coursemat.id}><i className="material-icons black-text text-darken-3">edit</i></Link></td>} 
                 </div> 
                  
             </div>
             <div className="card-action grey lighten-4 grey-text">
-                    <p className="grey-text">Released {moment(coursemat.createdAt.toDate()).calendar()}</p>
-                </div>  
+                <p className="grey-text">Released {moment(coursemat.createdAt.toDate()).calendar()}</p>
+            </div>
         </div>
-
     )
 }
 

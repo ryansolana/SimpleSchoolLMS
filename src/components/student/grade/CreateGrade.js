@@ -9,8 +9,6 @@ class CreateGrade extends Component {
         // firebase auth included as per mapStateToProps
         title: '',
         content: '',
-        status: '',
-        date: new Date(),
         userId: this.props.match.params.id,
 
         // separate from submission obj
@@ -55,8 +53,6 @@ class CreateGrade extends Component {
         var newGrade = {
             title: this.state.title,
             content: this.state.content,
-            status: this.state.content,
-            date: new Date(),
             userId: this.state.userId
         }
         console.log(newGrade)

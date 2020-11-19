@@ -27,13 +27,10 @@ const AnnounceSummary = ({announce, profile}) => {
                 </div>
 
                 <div className="col s1">
-                    {profile.admin && <td><Link to={'/editAnnounce/' + announce.id}><i className="material-icons black-text text-darken-3">edit</i></Link></td>} 
+                    {profile.isAdmin && <td><Link to={'/editAnnounce/' + announce.id}><i className="material-icons black-text text-darken-3">edit</i></Link></td>} 
                 </div> 
-            </div>
-
-                
+            </div> 
         </div>
-
     )
 }
 

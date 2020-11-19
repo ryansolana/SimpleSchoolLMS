@@ -13,7 +13,7 @@ const CalendarModuleList = ({calendarModules}) => {
 
   if (!isEmpty(calendarModules)){
     return (
-      <table className="calendar">
+      <table className="calendar striped">
         <thead> 
           <tr>
             <th className="text-center">Week #</th>

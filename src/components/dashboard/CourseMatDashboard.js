@@ -15,7 +15,7 @@ class CourseMatDashboard extends Component{
             <div className="dashboard container">
                 <h3 className="page-title padding">Course Material</h3>
 
-                {profile.admin ? <Link to='/createCourseMat'>
+                {profile.isAdmin? <Link to='/createCourseMat'>
                     <button className="btn waves-effect waves-light green text-darken-1 padding-top hoverable">Create New Course Material</button>
                 </Link> : <div></div>}
             

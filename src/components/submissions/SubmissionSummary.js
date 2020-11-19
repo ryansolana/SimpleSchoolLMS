@@ -18,7 +18,7 @@ const SubmissionSummary = ({submission, profile}) => {
                     </div>
                 </div>
                 <div className="col s1">
-                    {profile.admin && <td><Link to={'/editSubmission/' + submission.id}><i className="material-icons black-text text-darken-3">edit</i></Link></td>} 
+                    {profile.isAdmin && <td><Link to={'/editSubmission/' + submission.id}><i className="material-icons black-text text-darken-3">edit</i></Link></td>} 
                 </div> 
             </div>
             <div className="card-action grey lighten-4 grey-text">

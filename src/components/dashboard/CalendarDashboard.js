@@ -7,7 +7,6 @@ import { Redirect } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
 
-import 'react-circular-progressbar/dist/styles.css';
 
 class CalendarModuleDashboard extends Component{
     render(){
@@ -20,7 +19,7 @@ class CalendarModuleDashboard extends Component{
             <div className="dashboard container">
                 <h3 className="page-title padding">School of Logistics - {date} Calendar </h3>
 
-                {profile.admin ? <Link to='/createCalendarModule'>
+                {profile.isAdmin ? <Link to='/createCalendarModule'>
                     <button className="btn waves-effect waves-light green text-darken-1 padding-top hoverable">Create New Calendar Module</button>
                 </Link> : <div></div>}
             
