@@ -21,7 +21,7 @@ const AnnounceSummary = ({announce, profile}) => {
                     <div className="card-action">
                         <p>{announce.content}</p>
                         <br></br>
-                        {announce.contentLink && <div><a href={announce.contentLink} alt="/" target="_blank"><button className="btn blue text-darken-3">Link</button></a><br></br><br></br></div>}
+                        {announce.contentLink && <div><a href={announce.contentLink} alt="/" target="_blank" rel="noopener noreferrer"><button className="btn blue text-darken-3">Link</button></a><br></br><br></br></div>}
                         
                     </div>
                 </div>

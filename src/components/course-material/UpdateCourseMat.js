@@ -14,7 +14,8 @@ class UpdateCourseMat extends Component {
             title: '',
             subtitle: '',
             content: '',
-            textlink: ''
+            textlink: '',
+            loading: true
         }
     }
 
@@ -41,14 +42,14 @@ class UpdateCourseMat extends Component {
                 title: data.title,
                 subtitle: data.subtitle,
                 content: data.content,
-                textlink: data.textlink
+                textlink: data.textlink,
+                loading: false
             })
         }) 
     }
 
     deleteHandler = (id) =>{
-        const { deleteCourseMat } = this.props;
-        deleteCourseMat(id); 
+        this.props.deleteCourseMat(id); 
         this.props.history.push('/course-materials');
     }
 
@@ -60,15 +61,24 @@ class UpdateCourseMat extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        //console.log(this.state)
-        this.props.updateCourseMat(this.state, this.props.match.params.id)
+        
+        const newCourseMat = {
+            title: this.state.title,
+            subtitle: this.state.subtitle,
+            content: this.state.content,
+            textlink: this.state.textlink,
+        }
+
+        this.props.updateCourseMat(newCourseMat, this.props.match.params.id)
         this.props.history.push('/course-materials')
     }
 
     render(){
         const { auth } = this.props;
         if (!auth.uid) return <Redirect to='/signin' /> // redirect to signin if user is not logged in
-        return (
+
+        if (!this.state.loading){
+            return (
             <div className="container z-depth-1">
                 
                 <form onSubmit={this.handleSubmit} className="white">
@@ -101,7 +111,17 @@ class UpdateCourseMat extends Component {
                     </div>
                 </form>
             </div>
-        )
+        )} else {
+            return(
+                <div className="container center">
+                    <h5>Loading course material...</h5>
+                    <div class="progress">
+                        <div class="indeterminate"></div>
+                    </div>
+                </div>
+            )
+        }
+        
     } 
 }
 //  auth is now in state

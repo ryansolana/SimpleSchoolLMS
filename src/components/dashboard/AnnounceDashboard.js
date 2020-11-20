@@ -3,14 +3,12 @@ import AnnounceList from '../announcements/AnnounceList'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
-import { Redirect } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 
 class AnnounceDashboard extends Component{
     render(){
-        const { announces, auth, profile} = this.props
-        //if (!auth.uid) return <Redirect to='/signin' /> // redirect to signin if user is not logged in
-        console.log(profile)
+        const { announces, profile} = this.props
+
         return(
             <div className="dashboard container">
                 <h3 className="padding page-title">Announcements</h3>

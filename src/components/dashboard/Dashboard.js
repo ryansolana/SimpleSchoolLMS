@@ -9,8 +9,6 @@ import { Redirect} from 'react-router-dom'
 class Dashboard extends Component{
     render(){
         const { projects, auth, notifications} = this.props
-        console.log(notifications)
-        //if (!auth.uid) return <Redirect to='/signin' /> // redirect to signin if user is not logged in
 
         return(
             <div className="dashboard container">

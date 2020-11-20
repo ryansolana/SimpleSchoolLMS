@@ -19,12 +19,9 @@ const CourseMatList = ({coursemats}) => {
         { // check if coursemats exists, if so, map
           coursemats && coursemats.map(coursemat =>{
             return (
-              <div>
-                <Link to={'/course-material/' + coursemat.id} key={coursemat.id}>
-                  <CourseMatSummary coursemat={coursemat}/>
-                </Link>
-
-              </div>
+              <Link to={'/course-material/' + coursemat.id} key={coursemat.id}>
+                <CourseMatSummary coursemat={coursemat}/>
+              </Link>
             )
           })
         }
@@ -32,8 +29,8 @@ const CourseMatList = ({coursemats}) => {
     )
   } else if (!coursemats){
       return(
-        <div class="progress">
-          <div class="indeterminate"></div>
+        <div className="progress">
+          <div className="indeterminate"></div>
         </div>
       ) 
   } else {

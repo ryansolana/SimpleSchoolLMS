@@ -8,8 +8,6 @@ import moment from 'moment'
 const CourseMatDetails = (props) => {
 
     const { coursemat, auth} = props;
-    console.log("coursemat props is: ")
-    console.log(coursemat)
 
     if (!auth.uid) return <Redirect to='/signin' /> // redirect to signin if user is not logged in
     

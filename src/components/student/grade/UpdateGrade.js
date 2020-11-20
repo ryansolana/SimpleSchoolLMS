@@ -26,11 +26,8 @@ class UpdateGrade extends Component {
 
         docRef.get().then(function(doc) {
             if (doc.exists) {
-                console.log("Document data:", doc.data());
                 data = doc.data();
-                // reload when found with new state
             } else {
-                // doc.data() will be undefined in this case
                 console.log("No such document!");
             }
         }).catch(function(error) {
@@ -121,8 +118,7 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-const mapStateToProps = (state, ownProps) => {
-    console.log(state)
+const mapStateToProps = (state) => {
     return {
         auth: state.firebase.auth,
         profile: state.firebase.profile,

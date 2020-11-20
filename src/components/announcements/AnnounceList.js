@@ -1,7 +1,5 @@
 import React from 'react'
 import AnnounceSummary from './AnnounceSummary'
-import { Link } from 'react-router-dom'
-
 
 const AnnounceList = ({announces}) => {
 
@@ -27,8 +25,8 @@ const AnnounceList = ({announces}) => {
     )
   } else if (!announces){
     return(
-      <div class="progress">
-        <div class="indeterminate"></div>
+      <div className="progress">
+        <div className="indeterminate"></div>
       </div>
     )
   } else {

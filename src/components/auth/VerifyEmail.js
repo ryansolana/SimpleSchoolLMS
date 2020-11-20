@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
-import moment from 'moment'
 import * as firebase from 'firebase'
 
 class VerifyEmail extends Component {
-
     constructor(props){
         super(props);
 
@@ -30,14 +28,14 @@ class VerifyEmail extends Component {
 
         var user = firebase.auth().currentUser;
         // activate logic
-        user.sendEmailVerification().then(function(res) {
-            console.log("verification send success" + res)
+        user.sendEmailVerification().then((res) =>{
+            // set state to clicked already once
+            this.setState({verifyClicked: true})
           }).catch(function(error) {
-            console.log("verification send failed")
+
           });
 
-        // set state to clicked already once
-        this.setState({verifyClicked: true})
+        
     }
 
     refreshPage = ()=>{
@@ -50,10 +48,6 @@ class VerifyEmail extends Component {
         if (this.state.isVerified) return <Redirect to='/' />
 
         if (auth){
-            const lastLogin = parseInt(auth.lastLoginAt);
-            var timeStamp = new Date(lastLogin);
-            var date = moment(timeStamp).calendar();
-
             return (
             <div> 
                 <div className="dashboard container">
@@ -105,7 +99,6 @@ class VerifyEmail extends Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state)
     return {
         auth: state.firebase.auth,
         profile: state.firebase.profile

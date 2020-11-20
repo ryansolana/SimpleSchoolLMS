@@ -27,9 +27,7 @@ class CreateGrade extends Component {
             if (doc.exists) {
                 console.log("Document data:", doc.data());
                 data = doc.data();
-                // reload when found with new state
             } else {
-                // doc.data() will be undefined in this case
                 console.log("No such document!");
             }
         }).catch(function(error) {
@@ -57,7 +55,7 @@ class CreateGrade extends Component {
         }
         console.log(newGrade)
         this.props.createGrade(this.state, this.props.match.params.id)
-        //this.props.history.push('/manage/student/' + this.props.match.params.id)
+        this.props.history.push('/manage/student/' + this.props.match.params.id)
     }
 
     render(){

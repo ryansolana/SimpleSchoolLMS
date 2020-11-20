@@ -1,16 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
-import { Link } from 'react-router-dom'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import StudentList from './StudentList'
 
 class StudentManagement extends Component{
     render(){
-        const { auth, profile, users} = this.props
-        
-        console.log(users)
+        const { users } = this.props
+
         return(
             <div className="dashboard container">
                 <h3 className="padding page-title">Student Management</h3>

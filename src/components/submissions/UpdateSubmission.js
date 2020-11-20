@@ -13,7 +13,8 @@ class UpdateSubmission extends Component {
             title: '',
             subtitle: '',
             content: '',
-            textlink: ''
+            textlink: '',
+            loading: true
         }
     }
 
@@ -40,14 +41,14 @@ class UpdateSubmission extends Component {
                 title: data.title,
                 subtitle: data.subtitle,
                 content: data.content,
-                textlink: data.textlink
+                textlink: data.textlink,
+                loading: false
             })
         }) 
     }
 
     deleteHandler = (id) =>{
-        const { deleteSubmission } = this.props;
-        deleteSubmission(id); 
+        this.props.deleteSubmission(id); 
         this.props.history.push('/submissions');
     }
 
@@ -59,47 +60,67 @@ class UpdateSubmission extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        //console.log(this.state)
-        this.props.updateSubmission(this.state, this.props.match.params.id)
+        
+        const newSub = {
+            title: this.state.title,
+            subtitle: this.state.subtitle,
+            content: this.state.content,
+            textlink: this.state.textlink
+        }
+
+        this.props.updateSubmission(newSub, this.props.match.params.id)
         this.props.history.push('/submissions')
     }
 
     render(){
         const { auth } = this.props;
         if (!auth.uid) return <Redirect to='/signin' /> // redirect to signin if user is not logged in
-        return (
-            <div className="container z-depth-1">
-                <form onSubmit={this.handleSubmit} className="white">
-                <h5 className="grey-text text-darken-3">Create New Submission</h5>
-                    <div className="input-field">
-                        <label className="active" htmlFor="email">Submission Title</label>
-                        <input type="text" id="title" maxLength="100" onChange={this.handleChange} defaultValue={this.state.title}  required/>
-                    </div>
-                    <div className="input-field">
-                        <label className="active" htmlFor="email">Submission Subtitle</label>
-                        <input type="text" id="subtitle" maxLength="100" onChange={this.handleChange} defaultValue={this.state.subtitle}required/>
-                    </div>
-                    <div className="input-field">
-                        <label className="active" htmlFor="content">Submission Description (2400 char max)</label>
-                        <textarea id="content" className="materialize-textarea" maxLength="2400" onChange={this.handleChange} defaultValue={this.state.content} required></textarea>
-                    </div>
-                    <div className="input-field">
-                        <label className="active" htmlFor="email">Submission Dropbox Link (with https://)</label>
-                        <input type="text" id="textlink" maxLength="2400" onChange={this.handleChange} defaultValue={this.state.textlink} required/>
-                    </div>
-                    <div className="input-field">
-                        <div className="row">
-                            <div className="col s9">
-                                <button className="btn green lighten-1 hoverable waves-effect">Confirm Changes</button>
-                            </div>
-                            <div className="col s3">
-                                <button className="btn red hoverable waves-effect" onClick={() => this.deleteHandler(this.props.match.params.id)}>Delete This</button>
+
+        if (!this.state.loading){
+            return (
+                <div className="container z-depth-1">
+                    <form onSubmit={this.handleSubmit} className="white">
+                    <h5 className="grey-text text-darken-3">Create New Submission</h5>
+                        <div className="input-field">
+                            <label className="active" htmlFor="email">Submission Title</label>
+                            <input type="text" id="title" maxLength="100" onChange={this.handleChange} defaultValue={this.state.title}  required/>
+                        </div>
+                        <div className="input-field">
+                            <label className="active" htmlFor="email">Submission Subtitle</label>
+                            <input type="text" id="subtitle" maxLength="100" onChange={this.handleChange} defaultValue={this.state.subtitle}required/>
+                        </div>
+                        <div className="input-field">
+                            <label className="active" htmlFor="content">Submission Description (2400 char max)</label>
+                            <textarea id="content" className="materialize-textarea" maxLength="2400" onChange={this.handleChange} defaultValue={this.state.content} required></textarea>
+                        </div>
+                        <div className="input-field">
+                            <label className="active" htmlFor="email">Submission Dropbox Link (with https://)</label>
+                            <input type="text" id="textlink" maxLength="2400" onChange={this.handleChange} defaultValue={this.state.textlink} required/>
+                        </div>
+                        <div className="input-field">
+                            <div className="row">
+                                <div className="col s9">
+                                    <button className="btn green lighten-1 hoverable waves-effect">Confirm Changes</button>
+                                </div>
+                                <div className="col s3">
+                                    <button className="btn red hoverable waves-effect" onClick={() => this.deleteHandler(this.props.match.params.id)}>Delete This</button>
+                                </div>
                             </div>
                         </div>
+                    </form>
+                </div>
+            )
+        } else {
+            return(
+                <div className="container center">
+                    <h5>Loading submission...</h5>
+                    <div class="progress">
+                        <div class="indeterminate"></div>
                     </div>
-                </form>
-            </div>
-        )
+                </div>
+            )
+        }
+        
     } 
 }
 //  auth is now in state

@@ -13,7 +13,8 @@ class UpdateAnnounce extends Component {
             // firebase auth included as per mapStateToProps
             title: '',
             content: '',
-            contentLink: ''
+            contentLink: '',
+            loading: true
         }
     }
 
@@ -36,7 +37,7 @@ class UpdateAnnounce extends Component {
         }).catch(function(error) {
             console.log("Error getting document:", error);
         }).then(() =>{
-            this.setState({title: data.title, content: data.content, contentLink: data.contentLink})
+            this.setState({title: data.title, content: data.content, contentLink: data.contentLink, loading: false})
         })
         
     }
@@ -64,8 +65,13 @@ class UpdateAnnounce extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
 
-        //console.log(this.state)
-        this.props.updateAnnounce(this.state, this.props.match.params.id)
+        const newAnnounce = {
+            title: this.state.title,
+            content: this.state.content,
+            contentLink: this.state.contentLink
+        }
+
+        this.props.updateAnnounce(newAnnounce, this.props.match.params.id)
         this.props.history.push('/announcements');
     }
 
@@ -74,42 +80,48 @@ class UpdateAnnounce extends Component {
 
         if (!auth.uid) return <Redirect to='/signin' /> // redirect to signin if user is not logged in
 
-        if (this.state === null){
-            return (<div class="progress">
-            <div class="indeterminate"></div>
-        </div>)
+        if (!this.state.loading){
+            return(
+                <div className="container z-depth-1"> 
+                    <form onSubmit={this.handleSubmit} className="white">
+                    <h5 className="grey-text text-darken-3">Edit Announcement</h5>
+                    <br></br>
+                        <div className="input-field">
+                            <label className="active" htmlFor="email">Announcement Title</label>
+                            <input type="text" id="title" onChange={this.handleChange} defaultValue={this.state.title} required/>
+                        </div>
+    
+                        <div className="input-field">
+                            <label className="active" htmlFor="content">Announcement Content (2400 characters max)</label>
+                            <textarea id="content" className="materialize-textarea" onChange={this.handleChange} maxLength="2400" rows="2" cols="200" defaultValue={this.state.content} required></textarea>
+                        </div>
+    
+                        <div className="input-field">
+                            <label className="active" htmlFor="email">Optional Link Address (include 'https://')</label>
+                            <input type="text" id="contentLink" onChange={this.handleChange} defaultValue={this.state.contentLink}/>
+                        </div>
+    
+                        <div className="input-field">
+                            <div className="row">
+                                <div className="col s9">
+                                    <button className="btn green lighten-1 hoverable waves-effect">Confirm Changes</button>
+                                </div>
+                                <div className="col s3">
+                                    <button className="btn red hoverable waves-effect" onClick={() => this.deleteHandler(this.props.match.params.id)}>Delete This</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>)
         } else {
-            return(<div className="container z-depth-1"> 
-            <form onSubmit={this.handleSubmit} className="white">
-            <h5 className="grey-text text-darken-3">Edit Announcement</h5>
-            <br></br>
-                <div className="input-field">
-                    <label className="active" htmlFor="email">Announcement Title</label>
-                    <input type="text" id="title" onChange={this.handleChange} defaultValue={this.state.title} required/>
-                </div>
-
-                <div className="input-field">
-                    <label className="active" htmlFor="content">Announcement Content (2400 characters max)</label>
-                    <textarea id="content" className="materialize-textarea" onChange={this.handleChange} maxLength="2400" rows="2" cols="200" defaultValue={this.state.content} required></textarea>
-                </div>
-
-                <div className="input-field">
-                    <label className="active" htmlFor="email">Optional Link Address (include 'https://')</label>
-                    <input type="text" id="contentLink" onChange={this.handleChange} defaultValue={this.state.contentLink}/>
-                </div>
-
-                <div className="input-field">
-                    <div className="row">
-                        <div className="col s9">
-                            <button className="btn green lighten-1 hoverable waves-effect">Confirm Changes</button>
-                        </div>
-                        <div className="col s3">
-                            <button className="btn red hoverable waves-effect" onClick={() => this.deleteHandler(this.props.match.params.id)}>Delete This</button>
-                        </div>
+            return(
+                <div className="container center">
+                    <h5>Loading announcement...</h5>
+                    <div class="progress">
+                        <div class="indeterminate"></div>
                     </div>
                 </div>
-            </form>
-        </div>)
+            )
         }
     } 
 }
@@ -122,7 +134,6 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    console.log(state)
     return {
         auth: state.firebase.auth,
         profile: state.firebase.profile,

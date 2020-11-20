@@ -47,7 +47,6 @@ const SubmissionDetails = ({ submission, auth }) => {
 
 
 const mapStateToProps = (state, ownProps) => {
-    console.log(state)
     const id = ownProps.match.params.id;
     const submissions = state.firestore.data.submissions
     const submission = submissions ? submissions[id] : null

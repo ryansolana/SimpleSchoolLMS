@@ -15,7 +15,8 @@ class UpdateCalendarModule extends Component {
             title: '',
             content: '',
             status: '',
-            date: ''
+            date: '',
+            loading: true
         }
     }
 
@@ -49,7 +50,8 @@ class UpdateCalendarModule extends Component {
                 title: data.title,
                 content: data.content,
                 status: data.status,
-                date: data.date
+                date: data.date,
+                loading: false
             })
         }) 
     }
@@ -62,14 +64,24 @@ class UpdateCalendarModule extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        //console.log(this.state)
-        this.props.updateCalendarModule(this.state, this.props.match.params.id)
+
+        const newCalendarModule = {
+            weekNum: this.state.weekNum,
+            title: this.state.title,
+            content: this.state.content,
+            status: this.state.status,
+            date: this.state.date
+        }
+
+        this.props.updateCalendarModule(newCalendarModule, this.props.match.params.id)
         this.props.history.push('/calendar')
     }
 
     render(){
         const { auth } = this.props;
         if (!auth.uid) return <Redirect to='/signin' /> // redirect to signin if user is not logged in
+        
+        if (!this.state.loading){
         return (
             <div className="container z-depth-1">
                 <form onSubmit={this.handleSubmit} className="white">
@@ -125,7 +137,16 @@ class UpdateCalendarModule extends Component {
                 </form>
                 
             </div>
-        )
+        )} else {
+            return(
+                <div className="container center">
+                    <h5>Loading calendar module...</h5>
+                    <div class="progress">
+                        <div class="indeterminate"></div>
+                    </div>
+                </div>
+            )
+        }
     } 
 }
 //  auth is now in state

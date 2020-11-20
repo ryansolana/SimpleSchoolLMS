@@ -10,7 +10,7 @@ class SubmissionDashboard extends Component{
     render(){
         const { submissions, auth, profile} = this.props
         if (!auth.uid) return <Redirect to='/signin' /> // redirect to signin if user is not logged in
-        console.log(profile)
+
         return(
             <div className="dashboard container">
                 <h3 className="page-title padding">Submissions</h3>

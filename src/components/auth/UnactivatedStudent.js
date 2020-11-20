@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
-import moment from 'moment'
-import * as firebase from 'firebase'
 
 class UnactivatedStudent extends Component {
 
@@ -25,10 +23,6 @@ class UnactivatedStudent extends Component {
         if(profile.isActivated) return <Redirect to='/' />
 
         if (auth){
-            const lastLogin = parseInt(auth.lastLoginAt);
-            var timeStamp = new Date(lastLogin);
-            var date = moment(timeStamp).calendar();
-
             return (
             <div> 
                 <div className="dashboard container">
@@ -57,7 +51,6 @@ class UnactivatedStudent extends Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state)
     return {
         auth: state.firebase.auth,
         profile: state.firebase.profile

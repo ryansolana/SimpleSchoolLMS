@@ -11,8 +11,6 @@ const StudentList = ({students}) => {
     return true;
   }
 
-  console.log(students)
-
   if (students && !isEmpty(students)){
     return (
       <table className="calendar striped">
@@ -32,7 +30,7 @@ const StudentList = ({students}) => {
                 return (
                   <StudentSummary student={student} key={student.id}/>
                 )
-              }
+              } 
             })
           }
         </tbody>

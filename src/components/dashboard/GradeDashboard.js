@@ -2,12 +2,9 @@ import React, { Component } from 'react'
 import GradeList from '../student/grade/GradeList'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
-import { Link } from 'react-router-dom'
-import moment from 'moment'
 import * as firebase from 'firebase'
 
 class GradeDashboard extends Component{
-
     constructor(props){
         super(props);
 
@@ -41,13 +38,9 @@ class GradeDashboard extends Component{
     }
 
     render(){
-        const { auth, profile } = this.props
+        const { auth } = this.props
 
         if (!auth.uid) return <Redirect to='/signin' /> // redirect to signin if user is not logged in
-
-        var date = moment(new Date()).format("MMMM YYYY");
-
-        
 
         return(
             <div className="dashboard container">

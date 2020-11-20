@@ -14,8 +14,6 @@ const AnnounceDetails = (props) => {
         deleteAnnounce(id); 
         props.history.push('/announcements');
     }
-    
-    console.log(announce)
 
     if (!auth.uid) return <Redirect to='/signin' /> // redirect to signin if user is not logged in
 
@@ -34,7 +32,7 @@ const AnnounceDetails = (props) => {
                     <div className="card-action"> 
                         <p>{announce.content}</p>
                         <br></br>
-                        {announce.contentLink && announce.contentLink !== "" && <a href={announce.contentLink} alt="/" target="_blank"><button className="btn">Link</button></a>}
+                        {announce.contentLink && announce.contentLink !== "" && <a href={announce.contentLink} alt="/" target="_blank" rel="noopener noreferrer"><button className="btn">Link</button></a>}
                     </div>
                 </div>
 
@@ -70,7 +68,6 @@ const mapDispatchToProps = (dispatch) => {
 
 
 const mapStateToProps = (state, ownProps) => {
-    console.log(state)
     const id = ownProps.match.params.id;
     const announces = state.firestore.data.announces
     const announce = announces ? announces[id] : null

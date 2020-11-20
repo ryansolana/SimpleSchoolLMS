@@ -27,7 +27,7 @@ class SignIn extends Component {
         return (
             <div className="container login-page">
                 <form onSubmit={this.handleSubmit} className="white">
-                    <div className="card z-depth-1">
+                    <div className="card z-depth-4">
                         <div className="card-content">
                             <h3 className="thick center">School Of Logistics Portal</h3>
                             <h6 className="grey-text text-darken-3 center">Please log in to continue.</h6>

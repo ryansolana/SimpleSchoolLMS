@@ -4,9 +4,6 @@ import { connect } from 'react-redux'
 import { signOut } from '../../store/actions/authActions'
 
 const SignedInLinks = (props) => {
-
-    console.log(props.profile.isAdmin)
-
     const admin = props.profile.isAdmin ? 'Professor' : ''
     
     if (props.profile != null){

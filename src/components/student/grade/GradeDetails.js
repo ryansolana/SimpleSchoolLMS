@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { firestoreConnect } from 'react-redux-firebase'
-import { compose } from 'redux'
 import { Redirect } from 'react-router-dom'
 import moment from 'moment'
 import { deleteGrade } from '../../../store/actions/gradeActions'
@@ -67,8 +65,6 @@ class GradeDetails extends Component{
         // cannot see other peoples grades unless admin
         if (auth && profile && id && (auth.uid !== id) && (!profile.isAdmin)) 
             return <Redirect to='/401' />
-
-        console.log(auth.uid)
 
         if (!this.state.loading){
             return (

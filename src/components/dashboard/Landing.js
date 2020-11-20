@@ -2,19 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import moment from 'moment'
-import * as firebase from 'firebase'
 
 class Landing extends Component {
-    componentDidMount(){
-        firebase.auth().onAuthStateChanged((user) => {
-            if (user && user.emailVerified) {
-                console.log('user changed..', user);
-            } else {
-                console.log('no user logged in')
-            }
-        });
-    }
-
     render(){
         const { auth, profile } = this.props
         
@@ -50,7 +39,6 @@ class Landing extends Component {
     }
 }
 const mapStateToProps = (state) => {
-    console.log(state)
     return {
         auth: state.firebase.auth,
         profile: state.firebase.profile

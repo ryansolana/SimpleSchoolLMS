@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { firestoreConnect } from 'react-redux-firebase'
-import { compose } from 'redux'
 import { Redirect } from 'react-router-dom'
-import moment from 'moment'
 import { Link } from 'react-router-dom'
-import * as firebase from 'firebase'
+import moment from 'moment'
 import GradeList from '../student/grade/GradeList'
+import * as firebase from 'firebase'
 
 class StudentDetails extends Component{
 
@@ -27,16 +25,13 @@ class StudentDetails extends Component{
 
         // GET PROFILE
         // get data first
-        var docRef = db.collection("users").doc(this.props.match.params.id);
+        var usersRef = db.collection("users").doc(this.props.match.params.id);
         var data;
 
-        docRef.get().then(function(doc) {
+        usersRef.get().then(function(doc) {
             if (doc.exists) {
-                console.log("Document data:", doc.data());
                 data = doc.data();
-                // reload when found with new state
             } else {
-                // doc.data() will be undefined in this case
                 console.log("No such document!");
             }
         }).catch(function(error) {
@@ -54,10 +49,10 @@ class StudentDetails extends Component{
 
         // GET GRADES
         // get data first from this page id
-        var docRef = db.collection("grades").doc(this.props.match.params.id).collection("gradeList");
+        var gradesRef = db.collection("grades").doc(this.props.match.params.id).collection("gradeList");
 
         // collect data
-        docRef.get().then(snap => {
+        gradesRef.get().then(snap => {
             const items = []
             let i = 0;
             snap.forEach(item => {
@@ -66,7 +61,6 @@ class StudentDetails extends Component{
             })
             this.setState({grades: items})
         }).then(()=>{
-            console.log(this.state.grades)
             this.setState({loading: false})
         })
     }
@@ -77,7 +71,6 @@ class StudentDetails extends Component{
 
     toggleUserActivation = () =>{
         var db = firebase.firestore()
-        
         var docRef = db.collection('users').doc(this.props.match.params.id);
 
         docRef.update({
@@ -94,9 +87,7 @@ class StudentDetails extends Component{
 
     render(){
         const { auth } = this.props
-
         if (!auth.uid) return <Redirect to='/signin' /> // redirect to signin if user is not logged in
-    
         if (!this.state.loading){
             const parsedDate = this.state.joinDate.seconds * 1000;
             var timeStamp = new Date(parsedDate);

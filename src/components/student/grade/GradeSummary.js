@@ -1,5 +1,4 @@
 import React from 'react'
-import moment from 'moment'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
@@ -12,7 +11,6 @@ const GradeSummary = ({grade}) => {
         str = str.slice(0, 50) + '...'
     }
 
-    // for date formatting
     return (
         <tr>
             <td>{grade.title}</td>
@@ -20,14 +18,11 @@ const GradeSummary = ({grade}) => {
             <td className="grade" style={{textAlign: "left"}}>{str}</td>
             <td><Link to={'/grade/'+ grade.userId +'/'+ grade.gradeId} ><button className="btn">Expand</button></Link></td>
             
-        </tr>
-        
+        </tr>  
     )
-    
 }
 
 const mapStateToProps = (state) => {
-    console.log(state)
     return {
         profile: state.firebase.profile
     }

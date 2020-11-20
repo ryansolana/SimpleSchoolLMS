@@ -30,7 +30,7 @@ class SignUp extends Component {
         return (
             <div className="container login-page">
                 <form onSubmit={this.handleSubmit} className="white">
-                    <div className="card z-depth-1">
+                    <div className="card z-depth-4">
                         <div className="card-content">
                             <h3 className="grey-text text-darken-3 center">Register Your Account</h3>
                             <p className="center">We just need a few details from you to get started</p>
