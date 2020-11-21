@@ -9,7 +9,8 @@ class VerifyEmail extends Component {
 
         this.state = {
             verifyClicked: false,
-            isVerified: false
+            isVerified: false,
+            loading: true
         }
     }
 
@@ -18,7 +19,7 @@ class VerifyEmail extends Component {
             if (user && user.emailVerified === true) {
               console.log('user changed..', user);
               console.log("redirecting user")
-              this.setState({isVerified: true});
+              this.setState({isVerified: true, loading: false});
             }
         });
     }
@@ -47,7 +48,7 @@ class VerifyEmail extends Component {
         if (!auth.uid) return <Redirect to='/signin' /> // redirect to signin if user is not logged in
         if (this.state.isVerified) return <Redirect to='/' />
 
-        if (auth){
+        if (auth && !this.state.loading){
             return (
             <div> 
                 <div className="dashboard container">
@@ -89,8 +90,10 @@ class VerifyEmail extends Component {
             )
         } else {
             return (
-                <div className="container center">
-                    <p>Loading landing page...</p>
+                <div className="container">
+                    <div className="progress ">
+                        <div className="indeterminate"></div>
+                    </div>
                 </div>
             )
         }
