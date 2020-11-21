@@ -8,18 +8,26 @@ class StudentManagement extends Component{
     render(){
         const { users } = this.props
 
-        return(
-            <div className="dashboard container">
-                <h3 className="padding page-title">Student Management</h3>
-
-                <div className="row">
-                    <h5>Current List of Students ({users && users.length - 1})</h5>
-                    <br></br>
-                    <StudentList students={users} />
+        if (users){
+            return(
+                <div className="dashboard container">
+                    <h3 className="padding page-title">Student Management</h3>
+    
+                    <div className="row">
+                        <h5>Current List of Students ({users && users.length - 1})</h5>
+                        <br></br>
+                        <StudentList students={users} />
+                    </div>
+    
                 </div>
-
-            </div>
-        )
+            )
+        } else {
+            return(
+                <div class="progress">
+                    <div class="indeterminate"></div>
+                </div>
+            )  
+        }
     }
 }
 
