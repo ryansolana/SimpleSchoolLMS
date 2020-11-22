@@ -12,38 +12,44 @@ class UpdateGrade extends Component {
         this.state = { 
             // firebase auth included as per mapStateToProps
             title: '',
+            grade: '',
             content: '',
-            contentLink: ''
+            loading: true
         }
     }
 
     componentDidMount(){
         var db = firebase.firestore()
+        const id = this.props.match.params.id
+        const gid = this.props.match.params.gid
 
-        // get data first
-        var docRef = db.collection("announces").doc(this.props.match.params.id);
+        var docRef = db.collection("grades").doc(id).collection("gradeList").doc(gid);
         var data;
 
         docRef.get().then(function(doc) {
             if (doc.exists) {
+                console.log("Document data:", doc.data());
                 data = doc.data();
+                // reload when found with new state
             } else {
+                // doc.data() will be undefined in this case
                 console.log("No such document!");
             }
         }).catch(function(error) {
             console.log("Error getting document:", error);
         }).then(() =>{
-            this.setState({title: data.title, content: data.content, contentLink: data.contentLink})
+            this.setState({title: data.title, grade: data.grade, content: data.content, 
+                authorFirstName: data.authorFirstName, authorLastName: data.authorLastName,
+            createdAt: data.createdAt, loading: false})
+        
         })
         
     }
 
-    deleteHandler = (id) =>{
-        const { deleteGrade } = this.props;
-        deleteGrade(id); 
-        this.props.history.push('/studentManagement');
+    deleteHandler = () =>{
+        this.props.deleteGrade(this.props.match.params.id, this.props.match.params.gid); 
+        this.props.history.push('/manage/student/' + this.props.match.params.id);
     }
-
 
     handleChange = (e) => {
         this.setState({
@@ -60,10 +66,13 @@ class UpdateGrade extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
+        
+        let newGrade = {title: this.state.title, grade: this.state.grade, content: this.state.content, 
+            authorFirstName: this.state.authorFirstName, authorLastName: this.state.authorLastName,
+        createdAt: this.state.createdAt}
 
-        //console.log(this.state)
-        this.props.updateGrade(this.state, this.props.match.params.id)
-        this.props.history.push('/announcements');
+        this.props.updateGrade(newGrade, this.props.match.params.id, this.props.match.params.gid);
+        this.props.history.push('/manage/student/' + this.props.match.params.id);
     }
 
     render(){
@@ -71,28 +80,28 @@ class UpdateGrade extends Component {
 
         if (!auth.uid) return <Redirect to='/signin' /> // redirect to signin if user is not logged in
 
-        if (this.state === null){
-            return (<div class="progress">
-            <div class="indeterminate"></div>
-        </div>)
-        } else {
-            return(<div className="container z-depth-1"> 
+        if (!this.state.loading){
+            return(
+            <div className="container z-depth-1"> 
             <form onSubmit={this.handleSubmit} className="white">
-            <h5 className="grey-text text-darken-3">Edit Gradement</h5>
-            <br></br>
+                <h5 className="grey-text text-darken-3">Edit Grade</h5>
+                <br></br>
                 <div className="input-field">
-                    <label className="active" htmlFor="email">Gradement Title</label>
-                    <input type="text" id="title" onChange={this.handleChange} defaultValue={this.state.title} required/>
+                    <i className="material-icons prefix">title</i>
+                    <label className="active" htmlFor="email">Grade Title</label>
+                    <input type="text" id="title" maxLength="100" onChange={this.handleChange} defaultValue={this.state.title} required/>
                 </div>
 
                 <div className="input-field">
-                    <label className="active" htmlFor="content">Gradement Content (2400 characters max)</label>
-                    <textarea id="content" className="materialize-textarea" onChange={this.handleChange} maxLength="2400" rows="2" cols="200" defaultValue={this.state.content} required></textarea>
+                    <i className="material-icons prefix">rule</i>
+                    <label className="active" htmlFor="grade">Grade</label>
+                    <input type="number" id="grade" min="0" step="1" max="100" onChange={this.handleChange} defaultValue={this.state.grade}required/>
                 </div>
 
                 <div className="input-field">
-                    <label className="active" htmlFor="email">Optional Link Address (include 'https://')</label>
-                    <input type="text" id="contentLink" onChange={this.handleChange} defaultValue={this.state.contentLink}/>
+                    <i className="material-icons prefix">text_snippet</i>
+                    <label className="active" htmlFor="email">Description (2400 char max)</label>
+                    <input type="text" id="contentLink" maxLength="2400" onChange={this.handleChange} defaultValue={this.state.content} required/>
                 </div>
 
                 <div className="input-field">
@@ -107,14 +116,22 @@ class UpdateGrade extends Component {
                 </div>
             </form>
         </div>)
+        } else {
+            return(
+                <div className="container">
+                    <div className="progress">
+                        <div className="indeterminate"></div>
+                    </div>
+                </div>
+          )
         }
     } 
 }
 
 const mapDispatchToProps = (dispatch) => {
     return{
-        updateGrade: (announce, id) => dispatch(updateGrade(announce, id)),
-        deleteGrade: (id) => dispatch(deleteGrade(id))
+        updateGrade: (grade, id, gid) => dispatch(updateGrade(grade, id, gid)),
+        deleteGrade: (id, gid) => dispatch(deleteGrade(id, gid))
     }
 }
 

@@ -51,11 +51,12 @@ class CreateAnnounce extends Component {
                 <form onSubmit={this.handleSubmit} className="white">
                 <h5 className="black-text text-darken-5">Create New Announcement</h5>
                     <div className="input-field">
+                        <i class="material-icons prefix">title</i>
                         <label htmlFor="email">Announcement Title</label>
                         <input type="text" id="title" onChange={this.handleChange} required/>
                     </div>
-
                     <div className="input-field">
+                        <i class="material-icons prefix">description</i>
                         <label htmlFor="content">Announcement Content (2400 characters max)</label>
                         <textarea 
                             rows="2" 
@@ -66,8 +67,8 @@ class CreateAnnounce extends Component {
                             maxLength="2400" 
                             required></textarea>
                     </div>
-
                     <div className="input-field">
+                        <i class="material-icons prefix">insert_link</i>
                         <label htmlFor="email">Optional Link Address (include 'https://')</label>
                         <input type="text" id="contentLink" onChange={this.handleChange}/>
                     </div>

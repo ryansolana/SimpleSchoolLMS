@@ -84,18 +84,22 @@ class UpdateCourseMat extends Component {
                 <form onSubmit={this.handleSubmit} className="white">
                 <h5 className="grey-text text-darken-3">Edit Course Material</h5>
                     <div className="input-field">
+                        <i className="material-icons prefix">title</i>
                         <label className="active" htmlFor="email">Course Material Title</label>
                         <input type="text" id="title" onChange={this.handleChange} maxLength="100" defaultValue={this.state.title} required/>
                     </div>
                     <div className="input-field">
+                        <i className="material-icons prefix">subtitles</i>
                         <label className="active" htmlFor="email">Course Material Subtitle</label>
                         <input type="text" id="subtitle" onChange={this.handleChange} maxLength="100" defaultValue={this.state.subtitle}required/>
                     </div>
                     <div className="input-field">
+                        <i className="material-icons prefix">description</i>
                         <label className="active" htmlFor="content">Course Material Description (2400 char max)</label>
                         <textarea id="content" className="materialize-textarea" maxLength="2400" onChange={this.handleChange} defaultValue={this.state.content} required></textarea>
                     </div>
                     <div className="input-field">
+                        <i className="material-icons prefix">insert_link</i>
                         <label className="active" htmlFor="email">Course Material Link (with https://)</label>
                         <input type="text" id="textlink" onChange={this.handleChange} defaultValue={this.state.textlink} required/>
                     </div>
@@ -115,8 +119,8 @@ class UpdateCourseMat extends Component {
             return(
                 <div className="container center">
                     <h5>Loading course material...</h5>
-                    <div class="progress">
-                        <div class="indeterminate"></div>
+                    <div className="progress">
+                        <div className="indeterminate"></div>
                     </div>
                 </div>
             )

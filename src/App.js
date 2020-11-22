@@ -78,6 +78,7 @@ class App extends Component {
 
             <ProtectedRoute path='/grades' component={ GradeDashboard }/>
             <ProtectedRoute path='/grade/:id/:gid' component={ GradeDetails}/>
+            <AdminRoute path='/editGrade/:id/:gid' component={ UpdateGrade }/>
 
             <AdminRoute path='/studentManagement' component={ StudentManagement }/>
             <AdminRoute exact path='/manage/student/:id' component={ StudentDetails }/>

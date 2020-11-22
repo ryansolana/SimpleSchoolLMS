@@ -38,18 +38,23 @@ class CreateCourseMat extends Component {
                 <form onSubmit={this.handleSubmit} className="white">
                 <h5 className="grey-text text-darken-3">Create New Course Material</h5>
                     <div className="input-field">
+                    <i class="material-icons prefix">title</i>
+                        <i class="material-icons prefix">title</i>  
                         <label htmlFor="email">Course Material Title</label>
                         <input type="text" id="title" onChange={this.handleChange} maxLength="100" required/>
                     </div>
                     <div className="input-field">
+                    <i class="material-icons prefix">subtitles</i>
                         <label htmlFor="email">Course Material Subtitle</label>
                         <input type="text" id="subtitle" onChange={this.handleChange} maxLength="100" required/>
                     </div>
                     <div className="input-field">
+                        <i class="material-icons prefix">description</i>
                         <label htmlFor="content">Course Material Description (2400 char max)</label>
                         <textarea id="content" className="materialize-textarea" maxLength="2400" onChange={this.handleChange} required></textarea>
                     </div>
                     <div className="input-field">
+                        <i class="material-icons prefix">insert_link</i>
                         <label className="active" htmlFor="email">Course Material Link (with https://)</label>
                         <input type="text" id="textlink" onChange={this.handleChange} required/>
                     </div>

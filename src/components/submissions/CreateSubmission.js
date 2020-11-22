@@ -37,18 +37,22 @@ class CreateSubmission extends Component {
                 <form onSubmit={this.handleSubmit} className="white">
                 <h5 className="black-text text-bold">Create New Submission</h5>
                     <div className="input-field">
+                        <i className="material-icons prefix">title</i>
                         <label htmlFor="email">Submission Title</label>
                         <input type="text" id="title" maxLength="100" onChange={this.handleChange} required/>
                     </div>
                     <div className="input-field">
+                    <i className="material-icons prefix">subtitles</i>
                         <label htmlFor="email">Submission Subtitle</label>
                         <input type="text" id="subtitle" maxLength="100" onChange={this.handleChange} required/>
                     </div>
                     <div className="input-field">
+                        <i className="material-icons prefix">description</i>
                         <label htmlFor="content">Submission Description (2400 char max)</label>
                         <textarea id="content" className="materialize-textarea" maxLength="2400" onChange={this.handleChange} required></textarea>
                     </div>
                     <div className="input-field">
+                        <i className="material-icons prefix">insert_link</i>
                         <label htmlFor="email">Submission Dropbox Link (with https://)</label>
                         <input type="text" id="textlink" maxLength="2400" onChange={this.handleChange} required/>
                     </div>

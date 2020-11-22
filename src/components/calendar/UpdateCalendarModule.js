@@ -141,8 +141,8 @@ class UpdateCalendarModule extends Component {
             return(
                 <div className="container center">
                     <h5>Loading calendar module...</h5>
-                    <div class="progress">
-                        <div class="indeterminate"></div>
+                    <div className="progress">
+                        <div className="indeterminate"></div>
                     </div>
                 </div>
             )

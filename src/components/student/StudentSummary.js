@@ -10,7 +10,6 @@ const StudentSummary = ({student}) => {
     var date = moment(timeStamp).format('LLL');
 
     return (
-        
         <tr>
             <td>{student.firstName} {student.lastName}</td>
             <td>{student.email}</td>

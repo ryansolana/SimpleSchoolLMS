@@ -9,6 +9,7 @@ class CreateGrade extends Component {
         // firebase auth included as per mapStateToProps
         title: '',
         content: '',
+        grade: null,
         userId: this.props.match.params.id,
 
         // separate from submission obj
@@ -48,12 +49,7 @@ class CreateGrade extends Component {
         e.preventDefault();
         
         // exclude fullName of user
-        var newGrade = {
-            title: this.state.title,
-            content: this.state.content,
-            userId: this.state.userId
-        }
-        console.log(newGrade)
+
         this.props.createGrade(this.state, this.props.match.params.id)
         this.props.history.push('/manage/student/' + this.props.match.params.id)
     }
@@ -71,17 +67,19 @@ class CreateGrade extends Component {
                         <label htmlFor="title">Title</label>
                         <input type="text" id="title" maxLength="100" onChange={this.handleChange} required/>
                     </div>
+
                     <div className="input-field">
-                        <i class="material-icons prefix">Feedback</i>
-                        <label htmlFor="content">Description (optional, 2400 char max)</label>
-                        <textarea id="content" maxLength="2400" className="materialize-textarea" onChange={this.handleChange} required> </textarea>
-                    </div>
-                    <div className="input-field">
-                        <i className="material-icons prefix">format_list_numbered</i>
+                        <i className="material-icons prefix">rule</i>
                         <label htmlFor="grade">Grade</label>
                         <input type="number" id="grade" min="0" step="1" max="100" onChange={this.handleChange} required/>
                     </div>
 
+                    <div className="input-field">
+                        <i class="material-icons prefix">text_snippet</i>
+                        <label htmlFor="content">Feedback Description (2400 char max)</label>
+                        <textarea id="content" maxLength="2400" className="materialize-textarea" onChange={this.handleChange} required> </textarea>
+                    </div>
+                    
                     <div className="input-field">
                         <button className="btn green lighten-1 hoverable waves-effect">Create Grade</button>
                     </div>

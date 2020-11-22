@@ -82,18 +82,22 @@ class UpdateSubmission extends Component {
                     <form onSubmit={this.handleSubmit} className="white">
                     <h5 className="grey-text text-darken-3">Create New Submission</h5>
                         <div className="input-field">
+                            <i className="material-icons prefix">title</i>
                             <label className="active" htmlFor="email">Submission Title</label>
                             <input type="text" id="title" maxLength="100" onChange={this.handleChange} defaultValue={this.state.title}  required/>
                         </div>
                         <div className="input-field">
+                            <i className="material-icons prefix">subtitles</i>
                             <label className="active" htmlFor="email">Submission Subtitle</label>
                             <input type="text" id="subtitle" maxLength="100" onChange={this.handleChange} defaultValue={this.state.subtitle}required/>
                         </div>
                         <div className="input-field">
+                            <i className="material-icons prefix">description</i>
                             <label className="active" htmlFor="content">Submission Description (2400 char max)</label>
                             <textarea id="content" className="materialize-textarea" maxLength="2400" onChange={this.handleChange} defaultValue={this.state.content} required></textarea>
                         </div>
                         <div className="input-field">
+                            <i className="material-icons prefix">insert_link</i>
                             <label className="active" htmlFor="email">Submission Dropbox Link (with https://)</label>
                             <input type="text" id="textlink" maxLength="2400" onChange={this.handleChange} defaultValue={this.state.textlink} required/>
                         </div>
@@ -114,8 +118,8 @@ class UpdateSubmission extends Component {
             return(
                 <div className="container center">
                     <h5>Loading submission...</h5>
-                    <div class="progress">
-                        <div class="indeterminate"></div>
+                    <div className="progress">
+                        <div className="indeterminate"></div>
                     </div>
                 </div>
             )

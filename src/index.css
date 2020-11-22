@@ -223,7 +223,11 @@ textarea.materialize-textarea{height: 15rem;}
 }
 
 table tr td:last-child{
-  width: 15%;
+  width: 10%;
+}
+
+table tr td.short{
+  width: 10%;
 }
 
 table tr td.grade{

@@ -25,14 +25,15 @@ export const createGrade = (grade, userId) => {
     }
 }
 
-export const updateGrade = (grade, userId, gradeId) => {
+export const updateGrade = (grade, id, gradeId) => {
     return (dispatch, getState, {getFirebase, getFirestore}) => {
         // make async call to database
         const firestore = getFirestore();
         const profile = getState().firebase.profile;
         const authorId = getState().firebase.auth.uid;
 
-        firestore.collection('grades').doc(gradeId).update({
+        
+        firestore.collection("grades").doc(id).collection("gradeList").doc(gradeId).update({
             ...grade,
             authorFirstName: profile.firstName,
             authorLastName: profile.lastName,
@@ -45,12 +46,12 @@ export const updateGrade = (grade, userId, gradeId) => {
     }
 }
 
-export const deleteGrade = (gradeId) => {
+export const deleteGrade = (id, gradeId) => {
     return (dispatch, getState, { getFirestore }) => {
         // make async call to database
         const firestore = getFirestore();
-        console.log(gradeId);
-        firestore.collection('grades').doc(gradeId).delete()
+        
+        firestore.collection("grades").doc(id).collection("gradeList").doc(gradeId).delete()
         .then(()=>{
             dispatch({ type: 'DELETE_GRADE'})
         }).catch((err)=>{

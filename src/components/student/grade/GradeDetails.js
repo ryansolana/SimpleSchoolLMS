@@ -75,7 +75,6 @@ class GradeDetails extends Component{
                             <div className="row">
                                 <span className="card-title">{this.state.title} Grading</span>
                                 <div>Grading by {this.state.authorFirstName} {this.state.authorLastName}, {moment(this.state.createdAt.toDate()).calendar()}</div>
-
                             </div>
                         </div>
 
@@ -86,12 +85,10 @@ class GradeDetails extends Component{
                     </div>
 
                     {
-                    profile.isAdmin && <div>
-                        <button className="btn red" onClick={() => this.deleteHandler(id)}>Delete this gradement</button>
-                        &nbsp;
-                        <button className="btn orange"><Link to={'/editGrade/' + id}><div className="white-text">Edit this gradement</div></Link></button>
-                        
-                        </div>     
+                    profile.isAdmin && 
+                    <div>
+                        <Link to={'/editGrade/' + this.props.match.params.id +'/' + this.props.match.params.gid}><button className="btn orange white-text">Edit Grade</button></Link>
+                    </div>     
                     } 
                     
                 </div>

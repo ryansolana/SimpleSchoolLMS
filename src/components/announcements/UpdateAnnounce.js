@@ -87,16 +87,19 @@ class UpdateAnnounce extends Component {
                     <h5 className="grey-text text-darken-3">Edit Announcement</h5>
                     <br></br>
                         <div className="input-field">
+                            <i className="material-icons prefix">title</i>
                             <label className="active" htmlFor="email">Announcement Title</label>
                             <input type="text" id="title" onChange={this.handleChange} defaultValue={this.state.title} required/>
                         </div>
     
                         <div className="input-field">
+                            <i className="material-icons prefix">description</i>
                             <label className="active" htmlFor="content">Announcement Content (2400 characters max)</label>
                             <textarea id="content" className="materialize-textarea" onChange={this.handleChange} maxLength="2400" rows="2" cols="200" defaultValue={this.state.content} required></textarea>
                         </div>
     
                         <div className="input-field">
+                            <i className="material-icons prefix">insert_link</i>
                             <label className="active" htmlFor="email">Optional Link Address (include 'https://')</label>
                             <input type="text" id="contentLink" onChange={this.handleChange} defaultValue={this.state.contentLink}/>
                         </div>
