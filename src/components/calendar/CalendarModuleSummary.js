@@ -3,7 +3,7 @@ import moment from 'moment'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-const CalendarModuleSummary = ({calendarModule, profile}) => {
+const CalendarModuleSummary = ({calendarModule, profile, uid}) => {
     // for date formatting
     const m = moment(calendarModule.date, 'YYYY-MM-DD');
     const date = m.format('LL');
@@ -15,6 +15,7 @@ const CalendarModuleSummary = ({calendarModule, profile}) => {
             <td >{calendarModule.title}</td>
             {status === "Released" ? <td className="text-center text-bold">{status}</td> : <td className="red-bg text-center">{status}</td>}
             <td className="text-center">{date}</td>
+            <td><Link to={'/calendarModule/' + uid}><i className="material-icons black-text text-darken-3">open_with</i></Link></td>
             {profile.isAdmin && <td><Link to={'/editCalendarModule/' + calendarModule.id}><i className="material-icons black-text text-darken-3">edit</i></Link></td>}
         </tr>
     )

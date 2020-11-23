@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import M from  'materialize-css/dist/js/materialize.min.js';
 
+import Footer from './components/layout/Footer'
 import Navbar from './components/layout/Navbar'
 import SignIn from './components/auth/SignIn'
 import SignUp from './components/auth/SignUp'
@@ -26,6 +27,7 @@ import UpdateSubmission from './components/submissions/UpdateSubmission'
 import CalendarDashboard from './components/dashboard/CalendarDashboard'
 import CreateCalendarModule from './components/calendar/CreateCalendarModule'
 import UpdateCalendarModule from './components/calendar/UpdateCalendarModule'
+import CalendarModuleDetails from './components/calendar/CalendarModuleDetails'
 
 import StudentManagement from './components/student/StudentManagement'
 import StudentDetails from './components/student/StudentDetails'
@@ -75,6 +77,7 @@ class App extends Component {
             <ProtectedRoute path='/calendar' component={ CalendarDashboard }/>
             <AdminRoute path='/createCalendarModule' component={ CreateCalendarModule }/>
             <AdminRoute path='/editCalendarModule/:id' component={ UpdateCalendarModule }/>
+            <ProtectedRoute exact path='/calendarModule/:id' component={ CalendarModuleDetails }/>
 
             <ProtectedRoute path='/grades' component={ GradeDashboard }/>
             <ProtectedRoute path='/grade/:id/:gid' component={ GradeDetails}/>
@@ -92,8 +95,8 @@ class App extends Component {
             <Route path='/401' component={ Unauthorized }/>
             <Route path='/activate' component={ UnactivatedStudent }/>
             <Route component = {NotFound} />
-
           </Switch>
+          <Footer/>
         </div>
       </BrowserRouter>
     );

@@ -1,7 +1,7 @@
 import React from 'react'
 import StudentSummary from './StudentSummary'
 
-const StudentList = ({students}, type) => {
+const StudentList = ({students}, ) => {
 
   const isEmpty = (obj) => {
     for(var key in obj) {
@@ -25,26 +25,8 @@ const StudentList = ({students}, type) => {
             </tr>
           </thead> 
           <tbody>
-            { // check if students exists, if so, map
-              this.props.type === 0 && students.map(student =>{
-                if (!student.isAdmin){
-                  return (
-                    <StudentSummary student={student} key={student.id}/>
-                  )
-                } 
-              })
-            }
-            { // check if students exists, if so, map
-              this.props.type === 1 && students.map(student =>{
-                if (!student.isAdmin && student.isV){
-                  return (
-                    <StudentSummary student={student} key={student.id}/>
-                  )
-                } 
-              })
-            }
-            { // check if students exists, if so, map
-              this.props.type === 0 && students.map(student =>{
+            { // all
+              students.map(student =>{
                 if (!student.isAdmin){
                   return (
                     <StudentSummary student={student} key={student.id}/>

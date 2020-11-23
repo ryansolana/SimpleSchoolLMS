@@ -38,7 +38,8 @@ export const signUp = (newUser) => {
                 initials: newUser.firstName[0] + newUser.lastName[0],
                 email: newUser.email,
                 joinDate: new Date(),
-                isActivated: false
+                isActivated: false,
+                id: resp.user.uid
             })
            
             dispatch({type: 'SIGNUP_SUCCESS'})

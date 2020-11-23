@@ -58,6 +58,13 @@ textarea.materialize-textarea:focus:not([readonly]){
   line-height: 110px;
 }
 
+.footer{
+  margin-top: 30%;
+  background-color: #242424 !important;
+  height: 50px;
+  line-height: 50px;
+}
+
 .nav-wrapper-grey{
   background-color: #242424 !important;
   height: 50px;
@@ -223,7 +230,7 @@ textarea.materialize-textarea{height: 15rem;}
 }
 
 table tr td:last-child{
-  width: 10%;
+  width: 15%;
 }
 
 table tr td.short{

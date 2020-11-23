@@ -26,7 +26,7 @@ const CalendarModuleList = ({calendarModules}) => {
           { // check if calendarModules exists, if so, map
             calendarModules && calendarModules.map(calendarModule =>{
               return (
-                <CalendarModuleSummary calendarModule={calendarModule} key={calendarModule.id}/>
+                <CalendarModuleSummary calendarModule={calendarModule} key={calendarModule.id} uid={calendarModule.id}/>
               )
             })
           }
