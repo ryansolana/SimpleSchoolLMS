@@ -43,7 +43,7 @@ class SignIn extends Component {
                                 <input type="password" id="password" maxLength="50" size="50" onChange={this.handleChange}/>
                             </div>
                             <div className="input-field center">
-                                { authError ? <p className="red-text">{authError && "Failed to authenticate"}</p> : null }                       
+                                { authError ? <p className="red-text">{authError && "Sorry, your login credentials were incorrect. Please try again."}</p> : null }                       
                                 <button className="btn lighten-1 z-depth-0 login-btn center">Login</button>
                             </div>
                             <div className="center">

@@ -11,7 +11,7 @@ class GradeDashboard extends Component{
         this.state = { 
             // firebase auth included as per mapStateToProps
             grades: [],
-            loading: false
+            loading: true
         }
     }
 
@@ -42,17 +42,30 @@ class GradeDashboard extends Component{
 
         if (!auth.uid) return <Redirect to='/signin' /> // redirect to signin if user is not logged in
 
-        return(
-            <div className="dashboard container">
-                <h3 className="page-title padding">My Grades</h3>
-
-                <div className="row">
-                    <h5>Grade List</h5>
-                    {!this.state.loading && <GradeList grades={this.state.grades} />}
+        if (!this.state.loading){
+            return(
+                <div className="dashboard container">
+                    <h3 className="page-title padding">My Grades</h3>
+    
+                    <div className="row">
+                        <h5>Grade List</h5>
+                        {!this.state.loading && <GradeList grades={this.state.grades} />}
+                    </div>
+                    
                 </div>
-                
-            </div>
-        )
+            )
+        } else {
+            return(
+                <div className="dashboard container">
+                    <h3 className="page-title padding">My Grades</h3>
+                    <div className="progress">
+                        <div className="indeterminate"></div>
+                    </div>
+                </div>
+          )
+        }
+
+        
     }
 }
 

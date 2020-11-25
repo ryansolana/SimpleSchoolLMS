@@ -6,10 +6,11 @@ import * as firebase from 'firebase/app';
 class ProfilePage extends Component {
     state = { 
         // for password changing
-        passwordSuccess: '',
+        passwordMessage: '',
         passwordFail: null,
         isReAuth: false,
         changePasswordEnabled: false,
+        passwordWasChanged: false,
         inputtedPassword: "",
 
         oldPass: '',
@@ -33,32 +34,39 @@ class ProfilePage extends Component {
 
     changePassword = (e) =>{
         e.preventDefault();
-        var user = firebase.auth().currentUser
 
-        const credential = firebase.auth.EmailAuthProvider.credential(
-            user.email, 
-            this.state.oldPass
-        );
+        if (this.state.oldPass === this.state.newPass){
+            this.setState({passwordMessage: "Please make sure that your new password is different from your current password!"})
+        } else {
+            var user = firebase.auth().currentUser
 
-        var newPass = this.state.newPass
+            const credential = firebase.auth.EmailAuthProvider.credential(
+                user.email, 
+                this.state.oldPass
+            );
 
-        console.log(newPass)
+            var newPass = this.state.newPass
 
-        // reauthenticate user first
-        user.reauthenticateWithCredential(credential).then(() => {
-            console.log("Successfully reauth")
+            console.log(newPass)
 
-            user.updatePassword(newPass).then(() =>{
-                console.log("Successfully changed pass to: " + newPass)
-            }).catch((error)=> {
-                console.log("Failed to change pass", error)
-            }).then(()=>{
-                this.setState({passwordSuccess: "Successfully changed password!", passwordChanged: false});
+            // reauthenticate user first
+            user.reauthenticateWithCredential(credential).then(() => {
+                console.log("Successfully reauth")
+
+                user.updatePassword(newPass).then(() =>{
+                    console.log("Successfully changed pass to: " + newPass)
+                }).catch((error)=> {
+                    console.log("Failed to change pass", error)
+                }).then(()=>{
+                    this.setState({passwordMessage: "Successfully changed password!", passwordWasChanged: true});
+                })
+            }).catch((error) => {
+                console.log("error ran into", error)
+                this.setState({passwordMessage: "Please make sure your password is correct!"});
             })
-        }).catch((error) => {
-            console.log("error ran into", error)
-            this.setState({passwordSuccess: "Please make sure your password is correct!", passwordChanged: true});
-        })
+        }
+
+        
     }
 
     render(){ 
@@ -79,28 +87,26 @@ class ProfilePage extends Component {
                     </div>
                     <div className="card-action" style={{paddingTop: 0}}>
                         <br></br>
-                        {!this.state.changePasswordEnabled && <button className="btn blue" onClick={this.enableChangePassword}>Change Password</button>}
+                        {!this.state.changePasswordEnabled && !this.state.passwordWasChanged && <button className="btn blue" onClick={this.enableChangePassword}>Change Password</button>}
 
-                        {this.state.changePasswordEnabled && 
+                        {this.state.changePasswordEnabled && !this.state.passwordWasChanged &&
                             <form onSubmit={this.changePassword} style={{marginTop:0, paddingLeft: 0}}>
                                 <p><bold>Change Password</bold></p>
                                 <div className="input-field">
                                     <label htmlFor="password">Enter existing password</label>
-                                    <input type="password" id="oldPass" maxLength="30" size="30" onChange={this.handleChange}/>
+                                    <input type="password" id="oldPass" minLength="6" maxLength="30" size="30" onChange={this.handleChange}/>
                                 </div>
                                 <div className="input-field">
                                     <label htmlFor="password">Enter new password</label>
-                                    <input type="password" id="newPass" maxLength="30" size="30" onChange={this.handleChange}/>
+                                    <input type="password" id="newPass" minLength="6" maxLength="30" size="30" onChange={this.handleChange}/>
                                 </div>
                                 {
-                                    this.state.oldPass.length >= 6 &&
-                                    this.state.newPass.length >= 6 &&
                                     <button className="btn green" type="submit">Confirm New Password</button>
                                 }
                             </form>
                         }
 
-                    {this.state.passwordSuccess && <p>{this.state.passwordSuccess}</p>}
+                    {this.state.passwordMessage && <p>{this.state.passwordMessage}</p>}
 
                     </div>
                 </div>

@@ -38,6 +38,7 @@ class ForgotPassword extends Component {
                 <form onSubmit={this.handleSubmit} className="white">
                     <div className="card z-depth-4">
                         <div className="card-content">
+                            <i className="material-icons prefix center">help</i>
                             {!this.state.emailSent ? 
                                 <div>
                                     <h5 className="grey-text text-darken-3 center" style={{float: 'center'}}>Forgot your password?</h5>
