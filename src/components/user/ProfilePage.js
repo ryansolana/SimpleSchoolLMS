@@ -36,7 +36,7 @@ class ProfilePage extends Component {
         e.preventDefault();
 
         if (this.state.oldPass === this.state.newPass){
-            this.setState({passwordMessage: "Please make sure that your new password is different from your current password!"})
+            this.setState({passwordMessage: "Please make sure that your new password is different from your current password."})
         } else {
             var user = firebase.auth().currentUser
 
@@ -51,18 +51,16 @@ class ProfilePage extends Component {
 
             // reauthenticate user first
             user.reauthenticateWithCredential(credential).then(() => {
-                console.log("Successfully reauth")
-
                 user.updatePassword(newPass).then(() =>{
-                    console.log("Successfully changed pass to: " + newPass)
+
                 }).catch((error)=> {
-                    console.log("Failed to change pass", error)
+
                 }).then(()=>{
                     this.setState({passwordMessage: "Successfully changed password!", passwordWasChanged: true});
                 })
             }).catch((error) => {
                 console.log("error ran into", error)
-                this.setState({passwordMessage: "Please make sure your password is correct!"});
+                this.setState({passwordMessage: "Please make sure your password is correct."});
             })
         }
 
@@ -100,14 +98,10 @@ class ProfilePage extends Component {
                                     <label htmlFor="password">Enter new password</label>
                                     <input type="password" id="newPass" minLength="6" maxLength="30" size="30" onChange={this.handleChange}/>
                                 </div>
-                                {
-                                    <button className="btn green" type="submit">Confirm New Password</button>
-                                }
+                                <button className="btn green" type="submit">Confirm New Password</button>
                             </form>
                         }
-
-                    {this.state.passwordMessage && <p>{this.state.passwordMessage}</p>}
-
+                        {this.state.passwordMessage && <p>{this.state.passwordMessage}</p>}
                     </div>
                 </div>
             </div>
