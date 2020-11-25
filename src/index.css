@@ -60,7 +60,7 @@ textarea.materialize-textarea:focus:not([readonly]){
 
 .footer{
   margin-top: 35%;
-  background-color: #242424 !important;
+  background-color: #ffffff !important;
   height: 50px;
   line-height: 50px;
 }
@@ -77,10 +77,9 @@ textarea.materialize-textarea:focus:not([readonly]){
 }
 
 .nav-wrapper-grey a.adminBtn{
-  background-color: #096dc0 !important;
+  background-color: #0076d6 !important;
   color: white;
 }
-
 
 
 button.login-btn{

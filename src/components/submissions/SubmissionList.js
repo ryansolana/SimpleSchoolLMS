@@ -3,7 +3,7 @@ import SubmissionSummary from './SubmissionSummary'
 import { Link } from 'react-router-dom'
 
 
-const SubmissionList = ({submissions}) => {
+const SubmissionList = ({submissions, currentWeek}) => {
   const isEmpty = (obj) => {
     for(var key in obj) {
         if(obj.hasOwnProperty(key))
@@ -17,6 +17,7 @@ const SubmissionList = ({submissions}) => {
       <div className="submission-list section z-depth-0">   
         { // check if submissions exists, if so, map
           submissions && submissions.map(submission =>{
+            if (submission.weekNum <= currentWeek)
             return (
               <Link to={'/submission/' + submission.id}>
                 <SubmissionSummary submission={submission} key={submission.id}/>

@@ -3,8 +3,6 @@ import { connect } from 'react-redux'
 import { Route, Redirect } from 'react-router-dom';
 
 const ProtectedRoute = ({ component: Component, auth, profile, ...rest}) => {
-
-    console.log(auth, profile)
     // passes all tests or user is admin, then bypass
 
     if (profile.isAdmin || (auth.emailVerified && profile.isActivated)){

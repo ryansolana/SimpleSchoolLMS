@@ -10,6 +10,7 @@ class UpdateSubmission extends Component {
 
         this.state = { 
             // firebase auth included as per mapStateToProps
+            weekNum: 1,
             title: '',
             subtitle: '',
             content: '',
@@ -38,6 +39,7 @@ class UpdateSubmission extends Component {
             console.log("Error getting document:", error);
         }).then(() =>{
             this.setState({
+                weekNum: data.weekNum,
                 title: data.title,
                 subtitle: data.subtitle,
                 content: data.content,
@@ -62,6 +64,7 @@ class UpdateSubmission extends Component {
         e.preventDefault();
         
         const newSub = {
+            weekNum: this.state.weekNum,
             title: this.state.title,
             subtitle: this.state.subtitle,
             content: this.state.content,
@@ -80,7 +83,12 @@ class UpdateSubmission extends Component {
             return (
                 <div className="container z-depth-1">
                     <form onSubmit={this.handleSubmit} className="white">
-                    <h5 className="grey-text text-darken-3">Create New Submission</h5>
+                    <h5 className="grey-text text-darken-3">Update Existing Submission</h5>
+                        <div className="input-field">
+                            <i class="material-icons prefix">format_list_numbered</i>
+                            <label htmlFor="email">Week Number</label>
+                            <input type="number" id="weekNum" onChange={this.handleChange} min="0" max="52" required/>
+                        </div>
                         <div className="input-field">
                             <i className="material-icons prefix">title</i>
                             <label className="active" htmlFor="email">Submission Title</label>

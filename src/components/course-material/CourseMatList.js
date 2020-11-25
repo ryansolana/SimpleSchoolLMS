@@ -2,8 +2,7 @@ import React from 'react'
 import CourseMatSummary from './CourseMatSummary'
 import { Link } from 'react-router-dom'
 
-
-const CourseMatList = ({coursemats}) => {
+const CourseMatList = ({coursemats, currentWeek}) => {
 
   const isEmpty = (obj) => {
     for(var key in obj) {
@@ -14,10 +13,12 @@ const CourseMatList = ({coursemats}) => {
   }
 
   if (coursemats && !isEmpty(coursemats)){
+    console.log("current week is: ", currentWeek)
     return (
       <div className="coursemat-list section z-depth-0">   
         { // check if coursemats exists, if so, map
           coursemats && coursemats.map(coursemat =>{
+            if (coursemat.weekNum <= currentWeek)
             return (
               <Link to={'/course-material/' + coursemat.id} key={coursemat.id}>
                 <CourseMatSummary coursemat={coursemat}/>

@@ -12,7 +12,7 @@ const Navbar = (props) => {
 
     const schoolLinks = (auth.uid && auth.emailVerified && profile.isActivated) || profile.isAdmin ? 
         <div>
-            <nav className="nav-wrapper darken-3 grey">
+            <nav className="nav-wrapper white" style={{boxShadow: 'none'}}>
                 <div className="container">
                     <SchoolLinks profile={profile}/>
                 </div>

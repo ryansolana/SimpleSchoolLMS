@@ -9,6 +9,7 @@ class CreateSubmission extends Component {
 
         this.state = { 
             // firebase auth included as per mapStateToProps
+            weekNum: 1,
             title: '',
             subtitle: '',
             content: '',
@@ -36,6 +37,11 @@ class CreateSubmission extends Component {
             <div className="container z-depth-1">
                 <form onSubmit={this.handleSubmit} className="white">
                 <h5 className="black-text text-bold">Create New Submission</h5>
+                    <div className="input-field">
+                        <i class="material-icons prefix">format_list_numbered</i>
+                        <label htmlFor="email">Week Number (default: 1)</label>
+                        <input type="number" id="weekNum" onChange={this.handleChange} min="0" max="52" required/>
+                    </div>
                     <div className="input-field">
                         <i className="material-icons prefix">title</i>
                         <label htmlFor="email">Submission Title</label>

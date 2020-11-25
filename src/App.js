@@ -32,6 +32,8 @@ import CalendarModuleDetails from './components/calendar/CalendarModuleDetails'
 import StudentManagement from './components/student/StudentManagement'
 import StudentDetails from './components/student/StudentDetails'
 
+import CourseManagement from './components/admin/CourseManagement'
+
 import GradeDashboard from './components/dashboard/GradeDashboard'
 import GradeDetails from './components/student/grade/GradeDetails'
 import CreateGrade from './components/student/grade/CreateGrade'
@@ -89,6 +91,8 @@ class App extends Component {
             <AdminRoute exact path='/manage/student/:id' component={ StudentDetails }/>
             <AdminRoute exact path='/manage/student/createGrade/:id' component={ CreateGrade }/>
             <AdminRoute exact path='/manage/student/editGrade/:id' component={ UpdateGrade } />
+
+            <AdminRoute exact path='/courseManagement' component={ CourseManagement } />
 
             <ProtectedRoute path='/myAccount' component={ ProfilePage }/>
             <Route path='/forgotPassword' component={ ForgotPassword }/>

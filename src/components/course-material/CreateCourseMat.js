@@ -9,6 +9,7 @@ class CreateCourseMat extends Component {
 
         this.state = { 
             // firebase auth included as per mapStateToProps
+            weekNum: 1,
             title: '',
             subtitle: '',
             content: '',
@@ -38,7 +39,11 @@ class CreateCourseMat extends Component {
                 <form onSubmit={this.handleSubmit} className="white">
                 <h5 className="grey-text text-darken-3">Create New Course Material</h5>
                     <div className="input-field">
-                    <i class="material-icons prefix">title</i>
+                        <i class="material-icons prefix">format_list_numbered</i>
+                        <label htmlFor="email">Week Number (default: 1)</label>
+                        <input type="number" id="weekNum" onChange={this.handleChange} min="0" max="52" required/>
+                    </div>
+                    <div className="input-field">
                         <i class="material-icons prefix">title</i>  
                         <label htmlFor="email">Course Material Title</label>
                         <input type="text" id="title" onChange={this.handleChange} maxLength="100" required/>

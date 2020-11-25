@@ -57,15 +57,18 @@ class StudentManagement extends Component{
             // all
             case 0:
                 items = []
-                allUsers.forEach(item => {
-                    items[i] = item;
-                    i++;
-                   })
-                   this.setState({filteredUsers: items, listType: "All Students"})
+                if (allUsers){
+                    allUsers.forEach(item => {
+                        items[i] = item;
+                        i++;
+                       })
+                       this.setState({filteredUsers: items, listType: "All Students"})
+                }
                 break;
             // activated
             case 1:
                 items = []
+                if (allUsers){
                 allUsers.forEach(item => {
                     if (item.isActivated === true){
                         items[i] = item;
@@ -73,10 +76,12 @@ class StudentManagement extends Component{
                     }
                    })
                    this.setState({filteredUsers: items, listType: "Activated Students"})
+                }
                 break;
             // unactivated
             case 2:
                 items = []
+                if (allUsers){
                 allUsers.forEach(item => {
                     if (item.isActivated === false){
                         items[i] = item;
@@ -84,6 +89,7 @@ class StudentManagement extends Component{
                     }
                    })
                    this.setState({filteredUsers: items, listType: "Unactivated Students"})
+                }
                 break;
             default:
         }
