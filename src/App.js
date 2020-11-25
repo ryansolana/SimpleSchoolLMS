@@ -40,9 +40,11 @@ import UpdateGrade from './components/student/grade/UpdateGrade'
 import NotFound from './components/dashboard/NotFound'
 import ProtectedRoute from './components/auth/ProtectedRoute'
 import AdminRoute from './components/auth/AdminRoute'
+import ForgotPassword from './components/auth/ForgotPassword'
 import Unauthorized from './components/dashboard/Unauthorized'
 import UnactivatedStudent from './components/auth/UnactivatedStudent'
 import RedirectPage from './components/dashboard/RedirectPage';
+import ProfilePage from './components/user/ProfilePage'
 
 
 class App extends Component {
@@ -88,6 +90,8 @@ class App extends Component {
             <AdminRoute exact path='/manage/student/createGrade/:id' component={ CreateGrade }/>
             <AdminRoute exact path='/manage/student/editGrade/:id' component={ UpdateGrade } />
 
+            <ProtectedRoute path='/myAccount' component={ ProfilePage }/>
+            <Route path='/forgotPassword' component={ ForgotPassword }/>
             <Route path='/redirect' component={ RedirectPage }/>
             <Route path='/signin' component={ SignIn }/>
             <Route path='/signup' component={ SignUp }/>

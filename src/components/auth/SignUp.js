@@ -32,6 +32,7 @@ class SignUp extends Component {
                 <form onSubmit={this.handleSubmit} className="white">
                     <div className="card z-depth-4">
                         <div className="card-content">
+                            <i className="material-icons prefix center">how_to_reg</i>
                             <h3 className="grey-text text-darken-3 center">Register Your Account</h3>
                             <p className="center">We just need a few details from you to get started</p>
                             <br></br>
@@ -53,7 +54,7 @@ class SignUp extends Component {
                                     <input type="text" id="lastName" onChange={this.handleChange} required/>
                                 </div>
                                 <div className="input-field center">
-                                    <button className="btn blue lighten-1 z-depth-0">Sign Up</button>
+                                    <button className="btn login-btn lighten-1 z-depth-0">Sign Up</button>
                                     <div className="red-text center">
                                         { authError ? <p>{ authError }</p> : null }
                                     </div>

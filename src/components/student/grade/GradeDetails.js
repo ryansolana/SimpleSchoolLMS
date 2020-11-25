@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import moment from 'moment'
-import { deleteGrade } from '../../../store/actions/gradeActions'
 import { Link } from 'react-router-dom'
 import * as firebase from 'firebase'
 
@@ -44,21 +43,12 @@ class GradeDetails extends Component{
             this.setState({title: data.title, grade: data.grade, content: data.content, 
                 authorFirstName: data.authorFirstName, authorLastName: data.authorLastName,
             createdAt: data.createdAt, loading: false})
-        
         })
-    }
-
-    
-    deleteHandler = (id) =>{
-        /*
-        deleteGrade(id); 
-        props.history.push('/gradements');
-        */
     }
     
 
     render(){
-        const { auth, profile, deleteGrade} = this.props;
+        const { auth, profile} = this.props;
         const id = this.props.match.params.id
         if (!auth.uid) return <Redirect to='/signin' /> // redirect to signin if user is not logged in
 
@@ -66,7 +56,7 @@ class GradeDetails extends Component{
         if (auth && profile && id && (auth.uid !== id) && (!profile.isAdmin)) 
             return <Redirect to='/401' />
 
-        if (!this.state.loading){
+        if (!this.state.loading && this.state.title){
             return (
             <div>
                 <div className="container section grade-details">
@@ -85,10 +75,10 @@ class GradeDetails extends Component{
                     </div>
 
                     {
-                    profile.isAdmin && 
-                    <div>
-                        <Link to={'/editGrade/' + this.props.match.params.id +'/' + this.props.match.params.gid}><button className="btn orange white-text">Edit Grade</button></Link>
-                    </div>     
+                        profile.isAdmin && 
+                        <div>
+                            <Link to={'/editGrade/' + this.props.match.params.id +'/' + this.props.match.params.gid}><button className="btn orange white-text">Edit Grade</button></Link>
+                        </div>     
                     } 
                     
                 </div>
@@ -107,18 +97,11 @@ class GradeDetails extends Component{
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return{
-        deleteGrade: (grade) => dispatch(deleteGrade(grade))
-    }
-}
-
-
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
     return {
         auth: state.firebase.auth,
         profile: state.firebase.profile,
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(GradeDetails)
+export default connect(mapStateToProps, null)(GradeDetails)

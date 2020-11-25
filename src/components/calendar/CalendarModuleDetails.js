@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
-import CalendarModuleList from '../calendar/CalendarModuleList'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import moment from 'moment'
-import { deleteCalendarModule } from '../../store/actions/calendarActions'
 import { Link } from 'react-router-dom'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
@@ -51,8 +49,7 @@ class CalendarModuleDetails extends Component{
     }
 
     render(){
-        const { auth, profile, deleteCalendarModule, calendarModules} = this.props;
-        const id = this.props.match.params.id
+        const { auth } = this.props;
         if (!auth.uid) return <Redirect to='/signin' /> // redirect to signin if user is not logged in
 
         const m = moment(this.state.date, 'YYYY-MM-DD');
@@ -100,14 +97,8 @@ class CalendarModuleDetails extends Component{
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return{
-        deleteCalendarModule: (calendarModule) => dispatch(deleteCalendarModule(calendarModule))
-    }
-}
 
-
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
     return {
         calendarModules: state.firestore.ordered.calendarModules,
         auth: state.firebase.auth,
@@ -116,7 +107,7 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 export default compose(
-    connect(mapStateToProps, mapDispatchToProps),
+    connect(mapStateToProps, null),
     firestoreConnect([
         { collection: 'calendarModules', orderBy: ['weekNum', 'asc' ]},
     ])

@@ -59,7 +59,7 @@ textarea.materialize-textarea:focus:not([readonly]){
 }
 
 .footer{
-  margin-top: 30%;
+  margin-top: 35%;
   background-color: #242424 !important;
   height: 50px;
   line-height: 50px;
@@ -276,4 +276,25 @@ td, th {
 div.progress{
   margin: 40px 0px;
   padding: 2px 2px;
+}
+
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating).forgotPass{
+  color: #20557d;
+  text-transform: none;
+}
+
+a.createAccount{
+  color: white;
+  transition: none;
+  -webkit-transition: none;
+}
+
+/* label focus color */
+.input-field input[type=text]:focus + label {
+  color:blue !important;
+}
+/* label underline focus color */
+.input-field input[type=text]:focus {
+  border-bottom: 1px solid #000 !important;
+  box-shadow: 0 1px 0 0 #000 !important;
 }

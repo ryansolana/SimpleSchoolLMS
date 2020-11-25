@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { signIn } from '../../store/actions/authActions'
 import { Redirect } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 
-class SignIn extends Component {
+class ForgotPassword extends Component {
     state = { 
         email: '',
         password: ''
@@ -18,7 +17,6 @@ class SignIn extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.signIn(this.state)
     }
 
     render(){
@@ -29,30 +27,17 @@ class SignIn extends Component {
                 <form onSubmit={this.handleSubmit} className="white">
                     <div className="card z-depth-4">
                         <div className="card-content">
-                            <i className="material-icons prefix center">login</i>
-                            <h3 className="thick center">School Of Logistics Portal</h3>
-                            <h6 className="grey-text text-darken-3 center">Please log in to continue.</h6>
+                            <h5 className="grey-text text-darken-3 center" style={{float: 'center'}}>Forgot your password?</h5>
+                            <p className="grey-text text-darken-3 center" style={{float: 'center'}}>Please enter your email address so we can help reset your password.</p>
                         </div>
                         <div className="card-action">
                             <div className="input-field">
                                 <label htmlFor="email">EMAIL</label>
                                 <input type="email" id="email" maxLength="50" size="50" onChange={this.handleChange}/>
                             </div>
-                            <div className="input-field">
-                                <label htmlFor="password">PASSWORD</label>
-                                <input type="password" id="password" maxLength="50" size="50" onChange={this.handleChange}/>
-                            </div>
                             <div className="input-field center">
                                 { authError ? <p className="red-text">{authError && "Failed to authenticate"}</p> : null }                       
-                                <button className="btn lighten-1 z-depth-0 login-btn center">Login</button>
-                            </div>
-                            <div className="center">
-                                <button className="btn login-btn" style={{marginTop:0}}><Link to='/signup' className="createAccount">Don't have an account?</Link></button>
-                            </div>
-                        </div>
-                        <div className="card-action">
-                            <div className="center">
-                                <p><Link to='/forgotPassword' className="forgotPass" >Forgot your password?</Link></p>
+                                <button className="btn lighten-1 z-depth-0 login-btn center">Reset Password</button>
                             </div>
                         </div>
                     </div>
@@ -70,10 +55,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        signIn: (creds) => dispatch(signIn(creds))
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(SignIn)
+export default connect(mapStateToProps, null)(ForgotPassword)

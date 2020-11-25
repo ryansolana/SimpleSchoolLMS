@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { updateGrade, deleteGrade } from '../../../store/actions/gradeActions'
 import { Redirect } from 'react-router-dom'
 import * as firebase from 'firebase'
 
@@ -46,9 +45,14 @@ class UpdateGrade extends Component {
         
     }
 
-    deleteHandler = () =>{
-        this.props.deleteGrade(this.props.match.params.id, this.props.match.params.gid); 
-        this.props.history.push('/manage/student/' + this.props.match.params.id);
+    deleteHandler = async() =>{
+        var db = firebase.firestore()
+        db.collection("grades").doc(this.props.match.params.id).collection("gradeList").doc(this.props.match.params.gid).delete()
+            .then(()=>{
+                console.info("Deleted grade")
+                this.props.history.push('/manage/student/' + this.props.match.params.id)
+            }
+        )
     }
 
     handleChange = (e) => {
@@ -56,23 +60,28 @@ class UpdateGrade extends Component {
             [e.target.id]: e.target.value
         })
 
-        if (e.target.value === ""){
-            this.setState({
-                [e.target.id]: null
-            })
-        }
         console.log(e.target.id + " is now " + e.target.value)
     }
 
     handleSubmit = (e) => {
+        var db = firebase.firestore()
         e.preventDefault();
         
         let newGrade = {title: this.state.title, grade: this.state.grade, content: this.state.content, 
             authorFirstName: this.state.authorFirstName, authorLastName: this.state.authorLastName,
         createdAt: this.state.createdAt}
 
-        this.props.updateGrade(newGrade, this.props.match.params.id, this.props.match.params.gid);
-        this.props.history.push('/manage/student/' + this.props.match.params.id);
+        db.collection("grades").doc(this.props.match.params.id).collection("gradeList").doc(this.props.match.params.gid).update({
+            ...newGrade,
+            authorFirstName: this.props.profile.firstName,
+            authorLastName: this.props.profile.lastName,
+            authorId: this.props.profile.id
+        }).then(()=>{
+            console.info("Updated grade")
+            this.props.history.push('/manage/student/' + this.props.match.params.id);
+        }).catch((err)=>{
+            console.info("Failed to update grade")
+        })
     }
 
     render(){
@@ -101,7 +110,7 @@ class UpdateGrade extends Component {
                 <div className="input-field">
                     <i className="material-icons prefix">text_snippet</i>
                     <label className="active" htmlFor="email">Description (2400 char max)</label>
-                    <input type="text" id="contentLink" maxLength="2400" onChange={this.handleChange} defaultValue={this.state.content} required/>
+                    <input type="text" id="content" maxLength="2400" onChange={this.handleChange} defaultValue={this.state.content} required/>
                 </div>
 
                 <div className="input-field">
@@ -128,13 +137,6 @@ class UpdateGrade extends Component {
     } 
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return{
-        updateGrade: (grade, id, gid) => dispatch(updateGrade(grade, id, gid)),
-        deleteGrade: (id, gid) => dispatch(deleteGrade(id, gid))
-    }
-}
-
 const mapStateToProps = (state) => {
     return {
         auth: state.firebase.auth,
@@ -142,4 +144,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UpdateGrade)
+export default connect(mapStateToProps, null)(UpdateGrade)

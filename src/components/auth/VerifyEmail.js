@@ -48,7 +48,7 @@ class VerifyEmail extends Component {
         if (!auth.uid) return <Redirect to='/signin' /> // redirect to signin if user is not logged in
         if (this.state.isVerified) return <Redirect to='/' />
 
-        if (auth && !this.state.loading){
+        if (auth){
             return (
             <div> 
                 <div className="dashboard container">

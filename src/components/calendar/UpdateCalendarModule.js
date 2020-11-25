@@ -117,9 +117,7 @@ class UpdateCalendarModule extends Component {
                                 <input class="with-gap" name="group1" id="status" value="Due" type="radio"/>
                                 <span>Due</span>
                             </label>
-                            
                         </p>
-
                     </div>
 
                     <div className="input-field">

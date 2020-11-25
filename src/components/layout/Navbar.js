@@ -14,7 +14,6 @@ const Navbar = (props) => {
         <div>
             <nav className="nav-wrapper darken-3 grey">
                 <div className="container">
-                    {/* School Menu Links Start */}
                     <SchoolLinks profile={profile}/>
                 </div>
             </nav>
