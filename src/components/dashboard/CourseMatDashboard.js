@@ -61,8 +61,8 @@ class CourseMatDashboard extends Component{
             )
         } else {
             return(
-                <div className="container center">
-                    <h5>Loading dashboard...</h5>
+                <div className="dashboard container">
+                    <h3 className="page-title padding">Course Material</h3>
                     <div className="progress">
                         <div className="indeterminate"></div>
                     </div>

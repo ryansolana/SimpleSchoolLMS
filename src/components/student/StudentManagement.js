@@ -121,7 +121,8 @@ class StudentManagement extends Component{
             )
         } else {
             return(
-                <div className="container">
+                <div className="dashboard container">
+                    <h3 className="padding page-title">Student Management</h3>
                     <div className="progress">
                         <div className="indeterminate"></div>
                     </div>

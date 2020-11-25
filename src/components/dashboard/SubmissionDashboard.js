@@ -61,9 +61,9 @@ class SubmissionDashboard extends Component{
                 </div>
             )
         } else{
-            return(
-                <div className="container center">
-                    <h5>Loading dashboard...</h5>
+            return( 
+                <div className="dashboard container">
+                    <h3 className="page-title padding">Submissions</h3>
                     <div className="progress">
                         <div className="indeterminate"></div>
                     </div>
