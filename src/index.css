@@ -59,8 +59,8 @@ textarea.materialize-textarea:focus:not([readonly]){
 }
 
 .footer{
-  margin-top: 35%;
-  background-color: #ffffff !important;
+  margin-top: 750px;
+  background-color: #00233D !important;
   height: 50px;
   line-height: 50px;
 }

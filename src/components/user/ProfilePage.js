@@ -9,7 +9,6 @@ class ProfilePage extends Component {
         passwordMessage: '',
         passwordFail: null,
         isReAuth: false,
-        changePasswordEnabled: false,
         passwordWasChanged: false,
         inputtedPassword: "",
 
@@ -74,7 +73,7 @@ class ProfilePage extends Component {
 
         return(
             <div className="dashboard container">
-                <div className="card z-depth-0">
+                <div className="card z-depth-5">
                     <div className="card-content">
                         <h3>Account Page</h3>
                         <br></br>
@@ -85,9 +84,8 @@ class ProfilePage extends Component {
                     </div>
                     <div className="card-action" style={{paddingTop: 0}}>
                         <br></br>
-                        {!this.state.changePasswordEnabled && !this.state.passwordWasChanged && <button className="btn blue" onClick={this.enableChangePassword}>Change Password</button>}
 
-                        {this.state.changePasswordEnabled && !this.state.passwordWasChanged &&
+                        {!this.state.passwordWasChanged &&
                             <form onSubmit={this.changePassword} style={{marginTop:0, paddingLeft: 0}}>
                                 <p><bold>Change Password</bold></p>
                                 <div className="input-field">
