@@ -42,4 +42,6 @@ Libraries Include:
 - Firebase Firestore for Backend Database
 - Firebase Authentication
 
+See package.json for full list of dependencies
+
 
