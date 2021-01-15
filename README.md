@@ -23,7 +23,7 @@ This simple learning management system was developed by myself (Ryan Solana) to 
 Use npm install to install required packages
 Use npm start to run application
 
-## Login Credentials
+### Login Credentials
 
 Sample Accounts
 - ADMIN
