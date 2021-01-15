@@ -23,6 +23,16 @@ This simple learning management system was developed by myself (Ryan Solana) to 
 Use npm install to install required packages
 Use npm start to run application
 
+### Login Credentials
+
+Sample Accounts
+- ADMIN
+    - Login: simpleschool.professor@gmail.com
+    - Pass: 123456
+- STUDENT
+    - Login: simpleschool.student@gmail.com
+    - Pass: 123456
+
 ### Dependencies
 Libraries Include:
 - Materialize CSS
