@@ -24,4 +24,4 @@ yarn-error.log*
 
 # secret
 
-/src/config
+/src/config/secret.js
