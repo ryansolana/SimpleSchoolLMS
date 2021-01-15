@@ -3,6 +3,7 @@ import 'firebase/firestore';
 import 'firebase/auth';
 import '../config/secret'
 
+// replace with your own firebase config
 var firebaseConfig = secret;
 
 // Initialize Firebase
