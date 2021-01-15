@@ -1,12 +1,7 @@
-# School of Logistics Learning Management System (LMS)
-
-### About
-Client: School of Logistics
-Reported to: Eyan Howlader, Shipon Howlader
+# SimpleSchool Learning Management System (LMS)
 
 ### Summary
-This application was developed in order to provide students of School of Logistics a means
-to communicate with the professors involved in teaching the curriculum of the courses.
+This simple learning management system was developed to demonstrate functional knowledge of the react libraryh and skills relating to the usage of external apis including leveraging the Google Firebase Firestore API to provide implement a full stack solution to a potential client.
 
 ### Current Features
 - Authentication
@@ -14,7 +9,7 @@ to communicate with the professors involved in teaching the curriculum of the co
     - Sign In with Email and Password
 
 - User Features
-    - View professor dictated content
+    - View professor provided content
         - Announcements
         - Course Material
         - Recieved Grades
@@ -32,8 +27,6 @@ Use npm start to run application
 Libraries Include:
 - React Framework
 - React Redux: Thunk
-- React Draft Wysiwyg / Draft.js (https://jpuri.github.io/react-draft-wysiwyg/#/docs?_k=jjqinp)
-    - For Rich Text Editing
 - Firebase Firestore for Backend Database
 - Firebase Authentication
 
