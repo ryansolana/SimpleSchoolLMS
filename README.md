@@ -25,7 +25,9 @@ Use npm start to run application
 
 ### Dependencies
 Libraries Include:
-- React Framework
+- Materialize CSS
+- React Library
+   - create-react-app boilerplate
 - React Redux: Thunk
 - Firebase Firestore for Backend Database
 - Firebase Authentication
