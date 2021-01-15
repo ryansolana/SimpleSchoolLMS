@@ -1,7 +1,7 @@
 import * as firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
-import '../config/secret'
+import secret from '../config/secret'
 
 // replace with your own firebase config
 var firebaseConfig = secret;
