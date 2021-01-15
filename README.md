@@ -1,7 +1,7 @@
 # SimpleSchool Learning Management System (LMS)
 
 ### Summary
-This simple learning management system was developed to demonstrate functional knowledge of the react library and skills relating to the usage of external apis including leveraging the Google Firebase Firestore API to provide implement a full stack solution to a potential client.
+This simple learning management system was developed by myself (Ryan Solana) to demonstrate functional knowledge of the react library and skills relating to the usage of external apis including leveraging the Google Firebase Firestore API to provide implement a full stack solution to a potential client.
 
 ### Current Features
 - Authentication
