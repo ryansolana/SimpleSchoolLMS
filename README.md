@@ -26,12 +26,12 @@ Use npm start to run application
 ## Login Credentials
 
 Sample Accounts
-ADMIN
-- Login: simpleschool.professor@gmail.com
-- Pass: 123456
-STUDENT
-- Login: simpleschool.student@gmail.com
-- Pass: 123456
+- ADMIN
+    - Login: simpleschool.professor@gmail.com
+    - Pass: 123456
+- STUDENT
+    - Login: simpleschool.student@gmail.com
+    - Pass: 123456
 
 ### Dependencies
 Libraries Include:
