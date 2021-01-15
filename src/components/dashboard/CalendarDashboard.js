@@ -17,7 +17,7 @@ class CalendarModuleDashboard extends Component{
 
         return(
             <div className="dashboard container">
-                <h3 className="page-title padding">School of Logistics - {date} Calendar </h3>
+                <h3 className="page-title padding">Simple School - {date} Calendar </h3>
 
                 {profile.isAdmin ? <Link to='/createCalendarModule'>
                     <button className="btn waves-effect waves-light green text-darken-1 padding-top hoverable">Create New Calendar Module</button>

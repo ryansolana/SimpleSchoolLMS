@@ -61,7 +61,7 @@ class CalendarModuleDetails extends Component{
             <div>
                 <div className="container section calendarModule-details">
 
-                <h3 className="page-title padding">School of Logistics - {date} Calendar </h3>
+                <h3 className="page-title padding">Simple School - {date} Calendar </h3>
                     <div className="card z-depth-2">
 
                         <div className="card-content" style={{paddingBottom: 0}}>

@@ -30,7 +30,7 @@ class SignIn extends Component {
                     <div className="card z-depth-4">
                         <div className="card-content">
                             <i className="material-icons prefix center">login</i>
-                            <h3 className="thick center">School Of Logistics Portal</h3>
+                            <h3 className="thick center">Simple School Portal</h3>
                             <h6 className="grey-text text-darken-3 center">Please log in to continue.</h6>
                         </div>
                         <div className="card-action">

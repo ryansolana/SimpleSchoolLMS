@@ -25,7 +25,6 @@ class Landing extends Component {
                                 <p>You last logged in {date}</p>
                             </div>
                         </div>
-                        <img className="header-img z-depth-1" src="/img/header.png" alt="yeah"></img>
                     </div>
                 </div>
             )
